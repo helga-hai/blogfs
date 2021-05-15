@@ -1,37 +1,36 @@
 <template lang="pug">
   // Component template
-  footer.footer(data-footer)
-    .footer__top
-      .footer__general
-        .footer__general-block.footer__general-block--top
-          .footer__general-logo
-            BaseLogo(data-footer-logo)
-
-    .footer__partners
-      FooterPartners
-
-    .footer__legal
-      .footer__company
-        FooterDisclaimer.footer__disclaimer
-        //FooterGambling.footer__gambling
-      FooterCopyright.footer__copyright
+  header.header(data-header)
+    .header__offset
+    .header__container
+      .header__main
+        .header__toggle(
+          v-if="$mq !== 'lg'",
+          @click="$emit('toggleSidebar')",
+          data-header-toggle)
+        BaseLogo.header__logo(data-header-logo)
+        .header__content
+          HeaderShortcuts.header__shortcut
+        HeaderSearch.header__search
+        HeaderLanguage.header__language(v-if="$mq == 'lg'")
 </template>
 
 <script lang="ts">
   import BaseLogo from '@/components/base/BaseLogo.vue';
-  import FooterPartners from './footer/FooterPartners.vue';
-  import FooterDisclaimer from './footer/FooterDisclaimer.vue';
-  import FooterCopyright from './footer/FooterCopyright.vue';
+  import HeaderShortcuts from './header/HeaderShortcuts.vue';
+  import HeaderSearch from './header/HeaderSearch.vue';
+  import HeaderLanguage from './header/HeaderLanguage.vue';
 
   // Component definition.
   export default {
-    name: 'TheFooter',
+    // Name of the component.
+    name: 'TheHeader',
     // Deps of the component
     components: {
       BaseLogo,
-      FooterPartners,
-      FooterDisclaimer,
-      FooterCopyright,
+      HeaderShortcuts,
+      HeaderSearch,
+      HeaderLanguage,
     },
   };
 </script>
@@ -39,102 +38,85 @@
 <style lang="scss" scoped>
   @import '~@stylize/sass-mixin';
 
-  .footer {
-    margin: 0 auto;
-    padding: $footer-layout__padding;
-    max-width: $footer-layout__max-width;
-    background: $footer-layout__background;
+  .header {
+    $selector: &;
 
-    &__top {
-      @include flex(column space-between);
-
-      @include media('>=md') {
-        @include flex(row);
-      }
+    &__offset,
+    &__container {
+      height: $header__height--r10;
     }
 
-    &__general {
-      flex: 1.4 0 0;
-
-      &-block {
-        flex-wrap: wrap;
-        @include flex(row space-between center);
-
-        &--top {
-          @include media('>=md') {
-            @include flex(column stretch flex-start);
-          }
-        }
-      }
-
-      &-grow {
-        flex-grow: 1;
-      }
-
-      &-awards,
-      &-socials {
-        margin: $footer-layout-general__margin;
-      }
-
-      &-logo {
-        @include flex(row);
-      }
-
-      &-logo,
-      &-language,
-      &-affiliates {
-        margin: $footer-layout-general__margin--right;
-      }
-
-      &-socials {
-        @include media('>=md') {
-          margin: $footer-layout-general__margin--right;
-        }
-      }
-    }
-
-    &__navigation {
-      flex: 1 0 0;
-    }
-
-    &__partners {
-      margin: $footer-layout-partner__margin;
-      padding: $footer-layout-partner__padding;
-
-      @include media('>=md') {
-        border-top: $footer-layout-partner__border;
-        border-bottom: $footer-layout-partner__border;
-      }
-    }
-
-    &__company {
+    &__container {
+      background: $header__background;
       @include flex(column);
+      @include fixed(0 0 null 0 11001);
+    }
 
-      @include media('>=md') {
-        @include flex(row space-between);
+    &__main,
+    &__content {
+      flex-grow: 1;
+      @include flex(row space-between);
+    }
+
+    &__content {
+      @include media('<sm') {
+        @include flex(row flex-end);
       }
     }
 
-    &__gambling {
-      margin: $footer-layout-gambling__margin;
+    &__main {
+      padding: $header__padding;
 
-      @include media('>=md') {
-        margin: $footer-layout-gambling__margin--r10;
+      @include media('<sm') {
+        #{$selector}__shortcut {
+          display: none;
+        }
       }
     }
 
-    &__copyright {
-      padding: $footer-layout-copyright__padding;
+    &__toggle {
+      cursor: pointer;
+      align-self: center;
+      margin: $header-toggle__margin;
+      min-width: $header-toggle__size;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: $header-toggle__background;
+      @include size($header-toggle__size);
 
-      @include media('>=md') {
-        padding: $footer-layout-copyright__padding--r10;
+      @include support-hover {
+        &:hover {
+          background-image: $header-toggle__background--hover;
+        }
       }
     }
 
-    &__disclaimer {
-      @include media('>=md') {
-        max-width: $footer-layout-disclaimer__max-width;
+    &__logo {
+      display: none;
+
+      @include media('>=360px') {
+        @include flex(row);
+        margin: $header-logo__margin;
       }
+
+      &::v-deep .base-logo__text {
+        display: none;
+
+        @include media('>=md') {
+          display: block;
+        }
+      }
+    }
+
+    &__shortcut {
+      flex: 1 1 0;
+      margin-right: 16px;
+      @include flex(row flex-start stretch);
+    }
+
+    &__language {
+      width: 100px;
+      @include flex(row center center);
     }
   }
 </style>

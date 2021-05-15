@@ -1,5 +1,5 @@
 <template lang="pug">
-  //- Component template.
+  // Component template.
   .footer-partner__list(data-footer-partner-list)
     .footer-partner__company(data-footer-partner-company)
       a.footer-partner__link.footer-partner__company-ethereum.footer-partner__company-link(
@@ -8,14 +8,14 @@
         target="_blank",
         data-footer-partner-company-item="ethereum")
         img.footer-partner__company-ethereum-image(
-          src="/static/footer/partner/ethereum.svg",
+          src="@/assets/images/footer/partner/ethereum.svg",
           alt="Ethereum",
           draggable="false")
 
       .footer-partner__link.footer-partner__company-trueplay.footer-partner__company-link(
         data-footer-partner-company-item="trueplay")
         img.footer-partner__company-trueplay-image(
-          src="/static/footer/partner/trueplay.svg",
+          src="@/assets/images/footer/partner/trueplay.svg",
           alt="TruePlay",
           draggable="false")
 
@@ -28,40 +28,42 @@
           data-ceg-image-type="basic-small")
 
     .footer-partner__currency(data-footer-partner-currency)
-      a.footer-partner__link.footer-partner__currency-link(
+      .footer-partner__link.footer-partner__currency-link(
         v-for="currency in currencies",
         :key="currency",
-        :href="authUrl",
         rel="nofollow",
         :class="`footer-partner__currency-${currency}`",
-        @click="cacheWindowUrl(redirectUrl)",
         :data-footer-partner-currency-item="currency")
         img(
-          :src="`/static/footer/partner/${currency}.svg`",
+          :src="require(`@/assets/images/footer/partner/${currency}.svg`)",
           :alt="currency",
           draggable="false")
 </template>
 
 <script lang="ts">
-  import { mapGetters } from 'vuex';
-  import { authUrl } from '@/constant/Auth';
-  import { cacheWindowUrl } from '@/helpers/location';
+  import Vue from 'vue';
 
   // Component data.
   interface Data {
     key: string;
-    authUrl: string;
     currencies: string[];
   }
+
+  // Declare an instance property
+  declare module 'vue/types/vue' {
+    interface Vue {
+      $loadScript: any;
+    }
+  }
+
   // Component definition.
-  export default {
+  export default Vue.extend({
     // Name of the component.
     name: 'FooterPartners',
     // Data of the component.
     data: (): Data => ({
       // Key to validate curacao license.
       key: '46399d31-9c70-4464-81eb-ca42db7f8f5f',
-      authUrl,
       currencies: [
         'visa',
         'mir',
@@ -83,30 +85,19 @@
         'b2bx',
         'eos',
         'gemini',
-        'paxos'
-      ]
+        'paxos',
+      ],
     }),
-    // Computed of the component.
-    computed: {
-      ...mapGetters('configs', ['isPrerender']),
-      redirectUrl(): string {
-        return window.location.origin + this.$router.resolve({ name: 'cashier' }).href;
-      }
-    },
-    methods: {
-      cacheWindowUrl
-    },
     // Mounted hook of the component.
     mounted(): void {
-      if (!this.isPrerender)
-        // Load curacao license validator on main website.
-        this.$loadScript(`https://${this.key}.curacao-egaming.com/ceg-seal.js`);
-    }
-  };
+      // Load curacao license validator on main website.
+      this.$loadScript(`https://${this.key}.curacao-egaming.com/ceg-seal.js`);
+    },
+  });
 </script>
 
 <style lang="scss" scoped>
-  @use '~@stylize/sass-mixin' as *;
+  @import '~@stylize/sass-mixin';
 
   .footer-partner {
     &__list {

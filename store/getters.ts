@@ -1,5 +1,5 @@
 import type { CancelTokenSource } from 'axios';
-import type { CommonState } from './state';
+import type { CommonState } from '~/store/state';
 
 // Getters are computable properties with an internal
 // caching mechanism based on its dependencies.
@@ -36,7 +36,7 @@ export default {
    * @param state Common State.
    * @return Ajax cancel tokens.
    */
-  ajaxCancelTokens({ ajaxCancelTokens }: CommonState): Record<string, CancelTokenSource> {
+  ajaxCancelTokens({ ajaxCancelTokens }: CommonState): Record<string, CancelTokenSource> | null {
     return ajaxCancelTokens;
   }
 };

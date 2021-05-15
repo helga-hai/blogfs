@@ -1,0 +1,379 @@
+//@use './function' as *;
+//@use './font' as * with (
+//  $base-font: 'Stolzl'
+//);
+@import './function';
+@import '~@stylize/sass-func/css/font';
+
+// Color schema
+$color-0: #ffffff;
+$color-0_08: rgba($color-0, 0.08);
+$color-0_1: rgba($color-0, 0.1);
+$color-0_2: rgba($color-0, 0.24);
+$color-0_5: rgba($color-0, 0.54);
+$color-0_7: rgba($color-0, 0.7);
+$color-0_9: rgba($color-0, 0.9);
+$color-10: #000000;
+$color-10_2: rgba($color-10, 0.24);
+$color-10_5: rgba($color-10, 0.54);
+$color-10_7: rgba($color-10, 0.7);
+$color-11: #111418;
+$color-11_5: rgba($color-11, 0.54);
+$color-11_7: rgba($color-11, 0.7);
+$color-13: #15191f;
+$color-13_2: rgba($color-13, 0.24);
+$color-15: #1b1f24;
+$color-16: #20252c;
+$color-16_2: rgba($color-16, 0.24);
+$color-16_5: rgba($color-16, 0.54);
+$color-16_7: rgba($color-16, 0.7);
+$color-16_9: rgba($color-16, 0.9);
+$color-17: #2f3236;
+$color-17_2: rgba($color-17, 0.24);
+$color-17_5: rgba($color-17, 0.54);
+$color-17_9: rgba($color-17, 0.9);
+$color-18: #424242;
+$color-18_5: rgba($color-18, 0.54);
+$color-18_7: rgba($color-18, 0.7);
+$color-18_2: rgba($color-18, 0.24);
+$color-19: #56595f;
+$color-21: #ffb82f;
+$color-21_08: rgba($color-21, 0.08);
+$color-23: #ffce44;
+$color-23_1: rgba($color-23, 0.1);
+$color-23_2: rgba($color-23, 0.24);
+$color-23_5: rgba($color-23, 0.54);
+$color-25: #ffd55d;
+$color-25_2: rgba($color-25, 0.24);
+$color-27: #ffea60;
+$color-32: #ff6e40;
+$color-32_5: rgba($color-32, 0.54);
+$color-35: #ff9d88;
+$color-45: #38414e;
+$color-45_5: rgba($color-45, 0.54);
+$color-51: #616161;
+$color-55: #a3a3a3;
+
+// New colors
+$n_color-0: #ffffff;
+$n_color-0_2: rgba($n_color-0, 0.24);
+$n_color-0_4: rgba($n_color-0, 0.4);
+$n_color-0_7: rgba($n_color-0, 0.7);
+$n_color-5: #000000;
+$n_color-5_7: rgba($n_color-5, 0.7);
+$n_color-8: #282722;
+$n_color-10: #101010;
+$n_color-11: #181818;
+$n_color-13: #2b2b2b;
+$n_color-13_5: rgba($n_color-13, 0.54);
+$n_color-13_7: rgba($n_color-13, 0.7);
+$n_color-15: #414141;
+$n_color-17: #4c4c4c;
+$n_color-18: #565656;
+$n_color-18_2: rgba($n_color-18, 0.16);
+$n_color-19: #616161;
+$n_color-20: #8d8d8d;
+$n_color-22: #a3a3a3;
+$n_color-24: #d4d4d4;
+$n_color-30: #ffce44;
+$n_color-30_1: rgba($n_color-30, 0.08);
+$n_color-30_2: rgba($n_color-30, 0.16);
+$n_color-30_5: rgba($n_color-30, 0.54);
+$n_color-30_7: rgba($n_color-30, 0.7);
+$n_color-32: #ffd55d;
+$n_color-34: #ffea60;
+$n_color-36: #fef0c5;
+$n_color-40: #ff7144;
+$n_color-42: #a78834;
+
+// Font schema
+$font-family: 'Stolzl';
+$font--xl: 1rem; // ~16px
+$font--lg: 0.875rem; // ~14px
+$font--md: 0.75rem; // ~12px
+$font--sm: 0.625rem; // ~10px
+$font--xs: 0.5rem; // ~8px
+
+// Indent schema
+$indent-xs: 8px;
+$indent-sm: 16px;
+$indent-md: 24px;
+$indent-lg: 32px;
+$indent-xl: 40px;
+$indent-xxl: 48px;
+
+// Property: Default
+$border-radius-xs: 4px;
+$border-radius-md: 8px;
+$border-circle: 50%;
+
+// General: App
+$icon-size--xs: 12px;
+$icon-size--sm: 16px;
+$icon-size--md: 24px;
+$icon-size--lg: 36px;
+
+// Layout: App
+$app__max-width: 1184px;
+$app__background: $n_color-11;
+$app-header-height: 88px;
+$app-header-height--r10: 56px;
+
+// Component: Form
+$form-control__font: font($font--lg);
+$form-control__color: $color-0;
+$form-control__height: 40px;
+$form-control__height--xs: 32px;
+$form-control__height--lg: 48px;
+
+// Base: Button
+$base-button__padding: 0 indent(2.5);
+$base-button__font--xs: font($font--md);
+$base-button__font--sm: font($font--md);
+$base-button__font--lg: font($font--lg);
+$base-button__min-height--xs: $form-control__height--xs;
+$base-button__min-height--sm: $form-control__height;
+$base-button__min-height--lg: $form-control__height--lg;
+$base-button__border-radius--xs: $border-radius-xs;
+$base-button__border-radius--sm: $border-radius-xs;
+$base-button__border-radius--lg: $border-radius-md;
+$base-button-primary__color: $n_color-13;
+$base-button-primary__color--active: $n_color-17;
+$base-button-primary__color--disabled: $n_color-19;
+$base-button-primary__border: 1px solid $n_color-30;
+$base-button-primary__border--hover: 1px solid $n_color-32;
+$base-button-primary__border--active: 1px solid $n_color-34;
+$base-button-primary__border--disabled: 1px solid $n_color-22;
+$base-button-primary__shadow--hover: 0px 0 8px $n_color-32;
+$base-button-primary__shadow--active: 0px 0 8px $n_color-34;
+$base-button-primary__shadow--disabled: none;
+$base-button-primary__background: $n_color-30;
+$base-button-primary__background--hover: $n_color-32;
+$base-button-primary__background--active: $n_color-34;
+$base-button-primary__background--disabled: $n_color-22;
+$base-button-secondary__color: $n_color-30;
+$base-button-secondary__color--hover: $n_color-32;
+$base-button-secondary__color--active: $n_color-34;
+$base-button-secondary__color--disabled: $n_color-22;
+$base-button-secondary__border: 1px solid $n_color-30;
+$base-button-secondary__border--hover: 1px solid $n_color-32;
+$base-button-secondary__border--active: 1px solid $n_color-34;
+$base-button-secondary__border--disabled: 1px solid $n_color-22;
+$base-button-secondary__background: $n_color-30_1;
+$base-button-secondary__background--hover: $n_color-30_2;
+$base-button-secondary__background--active: transparent;
+$base-button-secondary__background--disabled: transparent;
+$base-button-inline__color: $n_color-30;
+$base-button-inline__color--active: $n_color-34;
+$base-button-inline__color--disabled: $n_color-22;
+$base-button-inline__text-shadow--hover: 0px 0 8px $n_color-30;
+$base-button-inline__text-shadow--active: 0px 0 8px $n_color-34;
+
+// Base: Close
+$base-close__size: $icon-size--sm;
+$base-close__padding: indent(1);
+$base-close__color: $n_color-13;
+$base-close__background: $n_color-30;
+$base-close__background--hover: $n_color-32;
+$base-close__box-shadow--hover: 0 0 5px 1px $n_color-32;
+
+// Base: Input
+$input_v2__border-color--error: $color-32;
+$input_v2-label__font: font($font--sm, 16px, 100);
+$input_v2-label__color: $color-0_7;
+$input_v2-label__color--error: $color-32;
+$input_v2-label__padding: 0 0 4px 6px;
+$input_v2-label__padding--border: 0 0 0 6px;
+$input_v2-label__position: -7px, 0, null, 9px;
+$input_v2-badge__position: 0, 0, 0, null;
+$input_v2-field__padding: 0;
+$input_v2-field__border: 1px solid $color-16_5;
+$input_v2-field__border-color--error: $color-32_5;
+$input_v2-field__background: $color-15;
+$input_v2-field__background--error: $color-16_7;
+$input_v2-field__background--focus: $color-16_5;
+$input_v2-field-control__font: font($font--xl, 1, 100);
+$input_v2-field-control__font--r10: font($font--md, 1, 100);
+$input_v2-field-control__color: $form-control__color;
+$input_v2-field-control__padding: 0 indent(1);
+$input_v2-field-control__padding--clear: 0 indent(2) 0 indent(3);
+$input_v2-field-control__background: transparent;
+$input_v2-field-control__transform: scale(0.75);
+$input_v2-field-control__transform--r10: none;
+$input_v2-field-control__min-height: $form-control__height;
+$input_v2-field-clear__size: 16px;
+$input_v2-field-clear__padding: indent(1);
+$input_v2-field-clear__background: $color-10_2;
+$input_v2-field-clear__border-radius: $border-circle;
+$input_v2-field-clear-image__size: 10px;
+
+// Base: Loader
+$base-loader-primary__color: $n_color-5;
+$base-loader-secondary__color: $n_color-32;
+$base-loader-dot__border-radius: 6px;
+$base-loader-dot__size: 6px;
+$base-loader-dot__margin: 0 2px;
+
+// Base: Logo
+$base-logo__size: 40px;
+$base-logo__padding: 0 indent(1);
+
+// Base: Overlay
+$base-overlay__position: 0 0 0 0 11002;
+$base-overlay__background: $color-11_7;
+
+// Layout
+$layout__z-index: 9999;
+$layout__margin: $app-header-height auto 0;
+$layout__margin--r10: $app-header-height--r10 auto 0;
+$layout__padding: indent(2);
+$layout__padding--r10: indent(2) indent(3);
+$layout__padding--r20: indent(3);
+
+// Layout Header
+$header__height: $app-header-height;
+$header__height--r10: $app-header-height--r10;
+$header__padding: 0 indent(2);
+$header__background: $n_color-10;
+$header-logo__margin: 0 indent(2) 0 0;
+$header-toggle__size: 36px;
+$header-toggle__margin: 0 indent(2) 0 0;
+$header-toggle__background: url('~@/assets/images/header/burger.svg?inline');
+$header-toggle__background--hover: url('~@/assets/images/header/burger--active.svg?inline');
+$header-profile__margin: 0 0 0 indent(0.5);
+$header-profile__margin--r10: 0 0 0 indent(1);
+$header-profile__margin--r20: 0 0 0 indent(2);
+$header-auth-wallet__margin: 0 0 0 indent(1);
+$header-auth-wallet__margin--r10: 0;
+$header-secondary__min-height: 42px;
+$header-secondary__background: $n_color-13;
+
+// Layout: Header Language
+$header-language-toggle__font: font($font--md, 1rem);
+$header-language-toggle__color: $n_color-0;
+$header-language-toggle__padding: 0 indent(1);
+$header-language-toggle-flag__size: 1.5rem;
+$header-language-toggle-arrow__size: 1rem;
+$header-language-toggle-arrow__background: url('~@/assets/images/common/arrow-down.svg') no-repeat center;
+$header-language-list__margin: indent(1) 0 0 0;
+$header-language-list__position: 100%, null, null, -#{indent(1)};
+$header-language-list__background: $color-13;
+$header-language-list__border-radius: $border-radius-xs;
+$header-language-item__width: 90px;
+$header-language-item__padding: 0 indent(1);
+$header-language-item__background--hover: $color-16_5;
+
+// Layout Header: Shortcut
+$header-shortcut-item__font: font($font--lg);
+$header-shortcut-item__color: $n_color-0;
+$header-shortcut-item__margin: 2px 0 0 0;
+$header-shortcut-item__padding: 0 indent(2);
+$header-shortcut-item__padding--r10: 0 indent(1.5);
+$header-shortcut-item__padding--r20: 0 indent(2);
+$header-shortcut-item__border-with: 0 0 2px 0;
+$header-shortcut-item__border-color: transparent;
+$header-shortcut-item__border-color--hover: $n_color-0;
+$header-shortcut-item__border-color--active: $n_color-30;
+// prettier-ignore
+$header-shortcut-item__background--active: linear-gradient(180deg,
+  rgba(255, 206, 68, 0) 40.1%, rgba(255, 206, 68, 0.2) 100%);
+
+// Layout Header: Header Search
+$view-header-search__width: 42px;
+$view-header-search__width--r10: 200px;
+$view-header-search-result__width: 175%;
+
+// Layout: Footer
+$footer-layout__padding: indent(4) indent(2) 0;
+$footer-layout__max-width: $app__max-width;
+$footer-layout-partner__margin: indent(3) 0;
+$footer-layout-partner__border: 1px solid $color-0_1;
+$footer-layout-partner__padding: indent(3) 0;
+$footer-layout-disclaimer__max-width: 954px;
+$footer-layout-gambling__margin: indent(4) 0;
+$footer-layout-gambling__margin--r10: 0 0 0 indent(4);
+$footer-layout-copyright__padding: 0 0 indent(3) 0;
+$footer-layout-copyright__padding--r10: indent(2) 0 indent(3) 0;
+
+// Layout: Footer Partner
+$footer-partner-item-image__width: 50%;
+$footer-partner-item-image__width--r10: 145px;
+$footer-partner-item-image__height: 40px;
+$footer-partner-company-item__margin: 0;
+$footer-partner-company-item__margin--r10: indent(2);
+$footer-partner-company-item__margin--r20: 0;
+$footer-partner-currency__padding: indent(2) 0;
+$footer-partner-currency-item__margin: 0;
+$footer-partner-currency-item__margin--r10: indent(1);
+
+// Layout: Footer Copyright
+$footer-copyright__font: font($font--md, 1rem);
+$footer-copyright__color: $n_color-24;
+
+// Layout: Footer Disclaimer
+$footer-disclaimer__font: font($font--md, 1.25rem);
+$footer-disclaimer__color: $n_color-24;
+
+// Layout Sidebar
+$sidebar__width: 320px;
+$sidebar__shadow: 7px 0px 4px $color-10_5;
+$sidebar__background: $color-13;
+$sidebar-block__padding: 0 indent(3);
+$sidebar-block__border: 1px solid $color-16_7;
+$sidebar-header__padding: indent(2) 0;
+$sidebar-close__margin: 0 indent(-1) 0 0;
+$sidebar-auth__padding: 0 0 indent(3) 0;
+$sidebar-wallet__min-width: 100%;
+$sidebar-wallet__background: transparent;
+$sidebar-catalogue__padding: indent(1) 0;
+$sidebar-scroll__offset: 137px;
+
+// Component: Language
+$language-item__font: font($font--md, 40px, 100);
+$language-item__color: $color-0;
+$language-item__color--hover: $color-23;
+$language-item__padding: 0 indent(3);
+$language-item-flag__size: 24px;
+$language-item-text__padding: 0 0 0 indent(1);
+$language-item-mark__size: indent(2);
+$language-item-mark__margin: 0 0 0 indent(1);
+$language-item-mark__background: url('~@/assets/images/common/mark--active.svg');
+
+// Component: Game Search
+$search__width: 100%;
+
+// Component: Game Search Field
+$search-field-badge__padding: 0 0 0 indent(1);
+$search-field-badge__min-width: 24px;
+$search-field-close__min-width: 38px;
+$search-field-close__margin: 0 0 0 indent(1);
+$search-field-close__background: $color-16;
+$search-field-close__border-radius: $border-radius-xs;
+$search-field-close-image__size: 16px;
+
+// Component: Search Result
+$search-result__z-index: 2;
+$search-result__width: 100%;
+$search-result__margin: indent(0.75) 0 0 0;
+$search-result__padding: indent(2) 0;
+$search-result__background: $color-16;
+$search-result__box-shadow: -1px 2px 6px 1px $color-10_5;
+$search-result__border-radius: $border-radius-xs;
+$search-result-total__font: font($font--md, 1rem, 100);
+$search-result-total__color: $color-0_7;
+$search-result-total__padding: 0 indent(2) indent(1);
+$search-result-list__max-height: 380px;
+$search-result-item__padding--recommend: indent(0.5) indent(2);
+$search-result-empty__font: font($font--sm, 1rem, 100);
+$search-result-empty__color: $color-0_7;
+$search-result-empty__padding: indent(1) indent(2);
+$search-result-empty-title__font: font($font--lg, 24px, 700);
+$search-result-empty-title__color: $color-0;
+$search-result-shadow__position: null, indent(4), 0, 0;
+$search-result-shadow__box-shadow: 0 -2px 19px 19px $color-16;
+$search-result-recommend__margin: indent(2) 0 -#{indent(2)};
+$search-result-recommend__padding: 0 0 indent(2);
+$search-result-recommend__background: $color-17_5;
+$search-result-recommend-title__font: font($font--lg, 1, normal);
+$search-result-recommend-title__color: $color-0;
+$search-result-recommend-title__padding: indent(2) indent(2) indent(1);

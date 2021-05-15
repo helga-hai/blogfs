@@ -1,7 +1,7 @@
 import keys from 'lodash/keys';
 import forEach from 'lodash/forEach';
 import type { ActionContext, ActionPayload } from 'vuex';
-import type { CommonState } from './state';
+import type { CommonState } from '~/store/state';
 
 // Actions are used to commit state mutations
 // and can contain asynchronous operations.
@@ -10,9 +10,9 @@ export default {
    * Action used to reset the module state to initial data.
    * @param vuex Action Context.
    */
-  resetState({ commit }: ActionContext<CommonState, unknown>): void {
-    commit('resetState');
-  },
+  // resetState({ commit }: ActionContext<CommonState, unknown>): void {
+  //   commit('resetState');
+  // },
 
   /**
    * Action used to change the ready state of the functionality.
@@ -85,5 +85,5 @@ export default {
    */
   cancelAjaxRequest({ commit }: ActionContext<CommonState, unknown>, id: string): void {
     commit('cancelAjaxRequest', id);
-  }
+  },
 };

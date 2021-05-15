@@ -1,36 +1,30 @@
-<template lang='pug'>
+<template lang="pug">
   // Component template
   .post
     .post__content
-      .post__title
+      h1.post__title
         | {{ $route.params.slug }}
 </template>
 
 <script lang="ts">
+  import Vue from 'vue';
 
-  // interface Data {
-  //   sidebar: boolean;
-  //   classes: string[];
-  // }
-
-  export default {
-    name: '_slug',
-
-    // data: (): Data => ({
-    //   slug: this.$route.params.slug,
-    // }),
+  // Component definition
+  export default Vue.extend({
+    // Name of the component
+    name: 'slug',
+    //Computed hook of the component
     computed: {
       slug(): string {
-        console.log(his.$route)
-        return this.$route.params.slug
-      }
-    }
-  };
+        return this.$route.params.slug;
+      },
+    },
+  });
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
   .post {
-    color: #FFFFFF;
+    color: #ffffff;
 
     &__title {
       text-align: center;

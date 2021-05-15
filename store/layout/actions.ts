@@ -1,5 +1,5 @@
+import { LayoutState } from './state'
 import type { ActionContext } from 'vuex';
-import type { LayoutState } from './LayoutState';
 
 /**
  * Actions are used to commit state mutations
@@ -7,7 +7,6 @@ import type { LayoutState } from './LayoutState';
  * @category LayoutStore
  */
 export default {
-
   /**
    * Action used to show the overlay of the layout.
    * @param state Layout state.
@@ -15,4 +14,12 @@ export default {
   showOverlay({ commit }: ActionContext<LayoutState, unknown>): void {
     commit('setOverlay', true);
   },
-}
+
+  /**
+   * Action used to hide the overlay of the layout.
+   * @param state Layout state.
+   */
+  hideOverlay({ commit }: ActionContext<LayoutState, unknown>): void {
+    commit('setOverlay', false);
+  },
+};

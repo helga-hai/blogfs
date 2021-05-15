@@ -8,35 +8,36 @@
 </template>
 
 <script lang="ts">
+  import Vue from 'vue';
   import type { PropType } from 'vue';
 
   // Single File Component.
-  export default {
+  export default Vue.extend({
     // Name f te component.
     name: 'BaseLoader',
     // Props of the component.
     props: {
       dots: {
         type: Number as PropType<number>,
-        default: 3
+        default: 3,
       },
       variant: {
         type: String as PropType<string>,
-        default: 'secondary'
-      }
+        default: 'secondary',
+      },
     },
     // Computed of the component.
     computed: {
       // Get CSS classes based on props.
       cssClasses(): string {
         return `base-loader__dot--${this.variant}`;
-      }
-    }
-  };
+      },
+    },
+  });
 </script>
 
 <style lang="scss" scoped>
-  @use '~@stylize/sass-mixin' as *;
+  @import '~@stylize/sass-mixin';
 
   @keyframes dot-keyframes {
     0% {

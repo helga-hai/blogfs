@@ -4,7 +4,7 @@
     .base-close__graphic
       img(
         src="@/assets/images/common/close-small.svg",
-        v-svg-inline,
+        svg-inline,
         draggable="false")
 </template>
 
@@ -17,7 +17,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @use '~@stylize/sass-mixin' as *;
+  @import '~@stylize/sass-mixin';
 
   .base-close {
     padding: $base-close__padding;

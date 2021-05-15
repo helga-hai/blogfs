@@ -1,4 +1,5 @@
 import type { Swiper, SwiperOptions } from 'swiper';
+import Vue from 'vue';
 
 /**
  * Describes data of the mixin.
@@ -12,7 +13,7 @@ interface MixinData {
  * Swiper component mixin.
  * @type Vue
  */
-export default {
+export default Vue.extend({
   // Data of the mixin.
   data: (): MixinData => ({
     swiperOptions: {
@@ -23,8 +24,8 @@ export default {
       preventClicks: true,
       preventClicksPropagation: false,
       slidesPerView: 'auto',
-      touchReleaseOnEdges: true
-    }
+      touchReleaseOnEdges: true,
+    },
   }),
   // Mounted hook of the component.
   mounted(): void {
@@ -36,13 +37,13 @@ export default {
   // Computed of the mixin.
   computed: {
     swiper(): Swiper {
-      return this.$refs.swiper?.$swiper;
-    }
+      return (this as any).$refs.swiper?.$swiper;
+    },
   },
   // Methods of the mixin.
   methods: {
     swiperClickPrevent(): void {
       if (this.swiper) this.swiper.params.preventClicks = !(this.swiper.isBeginning && this.swiper.isEnd);
-    }
-  }
-};
+    },
+  },
+});

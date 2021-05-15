@@ -1,29 +1,20 @@
-import { createState } from '~/store/state';
-
 /**
- * Describes the state of the layout.
- * @category LayoutStore
+ * Describes the configs state.
  */
-export interface LayoutState {
-  header: boolean;
-  footer: boolean;
-  sidebar: boolean;
-  overlay: boolean;
-  notifyDeposit: unknown;
-  notifyConversion: unknown;
-  accountBlocked: boolean;
+export interface ConfigsState {
+  lang: string;
+  langs: string[];
+  mirror?: boolean;
+  cdnUrl: string;
+  __PRERENDER__$?: boolean;
 }
 
 /**
  * The initial state of the layout.
- * @category LayoutStore
+ * @category ConfigsState
  */
-export const state = () => createState<LayoutState>({
-  header: true,
-  footer: true,
-  sidebar: false,
-  overlay: false,
-  notifyDeposit: null,
-  notifyConversion: null,
-  accountBlocked: false,
+export default (): ConfigsState => ({
+  lang: 'en',
+  langs: ['en', 'ru'],
+  cdnUrl: '',
 });

@@ -2,41 +2,32 @@ import cloneDeep from 'lodash/cloneDeep';
 import type { CancelTokenSource } from 'axios';
 import type { Error } from '~/interface/Error';
 
-/**
- * The key to reset the data.
- */
-export const reset: unique symbol = Symbol?.for('__reset__');
+// /**
+//  * The key to reset the data.
+//  */
+// export const reset: unique symbol = Symbol?.for('__reset__');
 
 /**
  * Describes the common state.
  */
 export interface CommonState {
-  // Initial data.
-  [reset]: any;
   // Readiness state.
   ready: boolean;
   // Blocking processes.
   loading: number;
   // Unexpected error.
-  unexpectedError: Error;
+  unexpectedError: Error | null;
   // Ajax cancel tokens.
-  ajaxCancelTokens: Record<string, CancelTokenSource>;
+  ajaxCancelTokens: Record<string, CancelTokenSource> | null;
 }
 
-/**
- * Create state with additional property for reset.
- * @param data Initial Data.
- * @returns Data with reset prop.
- */
-export function createState<T>(data: Record<string, any>): T {
-  return <any>{ ...data, [reset]: cloneDeep(data) };
-}
+
 
 /**
  * The initial state of the layout.
  * @category CommonStore
  */
-export default createState<CommonState>({
+export default (): CommonState => ({
   // Readiness state.
   ready: false,
   // Blocking processes.
@@ -44,5 +35,5 @@ export default createState<CommonState>({
   // Unexpected error.
   unexpectedError: null,
   // Ajax cancel tokens.
-  ajaxCancelTokens: null
+  ajaxCancelTokens: null,
 });

@@ -5,11 +5,9 @@
       v-for="lang in langs",
       :key="lang",
       :class="{ 'language__item--active': lang === activeLang }",
-      :href="getLanguageHref(lang)",
-      @click.prevent="changeLang(lang)",
       :data-language-item="lang")
       img.language__item-flag(
-        :src="`/static/country/${lang}.svg`",
+        :src="`/country/${lang}.svg`",
         :alt="lang",
         draggable="false",
         data-language-item-flag)
@@ -30,26 +28,12 @@
     computed: {
       ...mapGetters('configs', ['activeLang']),
       ...mapState('configs', ['langs']),
-      ...mapState('router', ['current'])
     },
-    // Methods of the component
-    methods: {
-      changeLang(lang: string): void {
-        axios.get(`/changeActiveLanguage.do?lang=${lang}`).then((): void => {
-          window.location.href = this.getLanguageHref(lang);
-        });
-      },
-      getLanguageHref(lang: string): string {
-        return isDefaultLang(lang)
-          ? this.current?.fullPath
-          : `/${lang}${this.current?.fullPath}`;
-      }
-    }
   };
 </script>
 
 <style lang="scss" scoped>
-  @use '~@stylize/sass-mixin' as *;
+  @import '~@stylize/sass-mixin';
 
   .language {
     &__item {

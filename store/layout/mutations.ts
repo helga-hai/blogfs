@@ -1,4 +1,4 @@
-import type { LayoutState } from './LayoutState';
+import { LayoutState } from './state'
 
 /**
  * Mutations are the only way to actually change
@@ -13,15 +13,6 @@ export default {
    */
   setHeader(state: LayoutState, isVisible: boolean): void {
     state.header = isVisible;
-  },
-
-  /**
-   * Set the visibility state of the footer.
-   * @param state Layout state.
-   * @param isVisible Visibility.
-   */
-  setFooter(state: LayoutState, isVisible: boolean): void {
-    state.footer = isVisible;
   },
 
   /**
@@ -40,32 +31,5 @@ export default {
    */
   setOverlay(state: LayoutState, isVisible: boolean): void {
     state.overlay = isVisible;
-  },
-
-  /**
-   * Set the data related to the deposit notification.
-   * @param state Layout state.
-   * @param data Deposit data.
-   */
-  setNotifyDepositData(state: LayoutState, data: unknown): void {
-    state.notifyDeposit = data;
-  },
-
-  /**
-   * Set the data related to the conversion notification.
-   * @param state Layout state.
-   * @param data Conversion data.
-   */
-  setNotifyConversionData(state: LayoutState, data: unknown): void {
-    state.notifyConversion = data;
-  },
-
-  /**
-   * Set account blocked state.
-   * @param state Layout state.
-   * @param visible Account blocked popup visibility status.
-   */
-  setAccountBlocked(state: LayoutState, visible: boolean): void {
-    state.accountBlocked = visible;
   },
 };

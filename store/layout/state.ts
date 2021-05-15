@@ -1,10 +1,8 @@
-import { createState } from '../common/state';
-
 /**
  * Describes the state of the layout.
  * @category LayoutStore
  */
-export interface State {
+export interface LayoutState {
   header: boolean;
   footer: boolean;
   sidebar: boolean;
@@ -18,7 +16,7 @@ export interface State {
  * The initial state of the layout.
  * @category LayoutStore
  */
-export default createState<State>({
+export default (): LayoutState => ({
   header: true,
   footer: true,
   sidebar: false,

@@ -1,97 +1,32 @@
 <template lang="pug">
   // Component template.
-  .header-shortcut__content
-    Swiper.header-shortcut__list(
-      ref="swiper",
-      :options="swiperOptions",
-      data-header-shortcut-list)
-      SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(to="/")
-          span.header-shortcut__text
-            | Bitcoin Casino news
-        NuxtLink.header-shortcut__link(
-          to="/",
-          active-class="header-shortcut__link--active")
-          span.header-shortcut__text
-            | Articles and Recommendations
-      SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(to="/")
-          span.header-shortcut__text
-            | Game Reviews
-
-      //SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(
-          //:to="{ name: 'live' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="live")
-          span.header-shortcut__text
-            | {{ $t('navigation.shortcut.live') }}
-
-      //SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(
-          //:to="{ name: 'v-sport' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="vsport")
-          span.header-shortcut__text
-            | {{ $t('navigation.shortcut.vsport') }}
-
-      //SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(
-          //:to="{ name: 'mini' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="mini")
-          span.header-shortcut__text
-            | {{ $t('navigation.shortcut.mini') }}
-            BaseBadge.header-shortcut__badge(variant="primary")
-              | new
-
-      //SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(
-          //:to="{ name: 'promo-bonus' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="promo")
-          span.header-shortcut__text
-            | {{ $t('navigation.shortcut.offers') }}
-
-      //template(#button-prev)
-        .header-shortcut__nav-prev
-
-      //template(#button-next)
-        .header-shortcut__nav-next
+  a.header-back-to-casino(href="http://fairspin.io/")
+    BaseButton.header-back-to-casino__text(
+      variant="primary",
+      :loading="loading",
+      @pointerup="loading = true")
+      | Back to Casino
 </template>
 
 <script lang="ts">
-  import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
-  import SwiperMixin from '@/mixins/SwiperMixin';
-  //import BaseBadge from '@/components/base/BaseBadge.vue';
-  import type { SwiperOptions } from 'swiper';
+  import BaseButton from '@/components/base/BaseButton.vue';
 
   // Component data.
   interface Data {
-    swiperOptions: SwiperOptions;
+    loading: boolean;
   }
 
   // Component definition.
   export default {
     // Name of the component.
-    name: 'HeaderShortcuts',
-    // Mixins of the component.
-    mixins: [SwiperMixin],
+    name: 'HeaderBackToCasino',
     // Deps of the component.
     components: {
-      //BaseBadge,
-      Swiper,
-      SwiperSlide,
+      BaseButton,
     },
     // Data of the component.
     data: (): Data => ({
-      swiperOptions: {
-        navigation: {
-          nextEl: '.header-shortcut__nav-next',
-          prevEl: '.header-shortcut__nav-prev',
-          disabledClass: 'header-shortcut__nav-disabled',
-        },
-      },
+      loading: false,
     }),
   };
 </script>

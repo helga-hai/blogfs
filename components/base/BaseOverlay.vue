@@ -8,12 +8,12 @@
   // Component definition.
   export default {
     // Name of the component.
-    name: 'BaseOverlay'
+    name: 'BaseOverlay',
   };
 </script>
 
 <style lang="scss" scoped>
-  @use '~@stylize/sass-mixin' as *;
+  @import '~@stylize/sass-mixin';
 
   .base-overlay {
     background: $base-overlay__background;

@@ -5,47 +5,28 @@
       ref="swiper",
       :options="swiperOptions",
       data-header-shortcut-list)
-      SwiperSlide.header-shortcut__item
-        RouterLink.header-shortcut__link(
-          :to="{ name: 'casino' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="casino")
-          span.header-shortcut__text
-            | {{ $t('navigation.shortcut.casino') }}
+      SwiperSlide.header-shortcut__item(v-if="!sidebar")
+        HeaderBackToCasino.header-shortcut__back
 
       SwiperSlide.header-shortcut__item
-        RouterLink.header-shortcut__link(
-          :to="{ name: 'live' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="live")
+        NuxtLink.header-shortcut__link(to="/")
           span.header-shortcut__text
-            | {{ $t('navigation.shortcut.live') }}
+            | Bitcoin Casino news
 
       SwiperSlide.header-shortcut__item
-        RouterLink.header-shortcut__link(
-          :to="{ name: 'v-sport' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="vsport")
+        NuxtLink.header-shortcut__link(
+          to="/",
+          active-class="header-shortcut__link--active")
           span.header-shortcut__text
-            | {{ $t('navigation.shortcut.vsport') }}
+            | Articles and Recommendations
 
       SwiperSlide.header-shortcut__item
-        RouterLink.header-shortcut__link(
-          :to="{ name: 'mini' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="mini")
+        NuxtLink.header-shortcut__link(to="/")
           span.header-shortcut__text
-            | {{ $t('navigation.shortcut.mini') }}
-            BaseBadge.header-shortcut__badge(variant="primary")
-              | new
+            | Game Reviews
 
-      SwiperSlide.header-shortcut__item
-        RouterLink.header-shortcut__link(
-          :to="{ name: 'promo-bonus' }",
-          active-class="header-shortcut__link--active",
-          data-header-shortcut-item="promo")
-          span.header-shortcut__text
-            | {{ $t('navigation.shortcut.offers') }}
+      SwiperSlide.header-shortcut__item(v-if="sidebar")
+        HeaderBackToCasino.header-shortcut__back
 
       template(#button-prev)
         .header-shortcut__nav-prev
@@ -57,8 +38,9 @@
 <script lang="ts">
   import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
   import SwiperMixin from '@/mixins/SwiperMixin';
-  import BaseBadge from '@/components/base/BaseBadge.vue';
+  import HeaderBackToCasino from './HeaderBackToCasino.vue';
   import type { SwiperOptions } from 'swiper';
+  import type { PropType } from 'vue';
 
   // Component data.
   interface Data {
@@ -73,9 +55,15 @@
     mixins: [SwiperMixin],
     // Deps of the component.
     components: {
-      BaseBadge,
       Swiper,
-      SwiperSlide
+      SwiperSlide,
+      HeaderBackToCasino,
+    },
+    props: {
+      sidebar: {
+        type: Boolean as PropType<boolean>,
+        default: false,
+      },
     },
     // Data of the component.
     data: (): Data => ({
@@ -83,15 +71,15 @@
         navigation: {
           nextEl: '.header-shortcut__nav-next',
           prevEl: '.header-shortcut__nav-prev',
-          disabledClass: 'header-shortcut__nav-disabled'
-        }
-      }
-    })
+          disabledClass: 'header-shortcut__nav-disabled',
+        },
+      },
+    }),
   };
 </script>
 
 <style lang="scss" scoped>
-  @use '~@stylize/sass-mixin' as *;
+  @import '~@stylize/sass-mixin';
 
   .header-shortcut {
     $selector: &;
@@ -108,6 +96,10 @@
     &__item {
       width: auto;
       @include flex(row center);
+    }
+
+    &__back {
+      align-self: center;
     }
 
     &__link {

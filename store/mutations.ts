@@ -1,6 +1,7 @@
-import cloneDeep from 'lodash/cloneDeep';
-import { reset, CommonState } from './state';
 import type { MutationPayload } from 'vuex';
+import cloneDeep from 'lodash/cloneDeep';
+import { CommonState } from '~/store/state';
+// import { reset, CommonState } from '~/store/state';
 import type { Error } from '~/interface/Error';
 
 // Mutations are the only way to actually change
@@ -10,9 +11,9 @@ export default {
    * Reset current state with initial data.
    * @param state Common State.
    */
-  resetState(state: CommonState): void {
-    Object.assign(state, cloneDeep(state[reset]));
-  },
+  // resetState(state: CommonState): void {
+  //   Object.assign(state, cloneDeep(state[reset]));
+  // },
 
   /**
    * Set readiness state of functionality.
@@ -75,5 +76,5 @@ export default {
       state.ajaxCancelTokens[id]?.cancel();
       delete state.ajaxCancelTokens[id];
     }
-  }
+  },
 };

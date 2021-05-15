@@ -1,7 +1,7 @@
 <template lang="pug">
-  //- Component template.
+  // Component template.
   .footer-copyright(data-footer-copyright)
-    | {{ $t('layout.copyright', [year]) }}
+    | {{ `Copyright © ${year} Techcore Holding B.V. All rights reserved.` }}
 </template>
 
 <script lang="ts">
@@ -13,8 +13,8 @@
     computed: {
       year(): number {
         return new Date().getFullYear();
-      }
-    }
+      },
+    },
   };
 </script>
 

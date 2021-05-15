@@ -7,21 +7,21 @@
         BaseClose.sidebar__close(
           @close="$emit('close')",
           data-sidebar-close)
-      .sidebar__auth
+      //.sidebar__auth
         AuthWallet.sidebar__wallet(v-if="logged")
         AuthGuest.sidebar__guest(v-else)
-    BaseScroll.sidebar__scroll(data-sidebar-scroll)
+    //BaseScroll.sidebar__scroll(data-sidebar-scroll)
       Navigation.sidebar__navigation(data-sidebar-navigation)
 </template>
 
 <script lang="ts">
   import { mapState } from 'vuex';
   import BaseLogo from '@/components/base/BaseLogo.vue';
-  import BaseClose from '@/components/base/BaseClose.vue';
-  import BaseScroll from '@/components/base/BaseScroll.vue';
-  import AuthGuest from './auth/AuthGuest.vue';
-  import AuthWallet from './auth/AuthWallet.vue';
-  import Navigation from './sidebar/SidebarNavigation.vue';
+  // import BaseClose from '@/components/base/BaseClose.vue';
+  // import BaseScroll from '@/components/base/BaseScroll.vue';
+  // import AuthGuest from './auth/AuthGuest.vue';
+  // import AuthWallet from './auth/AuthWallet.vue';
+  // import Navigation from './sidebar/SidebarNavigation.vue';
 
   // Component definition.
   export default {
@@ -30,19 +30,19 @@
     // Deps of the component.
     components: {
       BaseLogo,
-      BaseClose,
-      BaseScroll,
-      AuthGuest,
-      AuthWallet,
-      Navigation
+      // BaseClose,
+      // BaseScroll,
+      // AuthGuest,
+      // AuthWallet,
+      // Navigation
     },
     // Computed of the component.
-    computed: mapState('account', ['logged'])
+    //computed: mapState('account', ['logged'])
   };
 </script>
 
 <style lang="scss" scoped>
-  @use '~@stylize/sass-mixin' as *;
+  @import '~@stylize/sass-mixin';
 
   .sidebar {
     width: $sidebar__width;

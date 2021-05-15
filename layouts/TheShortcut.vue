@@ -1,16 +1,16 @@
 <template lang="pug">
-// Component template.
-button.shortcut(
-  @pointerup="promptInstall",
-  data-shortcut)
-  .shortcut__content
-    .shortcut__text(data-shortcut-text)
-      | Add to home screen
-    img.shortcut__image(
-      v-if="os",
-      :src="require(`@/assets/images/shortcut/${os}.svg`)",
-      :draggable="false",
-      data-shortcut-image)
+  // Component template.
+  button.shortcut(
+    @pointerup="promptInstall",
+    data-shortcut)
+    .shortcut__content
+      .shortcut__text(data-shortcut-text)
+        | Add to home screen
+      img.shortcut__image(
+        v-if="os",
+        :src="require(`@/assets/images/shortcut/${os}.svg`)",
+        :draggable="false",
+        data-shortcut-image)
 </template>
 
 <script lang="ts">
@@ -51,7 +51,6 @@ button.shortcut(
           // The deferred prompt isn't available.
           return;
         }
-        console.log('window: ', window);
         // Show the install prompt.
         promptEvent.prompt();
         // Wait for the user to respond to the prompt

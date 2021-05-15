@@ -1,8 +1,3 @@
-<!--
-  TODO-refactor:
-    - Loading to separate component.
-    - Rename sm/lg to small/large.
--->
 <template lang="pug">
   // Component template.
   button.base-button(
@@ -19,11 +14,12 @@
 </template>
 
 <script lang="ts">
+  import Vue from 'vue';
   import BaseLoader from '@/components/base/BaseLoader.vue';
   import type { PropType } from 'vue';
 
   // Component definition.
-  export default {
+  export default Vue.extend({
     // Name of the component.
     name: 'BaseButton',
     // Deps of the component.
@@ -32,26 +28,26 @@
     props: {
       // Unique ID.
       id: {
-        type: String as PropType<string>
+        type: String as PropType<string>,
       },
       // Button size.
       size: {
         type: String as PropType<string>,
-        default: 'sm'
+        default: 'sm',
       },
       // Button variant.
       variant: {
         type: String as PropType<string>,
-        default: 'secondary'
+        default: 'secondary',
       },
       // Determine whether disabled.
       disabled: {
-        type: Boolean as PropType<boolean>
+        type: Boolean as PropType<boolean>,
       },
       // Determine whether loading.
       loading: {
-        type: Boolean as PropType<boolean>
-      }
+        type: Boolean as PropType<boolean>,
+      },
     },
     // Computed of the component.
     computed: {
@@ -60,15 +56,15 @@
         return {
           ['base-button--disabled']: this.disabled,
           ['base-button--' + this.size]: this.size,
-          ['base-button--' + this.variant]: this.variant
+          ['base-button--' + this.variant]: this.variant,
         };
-      }
-    }
-  };
+      },
+    },
+  });
 </script>
 
 <style lang="scss" scoped>
-  @use '~@stylize/sass-mixin' as *;
+  @import '~@stylize/sass-mixin';
 
   .base-button {
     cursor: pointer;
