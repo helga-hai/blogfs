@@ -1,0 +1,45 @@
+*,
+*:before,
+*:after {
+  font-family: 'Stolzl', Arial, sans-serif;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url('/static/fonts/Stolzl-Book.eot?') format('eot'), url('/static/fonts/Stolzl-Book.woff2') format('woff2'),
+    url('/static/fonts/Stolzl-Book.woff') format('woff'), url('/static/fonts/Stolzl-Book.ttf') format('truetype'),
+    url('/static/fonts/Stolzl-Book.svg#Stolzl') format('svg');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url('/static/fonts/Stolzl-Regular.eot?') format('eot'), url('/static/fonts/Stolzl-Regular.woff2') format('woff2'),
+    url('/static/fonts/Stolzl-Regular.woff') format('woff'), url('/static/fonts/Stolzl-Regular.ttf') format('truetype'),
+    url('/static/fonts/Stolzl-Regular.svg#Stolzl') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url('/static/fonts/Stolzl-Bold.eot?') format('eot'), url('/static/fonts/Stolzl-Bold.woff2') format('woff2'),
+    url('/static/fonts/Stolzl-Bold.woff') format('woff'), url('/static/fonts/Stolzl-Bold.ttf') format('truetype'),
+    url('/static/fonts/Stolzl-Bold.svg#Stolzl') format('svg');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Conthrax';
+  src: url('/static/fonts/Conthrax-sb.woff2') format('woff2'),
+    url('/static/fonts/ConthraxSb-Regular.woff') format('woff'),
+    url('/static/fonts/ConthraxSb-Regular.ttf') format('truetype'),
+    url('/static/fonts/ConthraxSb-Regular.svg#Conthrax') format('svg');
+  font-style: normal;
+  font-display: block;
+}
