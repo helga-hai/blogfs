@@ -1,0 +1,12 @@
+{
+  "semi": true,
+  "endOfLine": "lf",
+  "printWidth": 120,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "vueIndentScriptAndStyle": true,
+  "pugSingleQuote": false,
+  "pugWrapAttributesThreshold": 1,
+  "pugClosingBracketPosition": "last-line",
+  "pugSingleFileComponentIndentation": true
+}
