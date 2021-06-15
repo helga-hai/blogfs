@@ -11,10 +11,8 @@
         BaseLogo.header__logo(data-header-logo)
         .header__content
           HeaderShortcuts.header__shortcut
-        LazyHydrate(on-interaction="touchstart")
-          HeaderSearch.header__search
-        LazyHydrate(on-interaction="touchstart")
-          HeaderLanguage.header__language(v-if="$mq === 'lg'")
+        HeaderSearch.header__search
+        HeaderLanguage.header__language(v-if="$mq === 'lg'")
 </template>
 
 <script lang="ts">

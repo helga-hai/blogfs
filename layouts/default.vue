@@ -1,8 +1,7 @@
 <template lang="pug">
   // Component template
   .layout(:class="classes")
-    LazyHydrate(when-visible)
-      TheHeader.layout__header(@toggleSidebar="toggle")
+    TheHeader.layout__header(@toggleSidebar="toggle")
     TheRates.layout__rates
     .layout__router
       .layout__content
