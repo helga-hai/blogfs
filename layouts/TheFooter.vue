@@ -16,10 +16,10 @@
 <script lang="ts">
   import Vue from 'vue';
   import BaseLogo from '@/components/base/BaseLogo.vue';
+  import TheShortcut from '@/layouts/TheShortcut.vue';
   import FooterPartners from './footer/FooterPartners.vue';
   import FooterDisclaimer from './footer/FooterDisclaimer.vue';
   import FooterCopyright from './footer/FooterCopyright.vue';
-  import TheShortcut from '@/layouts/TheShortcut.vue';
 
   interface Data {
     prompt: boolean;
@@ -31,7 +31,7 @@
 
   // Component definition.
   export default Vue.extend({
-    // Name of the component.
+    // Name of the component
     name: 'TheFooter',
     // Deps of the component
     components: {
@@ -48,9 +48,7 @@
     // Mounted hook of the component
     mounted(): void {
       const getPrompt = (): void => {
-        if (process.client) {
-          this.prompt = !!(window as GlobalThis)?.deferredPrompt;
-        }
+        this.prompt = !!(window as GlobalThis)?.deferredPrompt;
       };
       setTimeout(getPrompt, 5000);
     },
@@ -80,7 +78,7 @@
     }
 
     &__company {
-      @include flex(column);
+      @include flex(column-reverse);
 
       @include media('>=md') {
         @include flex(row space-between);

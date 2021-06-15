@@ -1,0 +1,37 @@
+{
+  "website": {
+    "home": "Home",
+    "name": "Fairspin casino blog"
+  },
+  "preview": {
+    "by": "by"
+  },
+  "card": {
+    "by": "by"
+  },
+  "footer": {
+    "shortcut": "Add to home screen"
+  },
+  "error": {
+    "home": "go home"
+  },
+  "layout": {
+    "backbutton": "Back to Casino"
+  },
+  "bar": {
+    "news": {
+      "title": "Featured news"
+    }
+  },
+  "search": {
+    "found": "Found ({0})",
+    "empty": {
+      "note": "Check if your request is correct.",
+      "title": "No games found for your request"
+    },
+    "placeholder": "search"
+  },
+  "home": {
+    "more": "Load more"
+  }
+}

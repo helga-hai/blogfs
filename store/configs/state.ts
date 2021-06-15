@@ -4,9 +4,6 @@
 export interface ConfigsState {
   lang: string;
   langs: string[];
-  mirror?: boolean;
-  cdnUrl: string;
-  __PRERENDER__$?: boolean;
 }
 
 /**
@@ -14,7 +11,6 @@ export interface ConfigsState {
  * @category ConfigsState
  */
 export default (): ConfigsState => ({
-  lang: 'en',
-  langs: ['en', 'ru'],
-  cdnUrl: '',
+  lang: '',
+  langs: ['ru', 'en'],
 });

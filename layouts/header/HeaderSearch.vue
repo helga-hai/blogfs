@@ -1,5 +1,5 @@
 <template lang="pug">
-  // Component template.
+  // Component template
   Search.header-search(
     replace,
     @openField="openField",
@@ -15,26 +15,26 @@
     isActive: boolean;
   }
 
-  // Component definition.
+  // Component definition
   export default Vue.extend({
-    // Name of the component.
+    // Name of the component
     name: 'HeaderSearch',
-    // Deps of the component.
+    // Deps of the component
     components: { Search },
-    // Data of the component.
+    // Data of the component
     data: (): Data => ({
       isActive: false,
     }),
-    // Computed of the component.
+    // Computed of the component
     computed: {
-      // Get CSS classes based on props.
       cssClasses(): string {
         return this.isActive ? `header-search--active` : '';
       },
     },
+    // Methods of the component
     methods: {
       openField(): void {
-        this.isActive = !this.isActive
+        this.isActive = !this.isActive;
       },
     },
   });

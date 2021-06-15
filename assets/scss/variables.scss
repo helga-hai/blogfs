@@ -1,9 +1,10 @@
-//@use './function' as *;
-//@use './font' as * with (
-//  $base-font: 'Stolzl'
-//);
-@import './function';
-@import '~@stylize/sass-func/css/font';
+//@import './function';
+//@import '~@stylize/sass-func/css/font';
+//$base-font: 'Stolzl';
+@use '~@/assets/scss/function' as *;
+@use '~@stylize/sass-func/css/font' as * with (
+  $base-font: 'Stolzl'
+);
 
 // Color schema
 $color-0: #ffffff;
@@ -59,6 +60,7 @@ $n_color-0: #ffffff;
 $n_color-0_2: rgba($n_color-0, 0.24);
 $n_color-0_4: rgba($n_color-0, 0.4);
 $n_color-0_7: rgba($n_color-0, 0.7);
+$n_color-0_8: rgba($n_color-0, 0.8);
 $n_color-5: #000000;
 $n_color-5_7: rgba($n_color-5, 0.7);
 $n_color-8: #282722;
@@ -114,10 +116,24 @@ $icon-size--md: 24px;
 $icon-size--lg: 36px;
 
 // Layout: App
-$app__max-width: 1184px;
+$app__max-width: 1374px;//1184px;
+$app__color: $n_color-0_8;
 $app__background: $n_color-11;
 $app-header-height: 88px;
 $app-header-height--r10: 56px;
+$app-content__width: 100vw;
+$app-content__width--r10: calc(#{$app__max-width} - 400px);
+
+// Layout: Error
+$error__color: $n_color-0;
+$error__padding:  indent(2);
+$error__background:  url("~@/assets/images/error/error.svg") top left no-repeat;
+$error__background-position: 0px -28px;
+$error__background-position--r10: 0px -130px;
+$error__height: 100vh;
+$error-link__color: $n_color-30;
+$error-link__color--hover: $n_color-34;
+$error-status__font: font(4rem, 1, 400);
 
 // Component: Form
 $form-control__font: font($font--lg);
@@ -169,6 +185,46 @@ $base-button-inline__color--disabled: $n_color-22;
 $base-button-inline__text-shadow--hover: 0px 0 8px $n_color-30;
 $base-button-inline__text-shadow--active: 0px 0 8px $n_color-34;
 
+// Base: Block
+$base-block__background: $n_color-18_2;
+$base-block__box-shadow: 0 0 12px 1px $n_color-5_7;
+// prettier-ignore
+$base-block__clip--sm--2: polygon(0 0, calc(100% - 6px) 0, calc(100% + 10px) 16px, calc(100% + 10px) calc(100% + 10px), 0 calc(100% + 10px));
+// prettier-ignore
+$base-block__clip--md--2: polygon(0 0, calc(100% - 14px) 0, calc(100% + 10px) 24px, calc(100% + 10px) calc(100% + 10px), 0 calc(100% + 10px));
+// prettier-ignore
+$base-block__clip--lg--2: polygon(0 0, calc(100% - 21px) 0, calc(100% + 10px) 31px, calc(100% + 10px) calc(100% + 10px), 0 calc(100% + 10px));
+// prettier-ignore
+$base-block__clip--sm--3: polygon(0 0, calc(100% + 10px) 0, calc(100% + 10px) calc(100% - 17px), calc(100% - 17px) calc(100% + 10px), 0 calc(100% + 10px));
+// prettier-ignore
+$base-block__clip--md--3: polygon(0 0, calc(100% + 10px) 0, calc(100% + 10px) calc(100% - 24px), calc(100% - 24px) calc(100% + 10px), 0 calc(100% + 10px));
+// prettier-ignore
+$base-block__clip--lg--3: polygon(0 0, calc(100% + 10px) 0, calc(100% + 10px) calc(100% - 31px), calc(100% - 31px) calc(100% + 10px), 0 calc(100% + 10px));
+// prettier-ignore
+$base-block__clip--sm--4: polygon(0 0, calc(100% + 10px) 0, calc(100% + 10px) calc(100% + 10px), 16px calc(100% + 10px), 0px calc(100% - 7px));
+// prettier-ignore
+$base-block__clip--md--4: polygon(0 0, calc(100% + 14px) 0, calc(100% + 10px) calc(100% + 10px), 24px calc(100% + 10px), 0 calc(100% - 14px));
+// prettier-ignore
+$base-block__clip--lg--4: polygon(0 0, calc(100% + 14px) 0, calc(100% + 10px) calc(100% + 10px), 24px calc(100% + 2px), 0 calc(100% - 22px));
+// prettier-ignore
+$base-block__clip--sm--2-4: polygon(0 0, calc(100% - 6px) 0, calc(100% + 17px) 24px, calc(100% + 10px) calc(100% + 10px), 24px calc(100% + 17px), 0 calc(100% - 6px));
+// prettier-ignore
+$base-block__clip--md--2-4: polygon(0 0, calc(100% - 14px) 0, calc(100% + 10px) 24px, calc(100% + 10px) calc(100% + 10px), 24px calc(100% + 10px), 0 calc(100% - 14px));
+// prettier-ignore
+$base-block__clip--lg--2-4: polygon(0 0, calc(100% - 21px) 0, calc(100% + 3px) 24px, calc(100% + 10px) calc(100% + 10px), 24px calc(100% + 3px), 0 calc(100% - 22px));
+$base-block-primary__color: $n_color-30;
+$base-block-primary__border: 1px solid $n_color-30;
+$base-block-primary__box-shadow: inset 0 0 6px 0 $n_color-30_7;
+$base-block-primary__filter: drop-shadow(6px 4px 6px $n_color-5_7);
+$base-block-primary__border-color--2: transparent $n_color-30 transparent transparent;
+$base-block-primary__border-color--3: transparent transparent $n_color-30 transparent;
+$base-block-primary__border-color--4: transparent transparent transparent $n_color-30;
+$base-block-secondary__color: $n_color-17;
+$base-block-secondary__border: 1px solid $n_color-17;
+$base-block-secondary__border-color--2: transparent $n_color-17 transparent transparent;
+$base-block-secondary__border-color--3: transparent transparent $n_color-17 transparent;
+$base-block-secondary__border-color--4: transparent transparent transparent $n_color-17;
+
 // Base: Close
 $base-close__size: $icon-size--sm;
 $base-close__padding: indent(1);
@@ -207,6 +263,12 @@ $input_v2-field-clear__background: $color-10_2;
 $input_v2-field-clear__border-radius: $border-circle;
 $input_v2-field-clear-image__size: 10px;
 
+// Base: Layout
+$base-layout__z-index: 9999;
+$base-layout__margin: indent(2);
+$base-layout__margin--r10: indent(2) indent(3);
+$base-layout__margin--r20: indent(3);
+
 // Base: Loader
 $base-loader-primary__color: $n_color-5;
 $base-loader-secondary__color: $n_color-32;
@@ -217,6 +279,18 @@ $base-loader-dot__margin: 0 2px;
 // Base: Logo
 $base-logo__size: 40px;
 $base-logo__padding: 0 indent(1);
+
+// Base: Scroll
+$base-scroll__background: $n_color-0_2;
+$base-scroll-toggle__size: 4px;
+
+// Base: Title
+$base-title__color: $n_color-0;
+$base-title__color--pseudo: $n_color-30;
+$base-title__font: font(1.125rem, 1.125rem, 400);
+$base-title__font--r10: font(2.25rem, 2.25rem, 400);
+$base-title__margin: indent(3) 0 indent(2);
+$base-title__margin--r10: indent(5) 0 indent(2);
 
 // Base: Overlay
 $base-overlay__position: 0 0 0 0 11002;
@@ -229,6 +303,24 @@ $layout__margin--r10: $app-header-height--r10 auto 0;
 $layout__padding: indent(2);
 $layout__padding--r10: indent(2) indent(3);
 $layout__padding--r20: indent(3);
+
+// Layout Bar
+$bar__width: 400px;
+$bar__padding: 50px indent(3);
+$bar-news__margin: indent(3) 0;
+$bar-title__margin: 0 0 indent(1.5) 0;
+
+// Layout Default
+$default-p-a__color: $n_color-32;
+$default-p-a__color--hover: $n_color-34;
+$default-p__font: font($font--lg, 1.7);
+$default-p__font--r10: font($font--xl, 1.7);
+$default-table__padding: indent(2) 0;
+$default-table__padding--r10: indent(2) 10%;
+$default-table-td__padding: 6px 16px 6px 16px;
+$default-table-td__padding--r10: 6px 8px 6px 8px;
+$default-table-tr__background: $color-18_5;
+$default-table-tr__background--odd: $color-18;
 
 // Layout Header
 $header__height: $app-header-height;
@@ -264,12 +356,12 @@ $header-language-item__padding: 0 indent(1);
 $header-language-item__background--hover: $color-16_5;
 
 // Layout Header: Shortcut
-$header-shortcut-item__font: font($font--lg);
+$header-shortcut-item__font: font($font--md);
 $header-shortcut-item__color: $n_color-0;
 $header-shortcut-item__margin: 2px 0 0 0;
-$header-shortcut-item__padding: 0 indent(2);
+$header-shortcut-item__padding: 0 indent(1.5);
 $header-shortcut-item__padding--r10: 0 indent(1.5);
-$header-shortcut-item__padding--r20: 0 indent(2);
+$header-shortcut-item__padding--r20: 0 indent(1.5);
 $header-shortcut-item__border-with: 0 0 2px 0;
 $header-shortcut-item__border-color: transparent;
 $header-shortcut-item__border-color--hover: $n_color-0;
@@ -279,9 +371,41 @@ $header-shortcut-item__background--active: linear-gradient(180deg,
   rgba(255, 206, 68, 0) 40.1%, rgba(255, 206, 68, 0.2) 100%);
 
 // Layout Header: Header Search
-$view-header-search__width: 42px;
+$view-header-search__width: 200px;
 $view-header-search__width--r10: 200px;
-$view-header-search-result__width: 175%;
+$view-header-search-result__width: 100%;
+
+// Layout Sidebar
+$sidebar__width: 320px;
+$sidebar__shadow: 7px 0px 4px $color-10_5;
+$sidebar__background: $color-13;
+$sidebar-block__padding: 0 indent(3);
+$sidebar-block__border: 1px solid $color-16_7;
+$sidebar-header__padding: indent(2) 0;
+$sidebar-close__margin: 0 indent(-1) 0 0;
+$sidebar-auth__padding: 0 0 indent(3) 0;
+$sidebar-wallet__min-width: 100%;
+$sidebar-wallet__background: transparent;
+$sidebar-catalogue__padding: indent(1) 0;
+$sidebar-scroll__offset: 129px;
+
+// Layout Sidebar: Navigation
+$sidebar-navigation-item__font: font($font--lg, 55px, 300);
+$sidebar-navigation-item__color: $n_color-0;
+$sidebar-navigation-item__padding: 0 indent(3);
+$sidebar-navigation-item__background--hover: $color-15;
+$sidebar-navigation-item__border: 1px solid $color-16_7;
+$sidebar-navigation-item__border--active: 2px solid $color-23;
+$sidebar-navigation-item-arrow__size: 16px;
+$sidebar-navigation-item-arrow__background: no-repeat center url('~@/assets/images/common/arrow-down-large.svg');
+$sidebar-navigation-item-badge__margin: 0 0 0 indent(1);
+$sidebar-navigation-sub-item__color: $color-0_5;
+$sidebar-navigation-sub-item__font: font($font--md, 38px, 300);
+$sidebar-navigation-sub-item__padding: 0 indent(3);
+$sidebar-navigation-sub-item__background--hover: $color-16_5;
+$sidebar-navigation-group-content__padding: 0 0 indent(3) 0;
+$sidebar-navigation-lang-toggle__padding: 0 0 0 indent(1);
+$sidebar-navigation-lang-content__background: $color-15;
 
 // Layout: Footer
 $footer-layout__padding: indent(4) indent(2) 0;
@@ -314,19 +438,87 @@ $footer-copyright__color: $n_color-24;
 $footer-disclaimer__font: font($font--md, 1.25rem);
 $footer-disclaimer__color: $n_color-24;
 
-// Layout Sidebar
-$sidebar__width: 320px;
-$sidebar__shadow: 7px 0px 4px $color-10_5;
-$sidebar__background: $color-13;
-$sidebar-block__padding: 0 indent(3);
-$sidebar-block__border: 1px solid $color-16_7;
-$sidebar-header__padding: indent(2) 0;
-$sidebar-close__margin: 0 indent(-1) 0 0;
-$sidebar-auth__padding: 0 0 indent(3) 0;
-$sidebar-wallet__min-width: 100%;
-$sidebar-wallet__background: transparent;
-$sidebar-catalogue__padding: indent(1) 0;
-$sidebar-scroll__offset: 137px;
+// Component: Article
+$article__padding: indent(2) 0;
+$article__margin: indent(1) indent(2) indent(2);
+$article__margin--r10: indent(1) indent(2) indent(2);
+$article-title__color: $n_color-0;
+$article-title__font: font(1.25rem, 1.2, 400);
+$article-title__font--r10: font(1.875rem, 1.2, 400);
+$article-date__color: $n_color-30;
+$article-date__font: font($font--lg, 1, 400);
+$article-date__font--r10: font($font--lg, 1, 400);
+$article-date__margin: indent(1) 0 indent(1);
+$article-date__margin--r10: indent(1) 0 indent(1);
+$article-author__margin: indent(1) 0 indent(3);
+$article-author-image__margin: 0 indent(2) 0 0;
+$article-author-image__width: 40px;
+$article-author-image__border-radius: $border-radius-md;
+$article-author-name__color: $n_color-30;
+$article-author-name__font: font($font--lg, 1, 400);
+$article-image__border-radius: $border-radius-md;
+$article-image__margin: indent(2) 0;
+$article-a__color: $n_color-32;
+$article-a__color--hover: $n_color-34;
+$article-img__border-radius: $border-radius-md;
+$article-blockquote__padding: indent(1.5) indent(2.5);
+$article-blockquote__border-left: 4px solid $n_color-32;
+$article-related__border-top: 1px solid $color-0_1;
+$article-related__margin: indent(6) 0 0;
+$article-related__padding: indent(2.5) 0 0;
+$article-categories__font: font($font--md, 1.2);
+$article-categories__padding: 0 indent(1);
+$article-categories__color: $n_color-22;
+
+// Component: Author
+$author-catalog__margin: indent(1) 0 0 0;
+$author-catalog__margin--r10: indent(4) 0 0 0;
+
+// Component: Card
+$card__size: 30% 100%;
+$card-info__padding: indent(1) 0;
+$card-image__border-radius: $border-radius-md;
+$card-date__color: $n_color-0_7;
+$card-date__font: font($font--md, 1rem, 400);
+$card-title__color: $n_color-0-7;
+$card-title__color--hover: $n_color-0;
+$card-title__font: font($font--lg, 1.2, 700);
+$card-title__font--r10: font(1.875rem, 1.875rem, 700);
+$card-title__margin: indent(0.5) 0 indent(1) 0;
+$card-description__color: $n_color-0_7;
+$card-description__font: font($font--md, 1rem, 400);
+$card-author__color: $n_color-0_7;
+$card-author__font: font($font--md, 1rem, 400);
+
+// Component: Card Horizontal
+$card-horizontal__size: 74px 54px;
+$card-horizontal__size--r10: 74px 54px;
+$card-horizontal__width: 100%;
+$card-horizontal__padding: indent(1) 12px indent(1);
+$card-horizontal__background-color--hover: $color-17_5;
+$card-horizontal-info__padding: 0 0 0 indent(1.5);
+$card-horizontal-image__border-radius: $border-radius-md;
+$card-horizontal-date__color: $n_color-0_7;
+$card-horizontal-date__font: font($font--lg, 1.12rem, 400);
+$card-horizontal-title__color: $n_color-0;
+$card-horizontal-title__font: font($font--sm, 1.2);
+$card-horizontal-title__margin: indent(0.5) 0 indent(1) 0;
+$card-horizontal-description__color: $n_color-0_7;
+$card-horizontal-description__font: font($font--md, 1rem, 400);
+$card-horizontal-author__color: $n_color-0_7;
+$card-horizontal-author__font: font($font--md, 1rem, 400);
+
+// Component: Catalogue
+$catalog-item__padding: 0 indent(1.5) indent(1.5);
+
+// Component: Category
+$category-description__padding: 0 indent(1.5);
+$category-catalog__margin: indent(5) 0 0 0;
+
+// Component: Crumb
+$crumb__color: $n_color-0;
+$crumb-ol__margin: 0 indent(2);
+$crumb-ol__padding: indent(2) 0;
 
 // Component: Language
 $language-item__font: font($font--md, 40px, 100);
@@ -339,10 +531,52 @@ $language-item-mark__size: indent(2);
 $language-item-mark__margin: 0 0 0 indent(1);
 $language-item-mark__background: url('~@/assets/images/common/mark--active.svg');
 
-// Component: Game Search
-$search__width: 100%;
+// Component: Preview
+$preview__size: 100% 260px;
+$preview__size--r10: 400px 270px;
+$preview__padding: indent(1) 12px indent(4);
+$preview__padding--r10: indent(3) 12px;
+$preview-info__padding: indent(3) 0 0 0;
+$preview-info__padding--r10: 0 indent(3);
+$preview-image__border-radius: $border-radius-md;
+$preview-date__color: $n_color-0_7;
+$preview-date__font: font($font--md, 1.4, 400);
+$preview-title__color: $n_color-0;
+$preview-title__font: font($font--lg, 1.2, 700);
+$preview-title__font--r10: font(1.875rem, 1.2, 700);
+$preview-title__margin: indent(0.5) 0 indent(1) 0;
+$preview-description__color: $n_color-0_7;
+$preview-description__font: font($font--lg, 1.6, 400);
+$preview-author__color: $n_color-0_7;
+$preview-author__font: font($font--md, 1.4, 400);
 
-// Component: Game Search Field
+// Component: List
+$list-grid__padding: indent(2) 0 indent(1) ;
+$list-item__padding: indent(1) indent(1.5) indent(1);
+
+// Component: Preview Author
+$preview-author__size: 100% 260px;
+$preview-author__size--r10: 400px 270px;
+$preview-author__padding: indent(3) 12px;
+$preview-author-info__padding: indent(3) 0 0 0;
+$preview-author-info__padding--r10: 0 indent(3);
+$preview-author-image__border-radius: $border-radius-md;
+$preview-author-date__color: $n_color-0_7;
+$preview-author-date__font: font($font--md, 1.4, 400);
+$preview-author-title__color: $n_color-0;
+$preview-author-title__font: font($font--lg, 1.4, 500);
+$preview-author-title__font--r10: font(1.875rem, 1.4, 700);
+$preview-author-title__margin: indent(0.5) 0 indent(1) 0;
+$preview-author-description__color: $n_color-0_7;
+$preview-author-description__font: font($font--lg, 1.4, 400);
+$preview-author-author__color: $n_color-0_7;
+$preview-author-author__font: font($font--md, 1.4, 400);
+
+// Component: Search
+$search__width: 100%;
+$search__width--active: 300px !important;
+
+// Component: Search Field
 $search-field-badge__padding: 0 0 0 indent(1);
 $search-field-badge__min-width: 24px;
 $search-field-close__min-width: 38px;
@@ -363,17 +597,12 @@ $search-result-total__font: font($font--md, 1rem, 100);
 $search-result-total__color: $color-0_7;
 $search-result-total__padding: 0 indent(2) indent(1);
 $search-result-list__max-height: 380px;
+$search-result-list__max-height--r10: calc(100vh - 114px);
 $search-result-item__padding--recommend: indent(0.5) indent(2);
 $search-result-empty__font: font($font--sm, 1rem, 100);
 $search-result-empty__color: $color-0_7;
 $search-result-empty__padding: indent(1) indent(2);
-$search-result-empty-title__font: font($font--lg, 24px, 700);
+$search-result-empty-title__font: font($font--lg, 1.4, 700);
 $search-result-empty-title__color: $color-0;
 $search-result-shadow__position: null, indent(4), 0, 0;
 $search-result-shadow__box-shadow: 0 -2px 19px 19px $color-16;
-$search-result-recommend__margin: indent(2) 0 -#{indent(2)};
-$search-result-recommend__padding: 0 0 indent(2);
-$search-result-recommend__background: $color-17_5;
-$search-result-recommend-title__font: font($font--lg, 1, normal);
-$search-result-recommend-title__color: $color-0;
-$search-result-recommend-title__padding: indent(2) indent(2) indent(1);

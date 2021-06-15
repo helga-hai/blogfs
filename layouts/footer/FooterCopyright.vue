@@ -1,15 +1,15 @@
 <template lang="pug">
-  // Component template.
+  // Component template
   .footer-copyright(data-footer-copyright)
     | {{ `Copyright © ${year} Techcore Holding B.V. All rights reserved.` }}
 </template>
 
 <script lang="ts">
-  // Component definition.
+  // Component definition
   export default {
-    // Name of the component.
+    // Name of the component
     name: 'FooterCopyright',
-    // Computed of the component.
+    // Computed of the component
     computed: {
       year(): number {
         return new Date().getFullYear();

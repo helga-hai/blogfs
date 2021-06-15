@@ -7,9 +7,6 @@ export interface LayoutState {
   footer: boolean;
   sidebar: boolean;
   overlay: boolean;
-  notifyDeposit: unknown;
-  notifyConversion: unknown;
-  accountBlocked: boolean;
 }
 
 /**
@@ -21,7 +18,4 @@ export default (): LayoutState => ({
   footer: true,
   sidebar: false,
   overlay: false,
-  notifyDeposit: null,
-  notifyConversion: null,
-  accountBlocked: false,
 });

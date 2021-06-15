@@ -1,5 +1,5 @@
 <template lang="pug">
-  //- Component template.
+  // Component template
   .header-language(
     v-click-outside="outside",
     data-footer-language)
@@ -7,13 +7,13 @@
       @click="toggle",
       data-footer-language-toggle)
       img.header-language__toggle-flag(
-        :src="`/country/${activeLang}.svg`",
+        :src="`/country/${$i18n.locale}.svg`",
         loading="lazy",
         draggable="false",
         data-footer-language-toggle-flag)
 
       .header-language__toggle-text(data-footer-language-toggle-text)
-        | {{ activeLang }}
+        | {{ $i18n.locale }}
 
       .header-language__toggle-arrow(
         :class="{ 'header-language__toggle-arrow--active': isActive }",
@@ -27,28 +27,24 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import { mapGetters } from 'vuex';
   import Language from '../TheLanguage.vue';
 
-  // Component data.
   interface Data {
-    // Determine whether list is opened.
+    // Determine whether list is opened
     isActive: boolean;
   }
 
-  // Component definition.
+  // Component definition
   export default Vue.extend({
-    // Name of the component.
+    // Name of the component
     name: 'HeaderLanguage',
-    // Deps of the component.
+    // Deps of the component
     components: { Language },
-    // Data of the component.
+    // Data of the component
     data: (): Data => ({
       isActive: false,
     }),
-    // Computed of the component.
-    computed: mapGetters('configs', ['activeLang']),
-    // Methods of the component.
+    // Methods of the component
     methods: {
       toggle(): void {
         this.isActive = !this.isActive;
@@ -64,12 +60,7 @@
   @import '~@stylize/sass-mixin';
 
   .header-language {
-    display: none;
     position: relative;
-
-    @include media('>=md') {
-      //display: flex;
-    }
 
     &__toggle {
       cursor: pointer;

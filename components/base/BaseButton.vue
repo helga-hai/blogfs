@@ -29,6 +29,7 @@
       // Unique ID.
       id: {
         type: String as PropType<string>,
+        default: '',
       },
       // Button size.
       size: {
@@ -43,10 +44,12 @@
       // Determine whether disabled.
       disabled: {
         type: Boolean as PropType<boolean>,
+        default: false,
       },
       // Determine whether loading.
       loading: {
         type: Boolean as PropType<boolean>,
+        default: false,
       },
     },
     // Computed of the component.
@@ -54,7 +57,7 @@
       // Get CSS classes based on props.
       cssClasses(): Record<string, string | boolean> {
         return {
-          ['base-button--disabled']: this.disabled,
+          'base-button--disabled': this.disabled,
           ['base-button--' + this.size]: this.size,
           ['base-button--' + this.variant]: this.variant,
         };
@@ -64,7 +67,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~@stylize/sass-mixin';
+  @use '~@stylize/sass-mixin' as *;
 
   .base-button {
     cursor: pointer;

@@ -1,4 +1,4 @@
-import { LayoutState } from './state'
+import { LayoutState } from './state';
 import type { ActionContext } from 'vuex';
 
 /**

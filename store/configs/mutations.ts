@@ -1,7 +1,7 @@
 import { ConfigsState } from './state';
 
 export default {
-  set(state: ConfigsState, configs: ConfigsState): void {
-    Object.assign(state, configs);
+  lang(state: ConfigsState, payload: string): void {
+    state.lang = payload;
   },
 };

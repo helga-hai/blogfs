@@ -1,3 +1,6 @@
+require('dotenv').config();
+const axios = require('axios');
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -8,7 +11,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Fairspin Blog' },
       { name: 'msapplication-TileColor', content: '#171717' },
       { name: 'msapplication-TileImage', content: '/mstile-144x144.png' },
       { name: 'msapplication-square70x70logo', content: '/mstile-70x70.png' },
@@ -18,6 +21,7 @@ export default {
       { name: 'application-name', content: 'Fairspin' },
       { name: 'msapplication-config', content: '/browserconfig.xml' },
       { name: 'theme-color', content: '#171717' },
+      { name: 'robots', content: 'noindex, nofollow' },
     ],
     link: [
       { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -45,15 +49,19 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     // Variables in the project
-    '~/assets/scss/variables.scss',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/load-script.js', mode: 'client' },
-    { src: '~/plugins/vue-mq.js', mode: 'all' },
-    { src: '~/plugins/click-outside.js', mode: 'client' },
+    { src: '~/plugins/ClickOutside.js', mode: 'client' },
+    { src: '~/plugins/CopyProtect.js', mode: 'client' },
+    { src: '~/plugins/i18n.js', mode: 'all' },
+    { src: '~/plugins/StoreData.js', mode: 'all' },
+    { src: '~/plugins/Strapi.js', mode: 'all' },
+    { src: '~/plugins/LoadScript.js', mode: 'client' },
     { src: '~/plugins/VueAwesomeSwiper', mode: 'client' },
+    { src: '~/plugins/VueMq.js', mode: 'all' },
+    { src: '~/plugins/VueInfiniteLoading.js', mode: 'client' },
     { src: '~/directives/hidden', mode: 'client' },
   ],
 
@@ -66,21 +74,134 @@ export default {
     '@nuxt/typescript-build',
     // https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
+    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/markdownit',
     '@nuxtjs/pwa',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/strapi',
+    [
+      'nuxt-i18n',
+      {
+        strategy: 'prefix_except_default',
+        defaultlocale: 'en',
+        // Params used for generate hreflang
+        locales: [
+          { code: 'ru', iso: 'ru' },
+          { code: 'en', iso: 'en' },
+        ],
+      },
+    ],
+    [
+      'nuxt-compress',
+      {
+        gzip: {
+          cache: true,
+        },
+        brotli: {
+          threshold: 10240,
+        },
+      },
+    ],
   ],
+  i18n: {
+    strategy: 'prefix_except_default',
+    defaultLocale: 'en',
+    locales: [
+      { code: 'ru', iso: 'ru-RU', file: 'ru.json', dir: 'ltr' },
+      { code: 'en', iso: 'en-US', file: 'en.json', dir: 'ltr' },
+    ],
+    lazy: true,
+    langDir: 'lang/',
+    baseUrl: process.env.API_URL,
+    seo: true,
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        ru: require('./lang/ru.json'),
+        en: require('./lang/en.json'),
+      },
+    },
+  },
+
+  // See https://github.com/markdown-it/markdown-it
+  markdownit: {
+    runtime: true,
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true,
+    html: true,
+    use: ['markdown-it-div', 'markdown-it-emoji', 'markdown-it-attrs'],
+  },
+
+  // See https://strapi.nuxtjs.org/
+  strapi: {
+    entities: [{ name: 'articles' }, { name: 'categories' }, { name: 'home' }],
+    url: process.env.API_URL || 'http://localhost:1337',
+  },
+
+  // See https://sitemap.nuxtjs.org/
+  sitemap: async () => {
+    const baseUrl = 'http://localhost:1337';
+    const articles = await axios.get(`${baseUrl}/articles?_locale=ru&_locale=en`);
+    const categories = await axios.get(`${baseUrl}/categories?_locale=ru&_locale=en`);
+    const authors = await axios.get(`${baseUrl}/authors?_locale=ru&_locale=en`);
+
+    return {
+      path: '/sitemap.xml',
+      hostname: 'http://localhost:3000',
+      gzip: true,
+      trailingSlash: true,
+      'nuxt-i18n': {
+        locales: ['ru', 'en'],
+        routesNameSeparator: '___',
+      },
+      exclude: ['/'],
+      routes: [
+        ...articles.data.map((item) => {
+          return {
+            url: `${item.locale === 'en' ? '' : '/' + item.locale}/${item.slug}`,
+            lastmod: item.updated_at,
+            changefreq: 'daily',
+            priority: 0.8,
+          };
+        }),
+        ...categories.data.map((item) => {
+          return {
+            url: `${item.locale === 'en' ? '' : '/' + item.locale}/${item.slug}`,
+            lastmod: item.updated_at,
+            changefreq: 'always',
+            priority: 0.9,
+          };
+        }),
+        ...authors.data.map((item) => {
+          return {
+            url: `${item.locale === 'en' ? '' : '/' + item.locale}/author/${item.slug}`,
+            lastmod: item.updated_at,
+            changefreq: 'daily',
+            priority: 0.7,
+          };
+        }),
+        { url: '/ru/', lastmod: new Date(), changefreq: 'always', priority: 1 },
+        { url: '/', lastmod: new Date(), changefreq: 'always', priority: 1 },
+      ],
+    };
+  },
 
   styleResources: {
     scss: ['~/assets/scss/variables.scss'],
   },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    // See https://github.com/nuxt-community/axios-module#options
+    baseURL: process.env.API_URL,
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -91,17 +212,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    vendor: ['@/plugins/VueInfiniteLoading.js'],
     extend(config, { isServer, isClient }) {
       config.module.rules.push({
         test: /\.vue$/,
         loader: 'vue-svg-inline-loader',
-        options: {
-          /* ... */
-        },
+        options: {},
       });
     },
     output: {
-      // path: path.resolve(__dirname, 'dist'),
       filename: '[name].[hash:8].js',
       sourceMapFilename: '[name].[hash:8].map',
       chunkFilename: '[id].[hash:8].js',
@@ -114,7 +233,14 @@ export default {
         name: true,
       },
     },
+    splitChunks: {
+      layouts: true,
+    },
+    babel: {
+      plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]],
+    },
   },
+
   render: {
     bundleRenderer: {
       shouldPreload: (file, type) => {
@@ -125,4 +251,6 @@ export default {
       },
     },
   },
+
+  router: {},
 };

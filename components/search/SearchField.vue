@@ -3,7 +3,7 @@
   .search-field(data-search-field)
     BaseInput.search-field__input(
       :value="term",
-      :placeholder="'search'",
+      :placeholder="$t('search.placeholder')",
       @input="$emit('input', $event)",
       @focus="$emit('showResults')",
       data-search-field-input)
@@ -37,13 +37,13 @@
     // Props of the component.
     props: {
       term: String,
-      close: Boolean
-    }
+      close: Boolean,
+    },
   };
 </script>
 
 <style lang="scss" scoped>
-  @import '~@stylize/sass-mixin';
+  @use '~@stylize/sass-mixin' as *;
 
   .search-field {
     @include flex(row, flex-start);

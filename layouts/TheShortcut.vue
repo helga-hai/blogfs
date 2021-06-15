@@ -1,11 +1,11 @@
 <template lang="pug">
-  // Component template.
+  // Component template
   button.shortcut(
     @pointerup="promptInstall",
     data-shortcut)
     .shortcut__content
       .shortcut__text(data-shortcut-text)
-        | Add to home screen
+        | {{ $t('footer.shortcut') }}
       img.shortcut__image(
         v-if="os",
         :src="require(`@/assets/images/shortcut/${os}.svg`)",
@@ -16,42 +16,42 @@
 <script lang="ts">
   import Vue from 'vue';
 
-  // Component data.
+  // Component data
   interface Data {
     os: string;
   }
 
-  // Component definition.
+  // Component definition
   export default Vue.extend({
-    // Name of the component.
+    // Name of the component
     name: 'TheShortcut',
-    // Data of the component.
+    // Data of the component
     data: (): Data => ({
       os: '',
     }),
     // Mounted hook of the component
     mounted(): void {
-      if (navigator.appVersion.indexOf('Win') != -1) {
+      if (navigator.appVersion.includes('Win')) {
         this.os = 'windows';
-      } else if (navigator.appVersion.indexOf('Mac') != -1) {
+      } else if (navigator.appVersion.includes('Mac')) {
         this.os = 'mac';
-      } else if (navigator.userAgent.indexOf('Android') != -1) {
+      } else if (navigator.userAgent.includes('Android')) {
         this.os = 'android';
-      } else if (navigator.userAgent.indexOf('like Mac') != -1) {
+      } else if (navigator.userAgent.includes('like Mac')) {
         this.os = 'ios';
       }
     },
-    // Methods of the component.
+    // Methods of the component
     methods: {
       async promptInstall(): Promise<void> {
         // Show the install prompt
         const promptEvent = (window as any).deferredPrompt;
         if (!promptEvent) {
           console.log("The deferred prompt isn't available.");
-          // The deferred prompt isn't available.
+          // The deferred prompt isn't available
           return;
         }
-        // Show the install prompt.
+        // Show the install prompt
         promptEvent.prompt();
         // Wait for the user to respond to the prompt
         const { outcome } = await promptEvent.userChoice;

@@ -11,11 +11,17 @@ module.exports = {
   plugins: ['prettier'],
   // add your custom rules here
   rules: {
-    // "fullySpecified": false,
+    // fullySpecified: false,
     'no-useless-escape': 'off',
     'vue/custom-event-name-casing': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-inferrable-types': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
 };

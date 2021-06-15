@@ -12,7 +12,7 @@
         .header__content
           HeaderShortcuts.header__shortcut
         HeaderSearch.header__search
-        HeaderLanguage.header__language(v-if="$mq == 'lg'")
+        HeaderLanguage.header__language(v-if="$mq === 'lg'")
 </template>
 
 <script lang="ts">
@@ -21,9 +21,9 @@
   import HeaderSearch from './header/HeaderSearch.vue';
   import HeaderLanguage from './header/HeaderLanguage.vue';
 
-  // Component definition.
+  // Component definition
   export default {
-    // Name of the component.
+    // Name of the component
     name: 'TheHeader',
     // Deps of the component
     components: {

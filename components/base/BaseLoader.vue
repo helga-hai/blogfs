@@ -37,7 +37,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~@stylize/sass-mixin';
+  @use '~@stylize/sass-mixin' as *;
 
   @keyframes dot-keyframes {
     0% {

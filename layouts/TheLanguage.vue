@@ -1,35 +1,34 @@
 <template lang="pug">
-  // Component template.
+  // Component template
   .language__list(data-language-list)
-    a.language__item(
-      v-for="lang in langs",
-      :key="lang",
-      :class="{ 'language__item--active': lang === activeLang }",
-      :data-language-item="lang")
+    .language__item(
+      v-for="locale in $i18n.locales",
+      :key="locale.code",
+      :class="{ 'language__item--active': locale.code === $i18n.locale }",
+      @click="reloadLocale(locale.code)",
+      :data-language-item="locale.code")
       img.language__item-flag(
-        :src="`/country/${lang}.svg`",
-        :alt="lang",
+        :src="`/country/${locale.code}.svg`",
+        :alt="locale.code",
         draggable="false",
         data-language-item-flag)
       span.language__item-text(data-language-item-text)
-        | {{ lang }}
+        | {{ locale.code }}
 </template>
 
 <script lang="ts">
-  import axios from 'axios';
-  import { mapGetters, mapState } from 'vuex';
-  import { isDefaultLang } from '@/constant/Locale';
-
+  import Vue from 'vue';
   // Single File Component
-  export default {
+  export default Vue.extend({
     // Name of the component
     name: 'Language',
-    // Computed of the component
-    computed: {
-      ...mapGetters('configs', ['activeLang']),
-      ...mapState('configs', ['langs']),
+    // Methods oh the component
+    methods: {
+      reloadLocale(lang: string): void {
+        window.location.href = this.switchLocalePath(lang);
+      },
     },
-  };
+  });
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,7 @@
 <template lang="pug">
   // Component template.
-  RouterLink.base-logo(
-    to="/",
+  NuxtLink.base-logo(
+    :to="localePath('/')",
     data-base-logo)
     img.base-logo__image(
       :src="require('@/assets/images/brand/logo.svg?inline')",
@@ -23,7 +23,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~@stylize/sass-mixin';
+  @use '~@stylize/sass-mixin' as *;
 
   .base-logo {
     @include flex(row center center);

@@ -13,7 +13,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~@stylize/sass-mixin';
+  @use '~@stylize/sass-mixin' as *;
 
   .base-overlay {
     background: $base-overlay__background;

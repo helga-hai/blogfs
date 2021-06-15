@@ -1,32 +1,22 @@
 <template lang="pug">
-  // Component template.
+  // Component template
   .header-shortcut__content
     Swiper.header-shortcut__list(
       ref="swiper",
       :options="swiperOptions",
       data-header-shortcut-list)
       SwiperSlide.header-shortcut__item(v-if="!sidebar")
-        HeaderBackToCasino.header-shortcut__back
+        BackToCasino.header-shortcut__back
 
-      SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(to="/")
+      SwiperSlide.header-shortcut__item(
+        v-for="shortcut in categories",
+        :key="shortcut.id")
+        NuxtLink.header-shortcut__link(:to="localePath(`/${shortcut.slug}`)")
           span.header-shortcut__text
-            | Bitcoin Casino news
-
-      SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(
-          to="/",
-          active-class="header-shortcut__link--active")
-          span.header-shortcut__text
-            | Articles and Recommendations
-
-      SwiperSlide.header-shortcut__item
-        NuxtLink.header-shortcut__link(to="/")
-          span.header-shortcut__text
-            | Game Reviews
+            | {{ shortcut.title }}
 
       SwiperSlide.header-shortcut__item(v-if="sidebar")
-        HeaderBackToCasino.header-shortcut__back
+        BackToCasino.header-shortcut__back
 
       template(#button-prev)
         .header-shortcut__nav-prev
@@ -37,36 +27,40 @@
 
 <script lang="ts">
   import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+  import Vue from 'vue';
+  import { mapGetters, mapState } from 'vuex';
   import SwiperMixin from '@/mixins/SwiperMixin';
-  import HeaderBackToCasino from './HeaderBackToCasino.vue';
   import type { SwiperOptions } from 'swiper';
   import type { PropType } from 'vue';
+  import BackToCasino from '../common/BackToCasino.vue';
 
-  // Component data.
   interface Data {
+    shortcuts: any;
     swiperOptions: SwiperOptions;
   }
 
-  // Component definition.
-  export default {
-    // Name of the component.
+  // Component definition
+  export default Vue.extend({
+    // Name of the component
     name: 'HeaderShortcuts',
-    // Mixins of the component.
-    mixins: [SwiperMixin],
-    // Deps of the component.
+    // Deps of the component
     components: {
       Swiper,
       SwiperSlide,
-      HeaderBackToCasino,
+      BackToCasino,
     },
+    // Mixins of the component
+    mixins: [SwiperMixin],
+    // Props of the component
     props: {
       sidebar: {
         type: Boolean as PropType<boolean>,
         default: false,
       },
     },
-    // Data of the component.
+    // Data of the component
     data: (): Data => ({
+      shortcuts: [],
       swiperOptions: {
         navigation: {
           nextEl: '.header-shortcut__nav-next',
@@ -75,7 +69,12 @@
         },
       },
     }),
-  };
+    // Computed hook of the component
+    computed: {
+      ...mapGetters('configs', ['activeLang']),
+      ...mapState('content', ['categories']),
+    },
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -123,13 +122,13 @@
         padding: $header-shortcut-item__padding--r20;
       }
 
-      &:hover:not(&--active) {
+      &:hover:not(.nuxt-link-exact-active) {
         @include support-hover {
           border-bottom-color: $header-shortcut-item__border-color--hover;
         }
       }
 
-      &--active {
+      &.nuxt-link-exact-active {
         background: $header-shortcut-item__background--active;
         border-bottom-color: $header-shortcut-item__border-color--active;
       }

@@ -13,10 +13,7 @@
       slot(name="label")
 
     .base-input__field(
-      :class=`{
-        'base-input__field--error': error,
-        'base-input__field--focus': isFocus
-      }`,
+      :class="cssClasses",
       data-input-field)
       .base-input__badge(data-input-bagde-left)
         slot(
@@ -68,10 +65,6 @@
   export default Vue.extend({
     // Name of the component.
     name: 'BaseInput',
-    // Data of the component.
-    data: (): any => ({
-      isFocus: false,
-    }),
     // Props of the component.
     props: {
       id: {
@@ -125,17 +118,18 @@
         type: Boolean,
       },
     },
-    // Mounted hook of the component.
-    mounted(): void {
-      if (this.focus) {
-        // Trigger focus on input.
-        this.$refs.input.focus();
-        // Change internal focus.
-        this.isFocus = true;
-      }
-    },
+    // Data of the component.
+    data: (): any => ({
+      isFocus: false,
+    }),
     // Defined computed of the component.
     computed: {
+      cssClasses(): Record<string, boolean> {
+        return {
+          'base-input__field--error': this.error,
+          'base-input__field--focus': this.isFocus,
+        };
+      },
       uniqueId(): string {
         return this.id || uniqueId('dynamic_field_');
       },
@@ -145,6 +139,24 @@
       isLabelShown(): boolean {
         return this.isFocus || this.error;
       },
+    },
+    // Defined watchers of the component.
+    watch: {
+      focus(): void {
+        // Change internal focus.
+        this.isFocus = this.focus;
+        // In case focus changed make corresponding changes to input.
+        this.focus ? this.$refs.input.focus() : this.$refs.input.blur();
+      },
+    },
+    // Mounted hook of the component.
+    mounted(): void {
+      if (this.focus) {
+        // Trigger focus on input.
+        this.$refs.input.focus();
+        // Change internal focus.
+        this.isFocus = true;
+      }
     },
     // Defined methods of the component.
     methods: {
@@ -169,20 +181,11 @@
         this.$emit('input', '');
       },
     },
-    // Defined watchers of the component.
-    watch: {
-      focus(): void {
-        // Change internal focus.
-        this.isFocus = this.focus;
-        // In case focus changed make corresponding changes to input.
-        this.focus ? this.$refs.input.focus() : this.$refs.input.blur();
-      },
-    },
   });
 </script>
 
 <style lang="scss" scoped>
-  @import '~@stylize/sass-mixin';
+  @use '~@stylize/sass-mixin' as *;
 
   .base-input {
     $block: &;
