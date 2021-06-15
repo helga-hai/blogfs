@@ -1,11 +1,13 @@
 <template lang="pug">
   // Component template
   .main
-    BaseTitle(v-if="home")
-      | {{ home.title }}
-    Preview(
-      v-if="home",
-      :data="previewArticle")
+    LazyHydrate(never)
+      BaseTitle
+        | {{ home.title }}
+    LazyHydrate(never)
+      Preview(
+        v-if="home",
+        :data="previewArticle")
     template(v-if="$mq !== 'xs'")
       .main__catalog
         Catalogue(:items="articles")

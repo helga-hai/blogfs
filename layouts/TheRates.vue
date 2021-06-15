@@ -38,15 +38,6 @@
   export default class TheRatesClass extends Vue {
     $axios!: any;
     rates!: any;
-    // $store!: any;
-    // $route!: any;
-    //
-    // get news() {
-    //   //const isAuthor = this.$route.path.includes('/author/');
-    //   return this.$store.state.content.isCategory
-    //     ? this.$store.state.content.news[this.$route.params.slug]
-    //     : this.$store.state.content.news.all;
-    // }
 
     async getRates() {
       const response = await this.$axios.$get(
@@ -91,6 +82,10 @@
     &__value {
       font: $rates-value__font;
       margin: $rates-value__margin;
+
+      img {
+        @include size(22px);
+      }
 
       &--price {
         font-weight: 700;
