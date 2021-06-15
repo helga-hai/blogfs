@@ -147,14 +147,14 @@ export default {
 
   // See https://sitemap.nuxtjs.org/
   sitemap: async () => {
-    const baseUrl = 'https://hardcore-pare-196c1f.netlify.app';
+    const baseUrl = 'https://admin.fairspin.info';
     const articles = await axios.get(`${baseUrl}/articles?_locale=ru&_locale=en`);
     const categories = await axios.get(`${baseUrl}/categories?_locale=ru&_locale=en`);
     //const authors = await axios.get(`${baseUrl}/authors?_locale=ru&_locale=en`);
 
     return {
       path: '/sitemap.xml',
-      hostname: 'https://admin.fairspin.info',
+      hostname: 'https://hardcore-pare-196c1f.netlify.app',
       gzip: true,
       trailingSlash: true,
       'nuxt-i18n': {
