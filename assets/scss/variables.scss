@@ -375,6 +375,16 @@ $view-header-search__width: 200px;
 $view-header-search__width--r10: 200px;
 $view-header-search-result__width: 100%;
 
+// Layout Rate
+$rates__width: $app__max-width;
+$rates__padding: 0;
+$rates__margin:  0 0 16px;
+$rates__background: $color-15;
+$rates-value__font: font($font--md);
+$rates-value__margin: 0 4px;
+$rates-content__margin: 0 auto;
+$rates-content__padding: 16px 0px;
+
 // Layout Sidebar
 $sidebar__width: 320px;
 $sidebar__shadow: 7px 0px 4px $color-10_5;

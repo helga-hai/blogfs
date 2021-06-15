@@ -60,8 +60,10 @@ export default {
     { src: '~/plugins/Strapi.js', mode: 'all' },
     { src: '~/plugins/LoadScript.js', mode: 'client' },
     { src: '~/plugins/VueAwesomeSwiper', mode: 'client' },
-    { src: '~/plugins/VueMq.js', mode: 'all' },
     { src: '~/plugins/VueInfiniteLoading.js', mode: 'client' },
+    { src: '~/plugins/VueLazyHydration.js', mode: 'all' },
+    { src: '~/plugins/VueMq.js', mode: 'all' },
+    { src: '~/plugins/VueNumeralFilter.js', mode: 'client' },
     { src: '~/directives/hidden', mode: 'client' },
   ],
 

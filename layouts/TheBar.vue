@@ -37,9 +37,6 @@
         ? this.$store.state.content.news[this.$route.params.slug]
         : this.$store.state.content.news.all;
     }
-    mounted(){
-      console.log(this.news)
-    }
   }
 </script>
 

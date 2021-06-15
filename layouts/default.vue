@@ -1,25 +1,26 @@
 <template lang="pug">
   // Component template
-  .layout(
-    :class="classes",
-    @keydown="keyup",
-    @mousedown="mouseup")
-    TheHeader.layout__header(@toggleSidebar="toggle")
+  .layout(:class="classes")
+    LazyHydrate(when-visible)
+      TheHeader.layout__header(@toggleSidebar="toggle")
+    TheRates.layout__rates
     .layout__router
       .layout__content
         Nuxt
       TheBar(v-if="$mq === 'md' || $mq === 'lg'")
 
-    transition(name="fade")
-      BaseOverlay.layout__overlay(v-if="$store.state.layout.overlay")
+    LazyHydrate(on-interaction="touchstart")
+      transition(name="fade")
+        BaseOverlay.layout__overlay(v-if="$store.state.layout.overlay")
 
-    transition(name="slide")
-      TheSidebar.layout__sidebar(
-        v-if="sidebar",
-        @close="toggle",
-        v-click-outside="toggle")
-
-    TheFooter
+    LazyHydrate(on-interaction="touchstart")
+      transition(name="slide")
+        TheSidebar.layout__sidebar(
+          v-if="sidebar",
+          @close="toggle",
+          v-click-outside="toggle")
+    LazyHydrate(newer)
+      TheFooter
 </template>
 
 <script lang="ts">
@@ -27,6 +28,7 @@
   import BaseLayout from '@/components/base/BaseLayout.vue';
   import TheHeader from './TheHeader.vue';
   import TheFooter from './TheFooter.vue';
+  import TheRates from './TheRates.vue';
   import TheBar from './TheBar.vue';
 
   interface Data {
@@ -40,6 +42,7 @@
       BaseLayout,
       TheHeader,
       TheFooter,
+      TheRates,
       TheBar,
       TheSidebar: (): any => import('@/layouts/TheSidebar.vue'),
       BaseOverlay: (): any => import('@/components/base/BaseOverlay.vue'),
@@ -59,12 +62,6 @@
         } else {
           this.$store.dispatch('layout/hideOverlay');
         }
-      },
-      keyup(): void {
-        this.classes = ['using-keyboard'];
-      },
-      mouseup(): void {
-        this.classes = ['using-mouse'];
       },
     },
   });
