@@ -142,19 +142,19 @@ export default {
   // See https://strapi.nuxtjs.org/
   strapi: {
     entities: [{ name: 'articles' }, { name: 'categories' }, { name: 'home' }],
-    url: process.env.API_URL || 'http://localhost:1337',
+    url: process.env.API_URL || 'https://admin.fairspin.info',
   },
 
   // See https://sitemap.nuxtjs.org/
   sitemap: async () => {
-    const baseUrl = 'http://localhost:1337';
+    const baseUrl = 'https://hardcore-pare-196c1f.netlify.app';
     const articles = await axios.get(`${baseUrl}/articles?_locale=ru&_locale=en`);
     const categories = await axios.get(`${baseUrl}/categories?_locale=ru&_locale=en`);
-    const authors = await axios.get(`${baseUrl}/authors?_locale=ru&_locale=en`);
+    //const authors = await axios.get(`${baseUrl}/authors?_locale=ru&_locale=en`);
 
     return {
       path: '/sitemap.xml',
-      hostname: 'http://localhost:3000',
+      hostname: 'https://admin.fairspin.info',
       gzip: true,
       trailingSlash: true,
       'nuxt-i18n': {
@@ -179,14 +179,14 @@ export default {
             priority: 0.9,
           };
         }),
-        ...authors.data.map((item) => {
-          return {
-            url: `${item.locale === 'en' ? '' : '/' + item.locale}/author/${item.slug}`,
-            lastmod: item.updated_at,
-            changefreq: 'daily',
-            priority: 0.7,
-          };
-        }),
+        // ...authors.data.map((item) => {
+        //   return {
+        //     url: `${item.locale === 'en' ? '' : '/' + item.locale}/author/${item.slug}`,
+        //     lastmod: item.updated_at,
+        //     changefreq: 'daily',
+        //     priority: 0.7,
+        //   };
+        // }),
         { url: '/ru/', lastmod: new Date(), changefreq: 'always', priority: 1 },
         { url: '/', lastmod: new Date(), changefreq: 'always', priority: 1 },
       ],
