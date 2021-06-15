@@ -142,7 +142,7 @@ export default {
   // See https://strapi.nuxtjs.org/
   strapi: {
     entities: [{ name: 'articles' }, { name: 'categories' }, { name: 'home' }],
-    url: process.env.API_URL || 'http://localhost:1337',
+    url: process.env.API_URL,
   },
 
   // See https://sitemap.nuxtjs.org/
