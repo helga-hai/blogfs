@@ -2,15 +2,18 @@
   // Component template
   footer.footer(data-footer)
     .footer__partners
-      FooterPartners
+      LazyHydrate(newer)
+        FooterPartners
 
     .footer__legal
       .footer__company
-        FooterDisclaimer.footer__disclaimer
+        LazyHydrate(newer)
+          FooterDisclaimer.footer__disclaimer
         client-only
           TheShortcut(v-if="prompt")
 
-      FooterCopyright.footer__copyright
+      LazyHydrate(newer)
+        FooterCopyright.footer__copyright
 </template>
 
 <script lang="ts">

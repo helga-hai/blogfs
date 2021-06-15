@@ -18,8 +18,7 @@
           v-if="sidebar",
           @close="toggle",
           v-click-outside="toggle")
-    LazyHydrate(newer)
-      TheFooter
+    TheFooter
 </template>
 
 <script lang="ts">
