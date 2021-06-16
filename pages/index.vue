@@ -43,8 +43,8 @@
       let homeArticle, lastArticle, articles, lastPublished;
 
       if (home.article) {
-        homeArticle = await $strapi.findOne('articles', home.article.id);
-        homeArticle = homeArticle[0];
+        // homeArticle = await $strapi.findOne('articles', home.article.id);
+        homeArticle = home.article;
         articles = await $strapi.find('articles', {
           _locale: store.getters['configs/activeLang'],
           _limit: 15,

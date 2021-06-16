@@ -1,6 +1,6 @@
 <template lang="pug">
   // Component template
-  .preview(data-preview)
+  .preview(data-preview v-if="data")
     .preview__image
       picture(v-if="data.prevImage")
         source(
