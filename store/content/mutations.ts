@@ -13,7 +13,7 @@ export default {
    */
   setNews(state: ContentStore, payload: any): void {
     const news = [...payload.content];
-    news.length = 5;
+    news.length = news.length>5 ? 5 : news.length;
     state.news[payload.type] = news;
   },
 
