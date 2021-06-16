@@ -43,4 +43,17 @@ export default {
   isCategory(state: ContentStore, payload: boolean): void {
     state.isCategory = payload;
   },
+
+  /**
+   * Mutation used to set global data.
+   * @param state Content state.
+   * @param payload Record<string, any>.
+   */
+  setGlobal(state: ContentStore, payload: any): void {
+    state.social = payload.Social;
+    state.banner = {
+      img: payload.bannerPrimary,
+      url: payload.url,
+    };
+  },
 };

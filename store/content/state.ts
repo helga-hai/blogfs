@@ -10,6 +10,8 @@ export interface ContentStore {
   news: Record<string, ArticleInterface[]>;
   isCategory: boolean;
   rate: any[] | null;
+  banner: any;
+  social: Record<string, any>[] | null;
 }
 
 /**
@@ -21,4 +23,6 @@ export default (): ContentStore => ({
   news: {},
   isCategory: false,
   rate: null,
+  social: null,
+  banner: null,
 });

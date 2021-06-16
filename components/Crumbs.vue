@@ -68,7 +68,11 @@
         width: 100%;
         height: 1px;
         background: $color-18_7;
-        @include absolute(auto 0 -8px 0);
+        @include absolute(auto 0 0 0);
+
+        @include media('>=sm') {
+          @include absolute(auto 0 -8px 0);
+        }
       }
     }
 

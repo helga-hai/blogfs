@@ -23,11 +23,10 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import BaseLayout from '@/components/base/BaseLayout.vue';
   import TheHeader from './TheHeader.vue';
   import TheFooter from './TheFooter.vue';
   import TheRates from './TheRates.vue';
-  import TheBar from './TheBar.vue';
+  // import TheBar from './TheBar.vue';
 
   interface Data {
     sidebar: boolean;
@@ -37,11 +36,10 @@
   export default Vue.extend({
     name: 'App',
     components: {
-      BaseLayout,
       TheHeader,
       TheFooter,
       TheRates,
-      TheBar,
+      TheBar: (): any => import('@/layouts/TheBar.vue'),
       TheSidebar: (): any => import('@/layouts/TheSidebar.vue'),
       BaseOverlay: (): any => import('@/components/base/BaseOverlay.vue'),
     },

@@ -93,6 +93,13 @@
       });
       app.$setdata({ type: 'categories', content: categories });
 
+      if (!store.state.content.banner && !store.state.content.social) {
+        const global = await $strapi.find('global', {
+          _locale: store.getters['configs/activeLang'],
+        });
+        store.commit('content/setGlobal', global);
+      }
+
       // Set http header Last-Modified
       if (process.server) {
         if (matchingArticles[0]) {

@@ -309,6 +309,9 @@ $bar__width: 400px;
 $bar__padding: 50px indent(3);
 $bar-news__margin: indent(3) 0;
 $bar-title__margin: 0 0 indent(1.5) 0;
+$bar-social-title__color: $n_color-0-8;
+$bar-social-title__font: font($font--md, 1.7);
+$bar-social-title__color--hover: $n_color-34;
 
 // Layout Default
 $default-p-a__color: $n_color-32;

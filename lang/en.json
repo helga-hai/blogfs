@@ -21,6 +21,9 @@
   "bar": {
     "news": {
       "title": "Featured news"
+    },
+    "social": {
+      "title": "Social media"
     }
   },
   "search": {

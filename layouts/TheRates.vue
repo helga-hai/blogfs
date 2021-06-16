@@ -61,9 +61,12 @@
   .rates {
     width: 100%;
     padding: $rates__padding;
-    margin: $rates__margin;
     background: $rates__background;
     overflow: hidden;
+
+    @include media('>=sm'){
+      margin: $rates__margin;
+    }
 
     &__content {
       color: white;

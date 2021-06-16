@@ -214,7 +214,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    analyse: true,
     vendor: ['@/plugins/VueInfiniteLoading.js'],
     extend(config, { isServer, isClient }) {
       config.module.rules.push({

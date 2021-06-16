@@ -71,6 +71,7 @@
         error({ statusCode: 404, message: 'Page not found' });
         return;
       }
+
       const count = await $strapi.find('articles/count', {
         _locale: store.getters['configs/activeLang'],
       });
@@ -80,6 +81,13 @@
       });
       app.$setdata({ type: 'categories', content: categories });
       store.commit('content/isCategory', false);
+
+      if (!store.state.content.banner && !store.state.content.social) {
+        const global = await $strapi.find('global', {
+          _locale: store.getters['configs/activeLang'],
+        });
+        store.commit('content/setGlobal', global);
+      }
 
       // Set http header Last-Modified
       if (process.server) {
@@ -101,7 +109,7 @@
       BaseTitle: () => import('@/components/base/BaseTitle.vue'),
       Preview: () => import('@/components/Preview.vue'),
       Catalogue: () => import('@/components/Catalogue.vue'),
-      BaseButton: () => import('@/components/base/BaseButton.vue')
+      BaseButton: () => import('@/components/base/BaseButton.vue'),
     },
     // Computeds of component
     computed: {
