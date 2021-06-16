@@ -10,6 +10,9 @@
           data-header-toggle)
         BaseLogo.header__logo(data-header-logo)
         .header__content
+          .header__back
+            LazyHydrate(newer)
+              BackToCasino.header-shortcut__back
           HeaderShortcuts.header__shortcut
         HeaderSearch.header__search
         HeaderLanguage.header__language(v-if="$mq === 'lg'")
@@ -17,10 +20,6 @@
 
 <script lang="ts">
   import BaseLogo from '@/components/base/BaseLogo.vue';
-  import HeaderShortcuts from './header/HeaderShortcuts.vue';
-  import HeaderSearch from './header/HeaderSearch.vue';
-  import HeaderLanguage from './header/HeaderLanguage.vue';
-
   // Component definition
   export default {
     // Name of the component
@@ -28,9 +27,10 @@
     // Deps of the component
     components: {
       BaseLogo,
-      HeaderShortcuts,
-      HeaderSearch,
-      HeaderLanguage,
+      HeaderShortcuts: () => import('@/layouts/header/HeaderShortcuts.vue'),
+      HeaderSearch: () => import('@/layouts/header/HeaderSearch.vue'),
+      HeaderLanguage: () => import('@/layouts/header/HeaderLanguage.vue'),
+      BackToCasino: () => import('@/layouts/common/BackToCasino.vue'),
     },
   };
 </script>
@@ -117,6 +117,15 @@
     &__language {
       width: 100px;
       @include flex(row center center);
+    }
+
+    &__back {
+      display: none;
+
+      @include media('>=sm') {
+        display: block;
+        align-self: center;
+      }
     }
   }
 </style>

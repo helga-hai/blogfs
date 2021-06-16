@@ -5,8 +5,6 @@
       ref="swiper",
       :options="swiperOptions",
       data-header-shortcut-list)
-      SwiperSlide.header-shortcut__item(v-if="!sidebar")
-        BackToCasino.header-shortcut__back
 
       SwiperSlide.header-shortcut__item(
         v-for="shortcut in categories",
@@ -32,7 +30,6 @@
   import SwiperMixin from '@/mixins/SwiperMixin';
   import type { SwiperOptions } from 'swiper';
   import type { PropType } from 'vue';
-  import BackToCasino from '../common/BackToCasino.vue';
 
   interface Data {
     shortcuts: any;
@@ -47,7 +44,6 @@
     components: {
       Swiper,
       SwiperSlide,
-      BackToCasino,
     },
     // Mixins of the component
     mixins: [SwiperMixin],
@@ -95,10 +91,6 @@
     &__item {
       width: auto;
       @include flex(row center);
-    }
-
-    &__back {
-      align-self: center;
     }
 
     &__link {

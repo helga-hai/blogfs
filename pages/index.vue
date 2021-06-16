@@ -4,8 +4,7 @@
     LazyHydrate(never)
       BaseTitle
         | {{ home.title }}
-    LazyHydrate(never)
-      Preview(:data="previewArticle")
+    Preview(:data="previewArticle")
     template(v-if="$mq !== 'xs'")
       .main__catalog
         Catalogue(:items="articles")
@@ -23,11 +22,10 @@
 <script lang="ts">
   import { Vue, Component } from 'nuxt-property-decorator';
   import { mapGetters } from 'vuex';
-  import BaseButton from '@/components/base/BaseButton.vue';
-  import BaseLayout from '@/components/base/BaseLayout.vue';
-  import BaseTitle from '@/components/base/BaseTitle.vue';
-  import Preview from '@/components/Preview.vue';
-  import Catalogue from '@/components/Catalogue.vue';
+  // import BaseButton from '@/components/base/BaseButton.vue';
+  // import BaseTitle from '@/components/base/BaseTitle.vue';
+  // import Preview from '@/components/Preview.vue';
+  // import Catalogue from '@/components/Catalogue.vue';
   import type { Context } from '@nuxt/types';
   import type { MetaInfo } from 'vue-meta';
   import { getMetaTags } from '~/utils/seo';
@@ -99,7 +97,12 @@
       return { home, articles, previewArticle, count };
     },
     // Deps of the component
-    components: { BaseLayout, BaseTitle, Preview, Catalogue, BaseButton },
+    components: {
+      BaseTitle: () => import('@/components/base/BaseTitle.vue'),
+      Preview: () => import('@/components/Preview.vue'),
+      Catalogue: () => import('@/components/Catalogue.vue'),
+      BaseButton: () => import('@/components/base/BaseButton.vue')
+    },
     // Computeds of component
     computed: {
       ...mapGetters('configs', ['activeLang']),
