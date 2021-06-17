@@ -22,7 +22,8 @@ export interface ArticleInterface {
   text: string;
   title: string;
   updated_at: string;
-  keywords?: string;
+  relatedPosts: any;
+  relatedTitle: string;
 }
 
 interface RelatedItem {

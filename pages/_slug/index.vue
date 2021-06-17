@@ -74,7 +74,7 @@
 
       if (matchingCategories[0]) {
         store.commit('content/isCategory', true);
-        app.$setdata({ type: params.slug, content: articles });
+        if (articles[0]) app.$setdata({ type: params.slug, content: articles });
       } else if (matchingArticles[0]) {
         store.commit('content/isCategory', false);
         if (!store.state.content.news.all) {
@@ -84,7 +84,7 @@
             _start: 0,
             _limit: 5,
           });
-          app.$setdata({ type: 'all', content: news });
+          if (news[0]) app.$setdata({ type: 'all', content: news });
         }
       }
 
@@ -106,7 +106,8 @@
           res?.setHeader('Last-Modified', `${new Date(matchingArticles[0].updated_at).toUTCString()}`);
         }
         if (matchingCategories[0]) {
-          res?.setHeader('Last-Modified', `${new Date(articles[0].published_at).toUTCString()}`);
+          const data = articles[0] ? articles[0].published_at : matchingCategories[0].published_at;
+          res?.setHeader('Last-Modified', `${new Date(data).toUTCString()}`);
         }
       }
 

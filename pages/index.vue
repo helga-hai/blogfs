@@ -22,10 +22,6 @@
 <script lang="ts">
   import { Vue, Component } from 'nuxt-property-decorator';
   import { mapGetters } from 'vuex';
-  // import BaseButton from '@/components/base/BaseButton.vue';
-  // import BaseTitle from '@/components/base/BaseTitle.vue';
-  // import Preview from '@/components/Preview.vue';
-  // import Catalogue from '@/components/Catalogue.vue';
   import type { Context } from '@nuxt/types';
   import type { MetaInfo } from 'vue-meta';
   import { getMetaTags } from '~/utils/seo';
@@ -43,7 +39,6 @@
       let homeArticle, lastArticle, articles, lastPublished;
 
       if (home.article) {
-        // homeArticle = await $strapi.findOne('articles', home.article.id);
         homeArticle = home.article;
         articles = await $strapi.find('articles', {
           _locale: store.getters['configs/activeLang'],

@@ -21,18 +21,16 @@
       .article__date
         | {{ article.published_at | luxon }}
 
-      //img.article__image(:src="getStrapiMedia(article.image.url)")
-
       MainPicture(
         :data="article.prevImage",
         v-if="article.prevImage.photoWebp")
 
       .article__text(v-html="$md.render(article.text)")
 
-      .article__related(v-if="article.relatedArticles")
+      .article__related(v-if="article.relatedPosts")
         h2.article__related-intro
-          | {{ article.relatedArticles.intro }}
-        Catalogue(:items="article.relatedArticles.articles")
+          | {{ article.relatedTitle }}
+        Catalogue(:items="article.relatedPosts")
 </template>
 
 <script lang="ts">

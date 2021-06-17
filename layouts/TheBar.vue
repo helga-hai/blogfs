@@ -70,6 +70,8 @@
     width: $bar__width;
 
     &__content {
+      position: sticky;
+      top: 60px;
       padding: $bar__padding;
     }
 
