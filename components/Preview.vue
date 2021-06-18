@@ -1,6 +1,6 @@
 <template lang="pug">
   // Component template
-  .preview(data-preview v-if="data")
+  .preview(data-preview)
     .preview__image
       picture(v-if="data.prevImage")
         source(
@@ -72,8 +72,7 @@
 
       &-inner {
         object-fit: cover;
-        width: 100%;
-        height: 100%;
+        @include size(100%);
         border-radius: $preview-image__border-radius;
         @include size($preview__size);
 
@@ -105,6 +104,7 @@
       display: inline-block;
       color: $preview-title__color;
       font: $preview-title__font;
+      font-family: 'Stolzl', sans-serif;
       margin: $preview-title__margin;
 
       @include media('>=sm') {
@@ -115,6 +115,7 @@
     &__description {
       color: $preview-description__color;
       font: $preview-description__font;
+      font-family: 'Stolzl', sans-serif;
     }
 
     &__author {

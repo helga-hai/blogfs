@@ -26,7 +26,6 @@
   import TheHeader from './TheHeader.vue';
   import TheFooter from './TheFooter.vue';
   import TheRates from './TheRates.vue';
-  // import TheBar from './TheBar.vue';
 
   interface Data {
     sidebar: boolean;
@@ -110,6 +109,7 @@
 
       @include media('>=md') {
         width: $app-content__width--r10;
+        padding: $app-content__padding;
       }
     }
 
@@ -137,7 +137,7 @@
     &:before,
     &:after {
       box-sizing: border-box;
-      font-family: 'Stolzl', Arial, sans-serif;
+      font-family: 'Stolzl', sans-serif;
     }
   }
 
@@ -242,12 +242,10 @@
     background-repeat: repeat-x;
     background-size: 0 0;
     transition: background 0.4s ease-in-out, color 0.4s ease-in-out;
-    //color: $default-p-a__color;
 
     &:hover {
       color: #181818;
       background-size: 0.625rem 3.125rem;
-      //color: $default-p-a__color--hover;
     }
   }
 

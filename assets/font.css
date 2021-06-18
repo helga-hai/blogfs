@@ -7,8 +7,8 @@
 @font-face {
   font-family: 'Stolzl';
   src: url('/fonts/Stolzl-Book.eot?') format('eot'), url('/fonts/Stolzl-Book.woff2') format('woff2'),
-  url('/fonts/Stolzl-Book.woff') format('woff'), url('/fonts/Stolzl-Book.ttf') format('truetype'),
-  url('/fonts/Stolzl-Book.svg#Stolzl') format('svg');
+    url('/fonts/Stolzl-Book.woff') format('woff'), url('/fonts/Stolzl-Book.ttf') format('truetype'),
+    url('/fonts/Stolzl-Book.svg#Stolzl') format('svg');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -17,8 +17,8 @@
 @font-face {
   font-family: 'Stolzl';
   src: url('/fonts/Stolzl-Regular.eot?') format('eot'), url('/fonts/Stolzl-Regular.woff2') format('woff2'),
-  url('/fonts/Stolzl-Regular.woff') format('woff'), url('/fonts/Stolzl-Regular.ttf') format('truetype'),
-  url('/fonts/Stolzl-Regular.svg#Stolzl') format('svg');
+    url('/fonts/Stolzl-Regular.woff') format('woff'), url('/fonts/Stolzl-Regular.ttf') format('truetype'),
+    url('/fonts/Stolzl-Regular.svg#Stolzl') format('svg');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -27,9 +27,9 @@
 @font-face {
   font-family: 'Stolzl';
   src: url('/fonts/Stolzl-Bold.eot?') format('eot'), url('/fonts/Stolzl-Bold.woff2') format('woff2'),
-  url('/fonts/Stolzl-Bold.woff') format('woff'), url('/fonts/Stolzl-Bold.ttf') format('truetype'),
-  url('/fonts/Stolzl-Bold.svg#Stolzl') format('svg');
-  font-weight: 800;
+    url('/fonts/Stolzl-Bold.woff') format('woff'), url('/fonts/Stolzl-Bold.ttf') format('truetype'),
+    url('/fonts/Stolzl-Bold.svg#Stolzl') format('svg');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -37,9 +37,9 @@
 @font-face {
   font-family: 'Conthrax';
   src: url('/fonts/Conthrax-sb.woff2') format('woff2'),
-  url('/fonts/ConthraxSb-Regular.woff') format('woff'),
-  url('/fonts/ConthraxSb-Regular.ttf') format('truetype'),
-  url('/fonts/ConthraxSb-Regular.svg#Conthrax') format('svg');
+    url('/fonts/ConthraxSb-Regular.woff') format('woff'),
+    url('/fonts/ConthraxSb-Regular.ttf') format('truetype'),
+    url('/fonts/ConthraxSb-Regular.svg#Conthrax') format('svg');
   font-style: normal;
   font-display: block;
 }

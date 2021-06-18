@@ -5,6 +5,7 @@
       template(v-if="article")
         Crumbs(:crumb="{ title: article.title, path: article.slug }")
         Article(
+          :next="Z"
           :article="article",
           :category="category")
 

@@ -3,12 +3,13 @@
   .article
     .article__content(v-if="article")
       .article__header
-        .article__author(
-          v-for="item in article.authors",
-          :key="item.id")
-          img.article__author-image(:src="getStrapiMedia(item.image.url)")
-          NuxtLink.article__author-name(:to="localePath(`/author/${item.slug}`)")
-            | {{ item.title }}
+        .article__authors
+          .article__author(
+            v-for="item in article.authors",
+            :key="item.id")
+            img.article__author-image(:src="getStrapiMedia(item.image.formats.thumbnail.url)")
+            NuxtLink.article__author-name(:to="localePath(`/author/${item.slug}`)")
+              | {{ item.title }}
 
         .article__categories
           .article__categories-title(
@@ -116,6 +117,10 @@
         font: $article-date__font--r10;
         margin: $article-date__margin--r10;
       }
+    }
+
+    &__authors {
+      display: flex;
     }
 
     &__author {

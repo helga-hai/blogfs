@@ -2,7 +2,7 @@
   // Component template
   .sidebar-navigation__list(data-sidebar-navigation-list)
     NuxtLink.sidebar-navigation__item.sidebar-navigation__item--border(
-      v-for="shortcut in shortcuts",
+      v-for="shortcut in categories",
       :key="shortcut.id",
       :to="localePath(`/${shortcut.slug}`)",
       @click.native="$emit('close', $event)",
@@ -31,7 +31,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapState } from 'vuex';
   import TheLanguage from '../TheLanguage.vue';
 
   // Single File Component
@@ -44,31 +44,20 @@
     },
     // Data of the component
     data: (): Record<string, any> => ({
-      shortcuts: [],
       group: {
         lang: false,
       },
     }),
-    // Computed of the component
-    computed: mapGetters('configs', ['activeLang']),
+    // Computed hook of the component
+    computed: {
+      ...mapGetters('configs', ['activeLang']),
+      ...mapState('content', ['categories']),
+    },
     // Methods of the component
     methods: {
       toggle(val: string): void {
         this.group[val] = !this.group[val];
       },
-      async switchLocale() {
-        try {
-          this.shortcuts = await this.$strapi.find('categories', {
-            _locale: this.activeLang,
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    },
-    // Mounted hook of the component
-    mounted() {
-      this.switchLocale();
     },
   });
 </script>

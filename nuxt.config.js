@@ -5,6 +5,10 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  env: {
+    API_URL: process.env.API_URL,
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Fairspin Blog',
@@ -49,6 +53,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     // Variables in the project
+    { rel: 'preload', src: '~/assets/font.css' },
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -86,6 +91,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/sitemap',
     '@nuxtjs/strapi',
+    'nuxt-webfontloader',
     [
       'nuxt-i18n',
       {
@@ -152,7 +158,7 @@ export default {
     const baseUrl = 'https://admin.fairspin.info';
     const articles = await axios.get(`${baseUrl}/articles?_locale=ru&_locale=en`);
     const categories = await axios.get(`${baseUrl}/categories?_locale=ru&_locale=en`);
-    //const authors = await axios.get(`${baseUrl}/authors?_locale=ru&_locale=en`);
+    const authors = await axios.get(`${baseUrl}/authors?_locale=ru&_locale=en`);
 
     return {
       path: '/sitemap.xml',
@@ -181,14 +187,16 @@ export default {
             priority: 0.9,
           };
         }),
-        // ...authors.data.map((item) => {
-        //   return {
-        //     url: `${item.locale === 'en' ? '' : '/' + item.locale}/author/${item.slug}`,
-        //     lastmod: item.updated_at,
-        //     changefreq: 'daily',
-        //     priority: 0.7,
-        //   };
-        // }),
+        ...authors.data.map((item) => {
+          return {
+            url: `${item.locale === 'en' ? '' : '/' + item.locale}/author/${item.slug}`,
+            lastmod: item.updated_at,
+            changefreq: 'daily',
+            priority: 0.7,
+          };
+        }),
+        { url: '/author/', lastmod: new Date(), changefreq: 'monthly', priority: 0.7 },
+        { url: '/ru/author/', lastmod: new Date(), changefreq: 'monthly', priority: 0.7 },
         { url: '/ru/', lastmod: new Date(), changefreq: 'always', priority: 1 },
         { url: '/', lastmod: new Date(), changefreq: 'always', priority: 1 },
       ],

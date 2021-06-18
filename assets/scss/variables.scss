@@ -1,6 +1,3 @@
-//@import './function';
-//@import '~@stylize/sass-func/css/font';
-//$base-font: 'Stolzl';
 @use '~@/assets/scss/function' as *;
 @use '~@stylize/sass-func/css/font' as * with (
   $base-font: 'Stolzl'
@@ -89,7 +86,7 @@ $n_color-40: #ff7144;
 $n_color-42: #a78834;
 
 // Font schema
-$font-family: 'Stolzl';
+$font-family: 'Stolzl', sans-serif;
 $font--xl: 1rem; // ~16px
 $font--lg: 0.875rem; // ~14px
 $font--md: 0.75rem; // ~12px
@@ -123,6 +120,7 @@ $app-header-height: 88px;
 $app-header-height--r10: 56px;
 $app-content__width: 100vw;
 $app-content__width--r10: calc(#{$app__max-width} - 400px);
+$app-content__padding: 0 0 0 indent(1);
 
 // Layout: Error
 $error__color: $n_color-0;
@@ -463,7 +461,7 @@ $article-date__font: font($font--lg, 1, 400);
 $article-date__font--r10: font($font--lg, 1, 400);
 $article-date__margin: indent(1) 0 indent(1);
 $article-date__margin--r10: indent(1) 0 indent(1);
-$article-author__margin: indent(1) 0 indent(3);
+$article-author__margin: indent(1) indent(2) indent(3) 0;
 $article-author-image__margin: 0 indent(2) 0 0;
 $article-author-image__width: 40px;
 $article-author-image__border-radius: $border-radius-md;
@@ -495,8 +493,8 @@ $card-date__color: $n_color-0_7;
 $card-date__font: font($font--md, 1rem, 400);
 $card-title__color: $n_color-0-7;
 $card-title__color--hover: $n_color-0;
-$card-title__font: font($font--lg, 1.2, 700);
-$card-title__font--r10: font(1.875rem, 1.875rem, 700);
+$card-title__font: font($font--lg, 1.2, 800);
+$card-title__font--r10: font(1.875rem, 1.875rem, 800);
 $card-title__margin: indent(0.5) 0 indent(1) 0;
 $card-description__color: $n_color-0_7;
 $card-description__font: font($font--md, 1rem, 400);
@@ -555,8 +553,8 @@ $preview-image__border-radius: $border-radius-md;
 $preview-date__color: $n_color-0_7;
 $preview-date__font: font($font--md, 1.4, 400);
 $preview-title__color: $n_color-0;
-$preview-title__font: font($font--lg, 1.2, 700);
-$preview-title__font--r10: font(1.875rem, 1.2, 700);
+$preview-title__font: font($font--lg, 1.2, 800);
+$preview-title__font--r10: font(1.875rem, 1.2, 800);
 $preview-title__margin: indent(0.5) 0 indent(1) 0;
 $preview-description__color: $n_color-0_7;
 $preview-description__font: font($font--lg, 1.6, 400);
@@ -578,7 +576,7 @@ $preview-author-date__color: $n_color-0_7;
 $preview-author-date__font: font($font--md, 1.4, 400);
 $preview-author-title__color: $n_color-0;
 $preview-author-title__font: font($font--lg, 1.4, 500);
-$preview-author-title__font--r10: font(1.875rem, 1.4, 700);
+$preview-author-title__font--r10: font(1.875rem, 1.4, 800);
 $preview-author-title__margin: indent(0.5) 0 indent(1) 0;
 $preview-author-description__color: $n_color-0_7;
 $preview-author-description__font: font($font--lg, 1.4, 400);
@@ -615,7 +613,7 @@ $search-result-item__padding--recommend: indent(0.5) indent(2);
 $search-result-empty__font: font($font--sm, 1rem, 100);
 $search-result-empty__color: $color-0_7;
 $search-result-empty__padding: indent(1) indent(2);
-$search-result-empty-title__font: font($font--lg, 1.4, 700);
+$search-result-empty-title__font: font($font--lg, 1.4, 800);
 $search-result-empty-title__color: $color-0;
 $search-result-shadow__position: null, indent(4), 0, 0;
 $search-result-shadow__box-shadow: 0 -2px 19px 19px $color-16;

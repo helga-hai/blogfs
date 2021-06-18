@@ -60,11 +60,12 @@
 
   .rates {
     width: 100%;
+    height: 57px;
+    overflow: hidden;
     padding: $rates__padding;
     background: $rates__background;
-    overflow: hidden;
 
-    @include media('>=sm'){
+    @include media('>=sm') {
       margin: $rates__margin;
     }
 
@@ -72,9 +73,13 @@
       color: white;
       max-width: 960px;
       overflow: auto;
-      @include flex(row space-evenly center);
+      @include flex(row unset center);
       margin: $rates-content__margin;
       padding: $rates-content__padding;
+
+      @include media('>=sm') {
+        @include flex(row space-evenly center);
+      }
     }
 
     &__currency {

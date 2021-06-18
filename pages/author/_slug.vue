@@ -1,12 +1,15 @@
 <template lang="pug">
   // Component template
   .author
-    .author__content
-      PreviewAuthor(
-        v-if="author",
-        :data="author[0]")
-      .author__catalog
-        Catalogue(:items="author[0].articles")
+    .author__content(v-if="author")
+      .autor__single(
+        v-for="item in author",
+        :key="item.id")
+        PreviewAuthor(:data="item")
+        .author__catalog
+          Catalogue(
+            v-if="$route.params.slug",
+            :items="item.articles")
 </template>
 
 <script lang="ts">
@@ -25,23 +28,36 @@
     async asyncData({ $strapi, $axios, app, params, res, store, error }: Context) {
       store.commit('content/isCategory', false);
 
-      const author = await $strapi.find('authors', {
-        _locale: app.i18n?.localeProperties?.code,
-        slug_contains: params.slug,
-      });
+      const author = params.slug
+        ? await $strapi.find('authors', {
+          _locale: app.i18n?.localeProperties?.code,
+          slug_contains: params.slug,
+        })
+        : await $strapi.find('authors', {
+          _locale: app.i18n?.localeProperties?.code,
+        });
 
-      if (!author[0] || !params.slug) {
+      if (!author[0]) {
         error({ statusCode: 404, message: 'Author not found' });
         return;
       }
-
-      author[0].articles = orderBy(author[0].articles, 'published_at', 'desc');
 
       const categories = await $strapi.find('categories', {
         _locale: store.getters['configs/activeLang'],
       });
       app.$setdata({ type: 'categories', content: categories });
-      app.$setdata({ type: params.slug, content: author[0].articles });
+
+      if (!store.state.content.banner && !store.state.content.social) {
+        const global = await $strapi.find('global', {
+          _locale: store.getters['configs/activeLang'],
+        });
+        store.commit('content/setGlobal', global);
+      }
+
+      if (author[0].articles) {
+        author[0].articles = orderBy(author[0].articles, 'published_at', 'desc');
+        app.$setdata({ type: params.slug, content: author[0].articles });
+      }
 
       if (!store.state.content.banner && !store.state.content.social) {
         const global = await $strapi.find('global', {
@@ -52,7 +68,8 @@
 
       // Set http header Last-Modified
       if (process.server) {
-        res?.setHeader('Last-Modified', `${new Date(author[0].articles[0].published_at).toUTCString()}`);
+        const date = author[0].articles[0] ? author[0].articles[0].published_at : author[0].published_at;
+        res?.setHeader('Last-Modified', `${new Date(date).toUTCString()}`);
       }
 
       // Get currency rates
