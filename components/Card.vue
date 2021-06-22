@@ -2,6 +2,12 @@
   // Component template
   .card(data-card)
     NuxtLink.card__image(:to="localePath(`/${data.slug}`)")
+      .card__categories
+        .card__categories-title(
+          v-for="item in data.categories",
+          :key="item.id")
+          | {{ item.title }}
+
       picture(v-if="data.prevImage && data.prevImage.photoWebp")
         source(
           :srcset="`${getStrapiMedia(data.prevImage.photoWebp.formats.small.url)} ${data.prevImage.photoWebp.formats.small.width}w`",
@@ -19,8 +25,15 @@
           | {{ data.published_at | luxon }}
       NuxtLink.card__title(:to="localePath(`/${data.slug}`)")
         | {{ data.title }}
-      .card__author(v-for="author in data.authors")
-        | {{ $t('card.by') }} {{ author.title }}
+
+      .card__footer
+        ArticleStarRating.card__star-rating(
+          :article="data",
+          :size="16",
+          :readonly="true")
+        .card__authors
+          .card__author(v-for="author in data.authors")
+            | {{ $t('card.by') }} {{ author.title }}
 </template>
 
 <script lang="ts">
@@ -31,6 +44,10 @@
   @Component({
     // Name of the component
     name: 'Card',
+    // Deps of hte component
+    components: {
+      ArticleStarRating: () => import('@/components/ArticleStarRating.vue'),
+    },
     // Methods of the component
     methods: {
       getStrapiMedia,
@@ -74,6 +91,26 @@
       }
     }
 
+    &__image {
+      position: relative;
+    }
+
+    &__categories {
+      @include absolute(4px 8px);
+      @include flex(column flex-end flex-end);
+
+      &-title {
+        display: block;
+        text-align: right;
+        color: $card-categories-title__color;
+        font: $card-categories-title__font;
+        padding: $card-categories-title__padding;
+        background: $card-categories-title__background;
+        border-radius: $card-categories-title__border-radius;
+        margin: $card-categories-title__margin;
+      }
+    }
+
     &__info {
       width: 100%;
       padding: $card-info__padding;
@@ -92,6 +129,7 @@
     }
 
     &__author {
+      text-align: right;
       color: $card-date__color;
       font: $card-date__font;
     }
@@ -100,9 +138,16 @@
       #{$selector}__title {
         color: $card-title__color--hover;
       }
-      #{$selector}__image {
-        opacity: 0.8;
+    }
+
+    &__star-rating {
+      ::v-deep .article-star-rating__detail {
+        display: none;
       }
+    }
+
+    &__footer {
+      @include flex(row space-between center);
     }
   }
 </style>

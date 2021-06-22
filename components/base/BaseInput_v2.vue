@@ -49,7 +49,7 @@
         :for="uniqueId",
         @click="clearField")
         img.base-input__clear-image(
-          src="@/assets/images/common/close.svg?inline",
+          src="@/assets/images/common/close.svg",
           draggable="false")
 
       .base-input__badge(data-input-bagde-right)

@@ -25,7 +25,11 @@
         .article__left
           .article__date
             | {{ Math.ceil(timeToRead.minutes) }} {{ $t('article.minread') }}
-          ArticleStarRating(:article="updatedArticle || article" @articleUpdate="articleUpdate")
+          ArticleStarRating(
+            :readonly="readonly",
+            :article="updatedArticle || article",
+            @checkRate="checkRate",
+            @articleUpdate="articleUpdate")
 
         .article__categories
           .article__categories-title(
@@ -81,6 +85,7 @@
   })
   export default class CategoryComponent extends Vue {
     updatedArticle: ArticleInterface | null = null;
+    readonly: boolean = false;
 
     @Prop()
     article!: ArticleInterface;
@@ -107,12 +112,22 @@
       return data;
     }
 
-    get timeToRead() {
+    get timeToRead(): Record<string, any> {
       return readingTime(this.article.text);
     }
 
-    async articleUpdate() {
+    async articleUpdate(): Promise<any> {
       this.updatedArticle = await this.$strapi.findOne('articles', this.article.id);
+    }
+
+    checkRate(): void {
+      if (localStorage.getItem(`rate_${this.article.id}`)) {
+        this.readonly = true;
+      }
+    }
+
+    mounted(): void {
+      this.checkRate();
     }
   }
 </script>

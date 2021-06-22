@@ -478,7 +478,7 @@ $article-related__border-top: 1px solid $color-0_1;
 $article-related__margin: indent(6) 0 0;
 $article-related__padding: indent(2.5) 0 0;
 $article-categories__font: font($font--md, 1.2);
-$article-categories__padding: 0 0 0 indent(1);
+$article-categories__padding: 2px indent(1);
 $article-categories__color: $n_color-0_7;
 
 // Component: Author
@@ -492,7 +492,7 @@ $article-sharing__padding: 0.3em 0.5em;
 $article-sharing__background: $n_color-0_7;
 $article-sharing__background--hover: $n_color-0_8;
 $article-sharing__color: #20252c;
-$article-sharing-title__padding: 0 indent(1) 0 0;
+$article-sharing-title__padding: 0 indent(1) 0 indent(0.5);
 $article-sharing-short__background: $n_color-11;
 $article-sharing-short__background--hover: $n_color-0_8;
 $article-sharing-short__color: $n_color-0_7;
@@ -521,6 +521,12 @@ $card-description__color: $n_color-0_7;
 $card-description__font: font($font--md, 1rem, 400);
 $card-author__color: $n_color-0_7;
 $card-author__font: font($font--md, 1rem, 400);
+$card-categories-title__font: font($font--md, 1.2);
+$card-categories-title__padding: 2px indent(1);
+$card-categories-title__color: $n_color-0_7;
+$card-categories-title__background: $n_color-0_4;
+$card-categories-title__border-radius: $border-radius-md;
+$card-categories-title__margin: 2px 0;
 
 // Component: Card Horizontal
 $card-horizontal__size: 74px 54px;
@@ -574,6 +580,7 @@ $preview-info__padding--r10: 0 indent(3);
 $preview-image__border-radius: $border-radius-md;
 $preview-date__color: $n_color-0_7;
 $preview-date__font: font($font--md, 1.4, 400);
+$preview-star-rating__margin: indent(1) 0 indent(0.5);
 $preview-title__color: $n_color-0;
 $preview-title__font: font($font--lg, 1.2, 800);
 $preview-title__font--r10: font(1.875rem, 1.2, 800);

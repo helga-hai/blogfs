@@ -5,15 +5,17 @@
       star-rating.article-star-rating__stars(
         @rating-selected="setRating",
         v-model="rating",
-        v-bind:star-size="20",
-        v-bind:increment="0.5",
+        v-bind:star-size="size",
+        v-bind:increment="1",
+        v-bind:read-only="readonly",
         v-bind:show-rating="false",
         v-bind:round-start-rating="false")
-      .article-star-rating__vote
-        span {{ rating }}
-        | /{{ votes }} {{ $t('star.votes') }}
-      .article-star-rating__done(v-if="save")
-        | {{ $t('star.done') }}
+      .article-star-rating__detail
+        .article-star-rating__vote
+          span {{ rating }}
+          | /{{ votes }} {{ $t('star.votes') }}
+        .article-star-rating__done(v-if="save")
+          | {{ $t('star.done') }}
 </template>
 
 <script lang="ts">
@@ -31,6 +33,12 @@
     @Prop()
     article!: ArticleInterface;
 
+    @Prop({ default: false })
+    readonly!: boolean;
+
+    @Prop({ default: 20 })
+    size!: number;
+
     @Watch('article')
     onArticleChanged() {
       setTimeout(() => {
@@ -40,6 +48,8 @@
     }
 
     async setRating(rating: number): Promise<any> {
+      localStorage.setItem(`rate_${this.article.id}`, '1');
+      this.$emit('checkRate');
       const arr: number[] = JSON.parse(this.article.rate);
       arr.push(rating);
       await this.$strapi.update('articles', this.article.id, { rate: JSON.stringify(arr) });
@@ -70,7 +80,11 @@
   @use '~@stylize/sass-mixin' as *;
 
   .article-star-rating {
-    @include flex(row center center);
+    @include flex(row flex-start center);
+
+    &__detail {
+      @include flex(row center center);
+    }
 
     &__vote {
       font-size: 12px;

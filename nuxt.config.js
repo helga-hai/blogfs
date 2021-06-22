@@ -52,7 +52,7 @@ export default {
   webfontloader: {
     custom: {
       families: ['Stolzl'],
-      urls: ['./font.css'],
+      urls: ['/font.css'],
     },
   },
 

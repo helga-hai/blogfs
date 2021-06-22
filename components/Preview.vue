@@ -22,6 +22,11 @@
         | {{ data.title }}
       .preview__description
         | {{ data.preview }}
+
+      ArticleStarRating.preview__star-rating(
+        :article="data",
+        :size="16",
+        :readonly="true")
       .preview__author
         .preview__author-name(v-for="item in data.authors")
           | {{ $t('preview.by') }} {{ item.title }}
@@ -35,6 +40,10 @@
   @Component({
     // Name of the component
     name: 'Preview',
+    // Deps of the component
+    components: {
+      ArticleStarRating: () => import('~/components/ArticleStarRating.vue'),
+    },
     // Methods of the component
     methods: {
       getStrapiMedia,
@@ -104,7 +113,6 @@
       display: inline-block;
       color: $preview-title__color;
       font: $preview-title__font;
-      font-family: 'Stolzl', sans-serif;
       margin: $preview-title__margin;
 
       @include media('>=sm') {
@@ -115,12 +123,15 @@
     &__description {
       color: $preview-description__color;
       font: $preview-description__font;
-      font-family: 'Stolzl', sans-serif;
     }
 
     &__author {
       color: $preview-date__color;
       font: $preview-date__font;
+    }
+
+    &__star-rating {
+      margin: $preview-star-rating__margin;
     }
   }
 </style>
