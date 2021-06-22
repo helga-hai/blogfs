@@ -30,12 +30,12 @@
 
       const author = params.slug
         ? await $strapi.find('authors', {
-          _locale: app.i18n?.localeProperties?.code,
-          slug_contains: params.slug,
-        })
+            _locale: app.i18n?.localeProperties?.code,
+            slug_contains: params.slug,
+          })
         : await $strapi.find('authors', {
-          _locale: app.i18n?.localeProperties?.code,
-        });
+            _locale: app.i18n?.localeProperties?.code,
+          });
 
       if (!author[0]) {
         error({ statusCode: 404, message: 'Author not found' });

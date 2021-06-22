@@ -8,8 +8,24 @@
             v-for="item in article.authors",
             :key="item.id")
             img.article__author-image(:src="getStrapiMedia(item.image.formats.thumbnail.url)")
-            NuxtLink.article__author-name(:to="localePath(`/author/${item.slug}`)")
-              | {{ item.title }}
+            .article__author-text
+              NuxtLink.article__author-description(:to="localePath(`/author/${item.slug}`)")
+                span.article__author-description-article {{ $t('author.by') }}
+                | {{ item.title }}
+              .article__date
+                span.article__author-description-article {{ $t('author.on') }}
+                | {{ article.published_at | luxon }}
+
+        ArticleSharing(:short="true")
+
+      .article__title
+        | {{ article.title }}
+
+      .article__title-after
+        .article__left
+          .article__date
+            | {{ Math.ceil(timeToRead.minutes) }} {{ $t('article.minread') }}
+          ArticleStarRating(:article="updatedArticle || article" @articleUpdate="articleUpdate")
 
         .article__categories
           .article__categories-title(
@@ -17,16 +33,13 @@
             :key="item.id")
             | {{ item.title }}
 
-      .article__title
-        | {{ article.title }}
-      .article__date
-        | {{ article.published_at | luxon }}
-
       MainPicture(
         :data="article.prevImage",
         v-if="article.prevImage.photoWebp")
 
       .article__text(v-html="$md.render(article.text)")
+
+      ArticleSharing
 
       .article__related(v-if="article.relatedPosts")
         h2.article__related-intro
@@ -43,20 +56,32 @@
   import BaseTitle from '~/components/base/BaseTitle.vue';
   import Catalogue from '~/components/Catalogue.vue';
   import MainPicture from '~/components/picture/MainPicture.vue';
+  import ArticleStarRating from '~/components/ArticleStarRating.vue';
   import type { ArticleInterface } from '~/interface/ArticleInterface';
   import type { CategoryInterface } from '~/interface/CategoryInterface';
+  const readingTime = require('reading-time');
 
   @Component({
     // Name of the component
     name: 'Article',
     // Deps of the component
-    components: { Catalogue, Preview, BaseTitle, MainPicture },
+    components: {
+      Catalogue,
+      Preview,
+      BaseTitle,
+      MainPicture,
+      ArticleStarRating,
+      ArticleSharing: (): any => import('~/components/ArticleSharing.vue'),
+    },
     // Methods of the component
     methods: {
       getStrapiMedia,
+      readingTime,
     },
   })
   export default class CategoryComponent extends Vue {
+    updatedArticle: ArticleInterface | null = null;
+
     @Prop()
     article!: ArticleInterface;
 
@@ -81,6 +106,14 @@
       }
       return data;
     }
+
+    get timeToRead() {
+      return readingTime(this.article.text);
+    }
+
+    async articleUpdate() {
+      this.updatedArticle = await this.$strapi.findOne('articles', this.article.id);
+    }
   }
 </script>
 
@@ -88,6 +121,7 @@
   @use '~@stylize/sass-mixin' as *;
 
   .article {
+    $selector: &;
     padding: $article__padding;
     margin: $article__margin;
 
@@ -105,11 +139,15 @@
         text-align: left;
         font: $article-title__font--r10;
       }
+
+      &-after {
+        margin-top: 4px;
+        @include flex(row space-between center);
+      }
     }
 
     &__date {
       text-align: left;
-      color: $article-date__color;
       font: $article-date__font;
       margin: $article-date__margin;
 
@@ -128,14 +166,37 @@
       @include flex(row flex-start center);
 
       &-image {
-        margin: $article-author-image__margin;
-        width: $article-author-image__width;
-        border-radius: $article-author-image__border-radius;
+        display: none;
+
+        @include media('>=sm') {
+          display: block;
+          margin: $article-author-image__margin;
+          width: $article-author-image__width;
+          border-radius: $article-author-image__border-radius;
+        }
       }
 
-      &-name {
-        color: $article-author-name__color;
-        font: $article-author-name__font;
+      &-description {
+        color: $article-author-description__color;
+        font: $article-author-description__font;
+
+        &-article {
+          font-size: 12px;
+        }
+      }
+    }
+
+    &__categories {
+      @include flex(column flex-end flex-end);
+      border-radius: 8px;
+      padding: 4px;
+
+      &-title {
+        display: block;
+        text-align: right;
+        color: $article-categories__color;
+        font: $article-categories__font;
+        padding: $article-categories__padding;
       }
     }
 
@@ -157,23 +218,11 @@
     }
 
     &__header {
+      margin: $article-header__margin;
       @include flex(row space-between center);
     }
 
-    &__categories {
-      @include flex(column flex-end flex-end);
-
-      &-title {
-        display: block;
-        text-align: right;
-        color: $article-categories__color;
-        font: $article-categories__font;
-        padding: $article-categories__padding;
-      }
-    }
-
     .article__text {
-
       ::v-deep img {
         width: 100%;
         border-radius: $article-img__border-radius;
@@ -189,6 +238,5 @@
     ::v-deep .space {
       padding: 20px;
     }
-
   }
 </style>

@@ -7,7 +7,7 @@ export interface ArticleInterface {
   authors: any;
   categories: Array<CategoryInterface>;
   created_at: string;
-  id: number | string;
+  id: string;
   image: ImageInterface;
   prevImage: any;
   locale: string;
@@ -24,6 +24,7 @@ export interface ArticleInterface {
   updated_at: string;
   relatedPosts: any;
   relatedTitle: string;
+  rate: string;
 }
 
 interface RelatedItem {

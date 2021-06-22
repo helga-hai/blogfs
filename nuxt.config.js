@@ -45,9 +45,15 @@ export default {
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon-180x180.png' },
       { rel: 'mask-icon', color: '#FFCE44', href: '/safari-pinned-tab.svg' },
       { rel: 'manifest', href: '/manifest.json' },
-      { rel: 'prefetch', href: '/font.css' },
+      { rel: 'preconnect', href: '/font.css' },
     ],
     script: [{ src: '/beforeinstallprompt.js' }],
+  },
+  webfontloader: {
+    custom: {
+      families: ['Stolzl'],
+      urls: ['./font.css'],
+    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -69,6 +75,7 @@ export default {
     { src: '~/plugins/VueLazyHydration.js', mode: 'all' },
     { src: '~/plugins/VueMq.js', mode: 'all' },
     { src: '~/plugins/VueNumeralFilter.js', mode: 'client' },
+    { src: '~/plugins/StarRating.js', mode: 'client' },
     { src: '~/directives/hidden', mode: 'client' },
   ],
 
@@ -92,6 +99,7 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/strapi',
     'nuxt-webfontloader',
+    '@nuxtjs/svg',
     [
       'nuxt-i18n',
       {
@@ -149,7 +157,7 @@ export default {
 
   // See https://strapi.nuxtjs.org/
   strapi: {
-    entities: [{ name: 'articles' }, { name: 'categories' }, { name: 'home' }],
+    entities: [{ name: 'articles' }, { name: 'authors' }, { name: 'categories' }, { name: 'home' }],
     url: process.env.API_URL || 'https://admin.fairspin.info',
   },
 
@@ -223,20 +231,13 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     vendor: ['@/plugins/VueInfiniteLoading.js'],
-    extend(config, { isServer, isClient }) {
-      config.module.rules.push({
-        test: /\.vue$/,
-        loader: 'vue-svg-inline-loader',
-        options: {},
-      });
-    },
     output: {
       filename: '[name].[hash:8].js',
       sourceMapFilename: '[name].[hash:8].map',
       chunkFilename: '[id].[hash:8].js',
     },
     extractCSS: {
-      allChunks: true,
+      //allChunks: true,
     },
     optimization: {
       splitChunks: {

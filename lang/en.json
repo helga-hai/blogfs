@@ -9,6 +9,14 @@
   "card": {
     "by": "by"
   },
+  "article": {
+    "minread": "min read",
+    "share": "Share"
+  },
+  "author": {
+    "by": "by ",
+    "on": "on "
+  },
   "footer": {
     "shortcut": "Add to home screen"
   },
@@ -36,5 +44,13 @@
   },
   "home": {
     "more": "Load more"
+  },
+  "copy": {
+    "before": "Copy link",
+    "after": "Copied!"
+  },
+  "star": {
+    "done": "Done!",
+    "votes": "votes"
   }
 }

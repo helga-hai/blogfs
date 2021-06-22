@@ -63,11 +63,15 @@
     }
 
     &__title {
+      opacity: 0.9;
       display: inline-block;
       color: $card-horizontal-title__color;
       font: $card-horizontal-title__font;
       margin: $card-horizontal-title__margin;
-      opacity: 0.9;
+
+      @include media('>=sm') {
+        font: $card-horizontal-title__font--r10;
+      }
     }
 
     &.nuxt-link-exact-active {

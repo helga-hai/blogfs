@@ -55,8 +55,8 @@
     $route!: any;
 
     get news() {
-      //const isAuthor = this.$route.path.includes('/author/');
-      return this.$store.state.content.isCategory
+      const isAuthor = this.$route.path.includes('/author/');
+      return this.$store.state.content.isCategory || isAuthor
         ? this.$store.state.content.news[this.$route.params.slug]
         : this.$store.state.content.news.all;
     }
