@@ -64,7 +64,7 @@
     // Name of the component
     name: 'TheBar',
     // Deps of the component
-    components: { BaseBlock, List },
+    components: { BaseBlock, List, Subscribe },
     // Methods of the component
     methods: { getStrapiMedia },
   })

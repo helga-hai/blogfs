@@ -3,7 +3,7 @@
   .subscribe
     .subscribe__bg
       img(
-        alt="subscribe fsirspin"
+        alt="subscribe fsirspin",
         width="100%",
         src="@/assets/images/bar/subscribe.svg")
     .subscribe__form

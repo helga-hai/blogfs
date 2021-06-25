@@ -4,11 +4,13 @@
     :to="localePath('/')",
     data-base-logo)
     img.base-logo__image(
+      alt="Fairspin blog",
       :src="require('@/assets/images/brand/logo.svg')",
       draggable="false",
       data-base-logo-image)
 
     img.base-logo__text(
+      alt="Fairspin blog",
       :src="require('@/assets/images/brand/name.svg')",
       draggable="false",
       data-base-logo-text)

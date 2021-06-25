@@ -13,6 +13,7 @@
           @pointerup="$emit('openField', true)",
           data-search-field-badge)
           img.search-field__badge-image(
+            alt="search"
             width="24",
             height="24",
             src="@/assets/images/common/search.svg",

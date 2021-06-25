@@ -8,6 +8,7 @@
           :key="item.id")
           .rates__value.rates__value--img
             img(
+              :alt="item.name",
               :src="require(`@/assets/images/currency/${item.id}.svg`)",
               draggable="false")
           .rates__value.rates__value--symbol
