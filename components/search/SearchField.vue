@@ -13,6 +13,8 @@
           @pointerup="$emit('openField', true)",
           data-search-field-badge)
           img.search-field__badge-image(
+            width="24",
+            height="24",
             src="@/assets/images/common/search.svg",
             draggable="false")
 
@@ -21,6 +23,8 @@
       @click="$emit('hideResults')",
       data-search-field-close)
       img.search-field__close-image(
+        width="16",
+        height="16",
         src="@/assets/images/common/close.svg",
         draggable="false")
 </template>

@@ -2,7 +2,7 @@
   // Component template
   footer.footer(data-footer)
     .footer__partners
-      LazyHydrate(newer)
+      LazyHydrate(when-visible)
         FooterPartners
 
     .footer__legal

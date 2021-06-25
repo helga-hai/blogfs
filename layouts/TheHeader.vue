@@ -14,8 +14,10 @@
             LazyHydrate(newer)
               BackToCasino.header-shortcut__back
           HeaderShortcuts.header__shortcut
-        HeaderSearch.header__search
-        HeaderLanguage.header__language(v-if="$mq === 'lg'")
+        LazyHydrate(when-visible)
+          HeaderSearch.header__searchcut
+        LazyHydrate(when-visible)
+          HeaderLanguage.header__language(v-if="$mq === 'lg'")
 </template>
 
 <script lang="ts">
