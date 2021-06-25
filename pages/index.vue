@@ -55,6 +55,7 @@
         Catalogue(:items="articles.slice(4, 8)")
       .fb-like
         iframe(
+          title="fb like",
           src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffairspin.info&width=174&layout=button_count&action=like&size=large&share=true&height=46&appId=2095251617409719",
           width="100%",
           height="100",
