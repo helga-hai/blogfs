@@ -11,7 +11,8 @@
         :srcset="`${getStrapiMedia(data.prevImage.photo.formats.thumbnail.url)} ${data.prevImage.photo.formats.thumbnail.width}w`",
         :type="data.prevImage.photo.formats.thumbnail.mime")
       img.card-horizontal__image(
-        :src="getStrapiMedia(data.prevImage.photo.url)",
+        v-lazy-load,
+        :data-src="getStrapiMedia(data.prevImage.photo.url)",
         data-preview-image)
 
     .card-horizontal__info
