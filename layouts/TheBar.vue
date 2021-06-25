@@ -7,6 +7,7 @@
           :href="$store.state.content.banner.url",
           target="_blank")
           img.bar__image(
+            alt="Fairspin banner",
             :src="getStrapiMedia($store.state.content.banner.source.url)",
             draggable="false",
             data-preview-image)
@@ -40,6 +41,7 @@
             target="_blank")
             .bar__social-img
               img(
+                :alt="item.title",
                 :width="item.icon.width",
                 :height="item.icon.height",
                 :src="getStrapiMedia(item.icon.url)",

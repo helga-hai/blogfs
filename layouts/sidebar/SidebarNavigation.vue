@@ -18,8 +18,8 @@
         @click="toggle('lang')",
         data-sidebar-navigation-group-toggle="lang")
         img(
+          :alt="`country ${$i18n.locale}`"
           :src="`/country/${$i18n.locale}.svg`",
-          :alt="$i18n.locale",
           draggable="false")
         span.sidebar-navigation__group-toggle-lang
           | {{ $i18n.locale }}

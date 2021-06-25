@@ -8,6 +8,7 @@
         | {{ $t('footer.shortcut') }}
       img.shortcut__image(
         v-if="os",
+        :alt="`OS ${os}`",
         :src="require(`@/assets/images/shortcut/${os}.svg`)",
         :draggable="false",
         data-shortcut-image)

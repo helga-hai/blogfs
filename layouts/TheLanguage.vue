@@ -8,8 +8,8 @@
       @click="reloadLocale(locale.code)",
       :data-language-item="locale.code")
       img.language__item-flag(
+        :alt="`country ${locale.code}`",
         :src="`/country/${locale.code}.svg`",
-        :alt="locale.code",
         draggable="false",
         data-language-item-flag)
       span.language__item-text(data-language-item-text)

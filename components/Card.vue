@@ -16,6 +16,7 @@
           :srcset="` ${getStrapiMedia(data.prevImage.photo.formats.small.url)} ${data.prevImage.photo.formats.small.width}w`",
           :type="data.prevImage.photo.formats.small.mime")
         img.card__image-inner(
+          :alt="`${data.prevImage.alt}`",
           :class="{ loading: !loading }",
           :src="getStrapiMedia(data.prevImage.photo.formats.small.url)",
           data-preview-image)

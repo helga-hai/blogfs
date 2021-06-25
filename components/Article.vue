@@ -7,7 +7,9 @@
           .article__author(
             v-for="item in article.authors",
             :key="item.id")
-            img.article__author-image(:src="getStrapiMedia(item.image.formats.thumbnail.url)")
+            img.article__author-image(
+              :alt="`${item.title}`",
+              :src="getStrapiMedia(item.image.formats.thumbnail.url)")
             .article__author-text
               NuxtLink.article__author-description(:to="localePath(`/author/${item.slug}`)")
                 span.article__author-description-article {{ $t('author.by') }}

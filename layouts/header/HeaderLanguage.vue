@@ -7,6 +7,7 @@
       @click="toggle",
       data-footer-language-toggle)
       img.header-language__toggle-flag(
+        :alt="`country ${$i18n.locale}`",
         :src="`/country/${$i18n.locale}.svg`",
         loading="lazy",
         draggable="false",

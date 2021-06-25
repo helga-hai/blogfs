@@ -2,6 +2,7 @@
   // Component template
   .preview(data-preview)
     img.preview__image(
+      :alt="data.title",
       :src="getStrapiMedia(data.image.url)",
       draggable="false",
       data-preview-image)
