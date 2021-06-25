@@ -157,7 +157,13 @@ export default {
 
   // See https://strapi.nuxtjs.org/
   strapi: {
-    entities: [{ name: 'articles' }, { name: 'authors' }, { name: 'categories' }, { name: 'home' }],
+    entities: [
+      { name: 'articles' },
+      { name: 'authors' },
+      { name: 'categories' },
+      { name: 'home' },
+      { name: 'subscribe' },
+    ],
     url: process.env.API_URL || 'https://admin.fairspin.info',
   },
 

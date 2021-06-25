@@ -1,22 +1,85 @@
 <template lang="pug">
   // Component template
-  .main
-    LazyHydrate(never)
-      BaseTitle
-        | {{ home.title }}
+  .home
+    BaseTitle
+      | {{ home.title }}
     Preview(:data="previewArticle")
     template(v-if="$mq !== 'xs'")
-      .main__catalog
+      .home__catalog
         Catalogue(:items="articles")
-      BaseButton.main__more(
+      BaseButton.home__more(
         v-if="hasMore",
         variant="primary",
         :loading="loading",
         @click="loading = true; getMoreArticles()")
         | {{ $t('home.more') }}
     template(v-else)
-      .main__catalog
+      template(v-if="$store.state.content.banner")
+        a.home__banner(
+          :href="$store.state.content.banner.url",
+          target="_blank")
+          img.home__banner-image(
+            :src="getStrapiMedia($store.state.content.banner.source.url)",
+            draggable="false",
+            data-preview-image)
+      template(v-if="$store.state.content.bannerVideo")
+        video.bar__video(
+          @click="playVideo",
+          muted,
+          autoplay,
+          ref="bannervideo",
+          width="100%")
+          source(
+            :src="getStrapiMedia($store.state.content.bannerVideo.source.url)",
+            :type="$store.state.content.bannerVideo.source.mime")
+      .home__catalog
         Catalogue(:items="articles.slice(0, 4)")
+      .home__social
+        .home__social-links
+          .home__social-title
+            | {{ $t('bar.social.title') }}:
+          a.home__social-link(
+            v-for="item in $store.state.content.social",
+            :key="item.id",
+            :href="item.url",
+            target="_blank")
+            .home__social-img
+              img(
+                :src="getStrapiMedia(item.icon.url)",
+                draggable="false")
+      .home__catalog
+        Catalogue(:items="articles.slice(4, 8)")
+      .fb-like
+        iframe(
+          src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffairspin.info&width=174&layout=button_count&action=like&size=large&share=true&height=46&appId=2095251617409719",
+          width="100%",
+          height="100",
+          style="border: none; overflow: hidden; padding: 12px; background: url(https://admin.fairspin.info/uploads/like_fb_min_1023506bb9.jpg) bottom center",
+          scrolling="no",
+          frameborder="0",
+          allowfullscreen="true",
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
+      .home__catalog
+        Catalogue(:items="articles.slice(8)")
+
+      BaseButton.home__more(
+        v-if="hasMore",
+        variant="primary",
+        :loading="loading",
+        @click="loading = true; getMoreArticles()")
+        | {{ $t('home.more') }}
+
+      .home__news
+        .home__news-title
+          | {{ $t('bar.news.title') }}
+        BaseBlock.bar__news-content(
+          cutSize="medium",
+          variant="primary",
+          :cutSide="['top-right', 'bottom-left']")
+          List(:items="news")
+
+      .home__subscribe
+        Subscribe
 </template>
 
 <script lang="ts">
@@ -24,8 +87,15 @@
   import { mapGetters } from 'vuex';
   import type { Context } from '@nuxt/types';
   import type { MetaInfo } from 'vue-meta';
-  import { getMetaTags } from '~/utils/seo';
+  import BaseButton from '@/components/base/BaseButton.vue';
+  import BaseTitle from '@/components/base/BaseTitle.vue';
+  import BaseBlock from '@/components/base/BaseBlock.vue';
+  import Preview from '@/components/Preview.vue';
+  import Catalogue from '@/components/Catalogue.vue';
+  import List from '@/components/List.vue';
+  import Subscribe from '@/components/Subscribe.vue';
   import { getStrapiMedia } from '~/utils/medias';
+  import { getMetaTags } from '~/utils/seo';
 
   @Component({
     // Name of the component
@@ -101,10 +171,13 @@
     },
     // Deps of the component
     components: {
-      BaseTitle: () => import('@/components/base/BaseTitle.vue'),
-      Preview: () => import('@/components/Preview.vue'),
-      Catalogue: () => import('@/components/Catalogue.vue'),
-      BaseButton: () => import('@/components/base/BaseButton.vue'),
+      BaseBlock,
+      BaseButton,
+      BaseTitle,
+      Preview,
+      List,
+      Catalogue,
+      Subscribe,
     },
     // Computeds of component
     computed: {
@@ -123,6 +196,7 @@
     offset: number = 6;
     start!: number;
     count!: number;
+    $refs!: any;
 
     head(): MetaInfo {
       const fullSeo = {
@@ -158,6 +232,14 @@
       this.loading = false;
     }
 
+    get news() {
+      return this.$store.state.content.news.all;
+    }
+
+    playVideo(): void {
+      this.$refs.bannervideo.play();
+    }
+
     mounted(): void {
       this.start = this.home.article ? 15 : 16;
     }
@@ -167,7 +249,7 @@
 <style lang="scss" scoped>
   @use '~@stylize/sass-mixin' as *;
 
-  .main {
+  .home {
     text-align: center;
 
     &__catalog {
@@ -179,6 +261,68 @@
     &__more {
       text-transform: uppercase;
       margin: 12px auto 8px;
+    }
+
+    &__banner-image {
+      border-radius: 8px;
+      max-width: calc(100% - 24px);
+    }
+
+    &__social {
+      text-align: left;
+
+      &-links {
+        @include flex(row flex-start center);
+      }
+    }
+
+    &__social {
+      overflow: hidden;
+      background: $home-social__background;
+
+      &-links {
+        overflow: auto;
+        padding: $home-social-links__padding;
+      }
+
+      &-link {
+        margin: $home-social-link__margin;
+      }
+
+      &-title {
+        white-space: nowrap;
+        text-transform: uppercase;
+        margin: $home-social-title__margin;
+      }
+    }
+
+    .fb-like {
+      filter: grayscale(0.9);
+      width: 100%;
+      color: white;
+      background: #818181;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    &__news {
+      width: calc(100vw - 24px);
+      margin: 24px auto 0;
+
+      &-title {
+        text-transform: uppercase;
+        text-align: left;
+        margin: 16px 0;
+      }
+
+      ::v-deep .card-horizontal__title {
+        font: $home-news-title__font;
+      }
+    }
+
+    &__subscribe {
+      max-width: 350px;
+      margin: 24px auto 0;
     }
   }
 </style>

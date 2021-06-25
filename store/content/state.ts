@@ -11,7 +11,10 @@ export interface ContentStore {
   isCategory: boolean;
   rate: any[] | null;
   banner: any;
+  bannerVideo: any;
   social: Record<string, any>[] | null;
+  subscribeTitle: string;
+  subscribeSubtitle: string;
 }
 
 /**
@@ -25,4 +28,7 @@ export default (): ContentStore => ({
   rate: null,
   social: null,
   banner: null,
+  bannerVideo: null,
+  subscribeTitle: '',
+  subscribeSubtitle: '',
 });

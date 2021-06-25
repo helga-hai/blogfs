@@ -32,7 +32,8 @@
     },
     "social": {
       "title": "Fairspin в соцсетях"
-    }
+    },
+    "subscribe": "Подписаться"
   },
   "search": {
     "found" : "Найдено ({0})",
@@ -52,5 +53,8 @@
   "star": {
     "done": "Сохранено!",
     "votes": ""
+  },
+  "subscribe": {
+    "placeholder": "Введите email"
   }
 }

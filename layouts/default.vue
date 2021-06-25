@@ -212,11 +212,11 @@
   .iframe-wrap {
     position: relative;
     padding-bottom: 56.25%;
-  }
 
-  iframe {
-    @include absolute(0 ull null 0);
-    @include size(100%);
+    iframe {
+      @include absolute(0 null null 0);
+      @include size(100%);
+    }
   }
 
   p,

@@ -2,14 +2,24 @@
   // Component template
   aside.bar(data-sidebar)
     .bar__content
-      LazyHydrate(never)
+      template(v-if="$store.state.content.banner")
         a.bar__section(
           :href="$store.state.content.banner.url",
           target="_blank")
           img.bar__image(
-            :src="getStrapiMedia($store.state.content.banner.img.url)",
+            :src="getStrapiMedia($store.state.content.banner.source.url)",
             draggable="false",
             data-preview-image)
+      template(v-if="$store.state.content.bannerVideo")
+        video.bar__video(
+          @click="playVideo",
+          muted,
+          autoplay,
+          ref="bannervideo",
+          width="100%")
+          source(
+            :src="getStrapiMedia($store.state.content.bannerVideo.source.url)",
+            :type="$store.state.content.bannerVideo.source.mime")
       .bar__section
         .bar__news(v-if="news")
           .bar__title
@@ -34,6 +44,9 @@
                 draggable="false")
             .bar__social-title
               | {{ item.title }}
+      .bar__section
+        Subscribe
+
 </template>
 
 <script lang="ts">
@@ -41,6 +54,7 @@
   import BaseBlock from '@/components/base/BaseBlock.vue';
   import { getStrapiMedia } from '@/utils/medias.js';
   import List from '@/components/List.vue';
+  import Subscribe from '@/components/Subscribe.vue';
 
   @Component({
     // Name of the component
@@ -53,12 +67,18 @@
   export default class TheBarClass extends Vue {
     $store!: any;
     $route!: any;
+    $refs!: any;
+    loading: boolean = false;
 
     get news() {
       const isAuthor = this.$route.path.includes('/author/');
       return this.$store.state.content.isCategory || isAuthor
         ? this.$store.state.content.news[this.$route.params.slug]
         : this.$store.state.content.news.all;
+    }
+
+    playVideo(): void {
+      this.$refs.bannervideo.play();
     }
   }
 </script>
@@ -89,13 +109,19 @@
       margin: $bar-title__margin;
     }
 
+    &__socials {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
     &__social {
       @include flex(row flex-start center);
-      margin: 8px 0;
+      margin: 4px 0;
+      flex: 50%;
 
       &-img {
         width: 40px;
-        margin: 0 12px 0 0;
+        margin: 0 8px 0 0;
         text-align: center;
       }
 
@@ -109,6 +135,10 @@
           color: $bar-social-title__color--hover;
         }
       }
+    }
+
+    &__video {
+      cursor: url("https://admin.fairspin.info/uploads/play_button_35_df5c678d22.png"), auto;
     }
   }
 </style>

@@ -646,3 +646,22 @@ $search-result-empty-title__font: font($font--lg, 1.4, 800);
 $search-result-empty-title__color: $color-0;
 $search-result-shadow__position: null, indent(4), 0, 0;
 $search-result-shadow__box-shadow: 0 -2px 19px 19px $color-16;
+
+// Page: Home
+$home-social__background: $color-15;
+$home-social-title__margin: 0 12px 0 0;
+$home-social-links__padding: 12px;
+$home-social-link__margin: 0 12px;
+$home-news-title__font: font($font--lg);
+
+// Component: Subscribe
+$subscribe-form__padding: 8px;
+$subscribe-input__margin: 8px 0 8px;
+$subscribe-submit__margin: 4px 0 8px;
+$subscribe-title__margin: 8px 0 4px;
+$subscribe-subtitle__margin: 4px 0;
+$subscribe-subtitle__font: font(0.7rem, 1.4);
+$subscribe-input__border: 1px solid rgba(0,0,0,0);
+$subscribe-input__border--error: 1px solid $n_color-40;
+$subscribe-input__border-radius: 4px;
+$subscribe-input__min-height: 32px;

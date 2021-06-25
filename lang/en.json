@@ -32,7 +32,8 @@
     },
     "social": {
       "title": "Follow us"
-    }
+    },
+    "subscribe": "Subscribe"
   },
   "search": {
     "found": "Found ({0})",
@@ -52,5 +53,8 @@
   "star": {
     "done": "Done!",
     "votes": "votes"
+  },
+  "subscribe": {
+    "placeholder": "Enter your email"
   }
 }

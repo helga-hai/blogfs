@@ -13,7 +13,7 @@ export default {
    */
   setNews(state: ContentStore, payload: any): void {
     const news = [...payload.content];
-    news.length = news.length>5 ? 5 : news.length;
+    news.length = news.length > 5 ? 5 : news.length;
     state.news[payload.type] = news;
   },
 
@@ -51,9 +51,23 @@ export default {
    */
   setGlobal(state: ContentStore, payload: any): void {
     state.social = payload.Social;
-    state.banner = {
-      img: payload.bannerPrimary,
-      url: payload.url,
-    };
+    if (payload.bannerPrimary) {
+      state.banner = {
+        source: payload.bannerPrimary,
+        url: payload.url,
+      };
+    }
+    if (payload.bannerVideo) {
+      state.bannerVideo = {
+        source: payload.bannerVideo,
+        url: payload.url,
+      };
+    }
+    if (payload.subscribeTitle) {
+      state.subscribeTitle = payload.subscribeTitle;
+    }
+    if (payload.subscribeSubtitle) {
+      state.subscribeSubtitle = payload.subscribeSubtitle;
+    }
   },
 };

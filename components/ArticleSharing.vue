@@ -136,35 +136,35 @@
   import { mapGetters } from 'vuex';
   import type { TranslateResult } from 'vue-i18n';
   // @ts-ignore
-  import RawFb from '~/assets/images/sharing/sharing-fb.svg?raw';
+  import RawFb from '~/assets/images/bar/sharing-fb.svg?raw';
   // @ts-ignore
-  import RawTwitter from '~/assets/images/sharing/sharing-twitter.svg?raw';
+  import RawTwitter from '~/assets/images/bar/sharing-twitter.svg?raw';
   // @ts-ignore
-  import RawTelegram from '~/assets/images/sharing/sharing-telegram.svg?raw';
+  import RawTelegram from '~/assets/images/bar/sharing-telegram.svg?raw';
   // @ts-ignore
-  import RawTumblr from '~/assets/images/sharing/sharing-tumblr.svg?raw';
+  import RawTumblr from '~/assets/images/bar/sharing-tumblr.svg?raw';
   // @ts-ignore
-  import RawEmail from '~/assets/images/sharing/sharing-email.svg?raw';
+  import RawEmail from '~/assets/images/bar/sharing-email.svg?raw';
   // @ts-ignore
-  import RawPinterest from '~/assets/images/sharing/sharing-pinterest.svg?raw';
+  import RawPinterest from '~/assets/images/bar/sharing-pinterest.svg?raw';
   // @ts-ignore
-  import RawLinkedin from '~/assets/images/sharing/sharing-linkedin.svg?raw';
+  import RawLinkedin from '~/assets/images/bar/sharing-linkedin.svg?raw';
   // @ts-ignore
-  import RawReddit from '~/assets/images/sharing/sharing-reddit.svg?raw';
+  import RawReddit from '~/assets/images/bar/sharing-reddit.svg?raw';
   // @ts-ignore
-  import RawWhatsapp from '~/assets/images/sharing/sharing-whatsapp.svg?raw';
+  import RawWhatsapp from '~/assets/images/bar/sharing-whatsapp.svg?raw';
   // @ts-ignore
-  import RawVk from '~/assets/images/sharing/sharing-vk.svg?raw';
+  import RawVk from '~/assets/images/bar/sharing-vk.svg?raw';
   // @ts-ignore
-  import RawLink from '~/assets/images/sharing/sharing-link.svg?raw';
+  import RawLink from '~/assets/images/bar/sharing-link.svg?raw';
   // @ts-ignore
-  import RawDots from '~/assets/images/sharing/sharing-dots.svg?raw';
+  import RawDots from '~/assets/images/bar/sharing-dots.svg?raw';
   // @ts-ignore
   import RawClose from '~/assets/images/common/close-small.svg?raw';
   // @ts-ignore
-  import RawCross from '~/assets/images/sharing/sharing-cross.svg?raw';
+  import RawCross from '~/assets/images/bar/sharing-cross.svg?raw';
   // @ts-ignore
-  import RawCheck from '~/assets/images/sharing/sharing-check.svg?raw';
+  import RawCheck from '~/assets/images/bar/sharing-check.svg?raw';
 
   @Component({
     // Name of the component
