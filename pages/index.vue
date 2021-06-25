@@ -45,6 +45,8 @@
             target="_blank")
             .home__social-img
               img(
+                :width="item.icon.width",
+                :height="item.icon.height",
                 :src="getStrapiMedia(item.icon.url)",
                 draggable="false")
       .home__catalog

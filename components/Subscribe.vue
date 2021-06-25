@@ -100,7 +100,7 @@
       }
 
       &-input {
-        width: 80%;
+        width: 80% !important;
         margin: $subscribe-input__margin;
         border: $subscribe-input__border;
 

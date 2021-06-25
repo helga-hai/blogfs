@@ -40,6 +40,8 @@
             target="_blank")
             .bar__social-img
               img(
+                :width="item.icon.width",
+                :height="item.icon.height",
                 :src="getStrapiMedia(item.icon.url)",
                 draggable="false")
             .bar__social-title
