@@ -1,6 +1,6 @@
 <template lang="pug">
   // Component template.
-  LazyHydrate(on-interaction)
+  LazyHydrate(when-visible)
     .search(
       data-search,
       v-click-outside="hideResults",

@@ -24,7 +24,7 @@
         span.sidebar-navigation__group-toggle-lang
           | {{ $i18n.locale }}
 
-      LazyHydrate(on-interaction="click")
+      LazyHydrate(when-visible)
         TheLanguage.sidebar-navigation__group-content.sidebar-navigation__group-content-lang(
           v-if="group.lang",
           @click.native="$emit('close', $event)")

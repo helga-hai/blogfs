@@ -9,7 +9,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Search from '@/components/search/Search.vue';
+  // import Search from '@/components/search/Search.vue';
 
   interface Data {
     isActive: boolean;
@@ -20,7 +20,9 @@
     // Name of the component
     name: 'HeaderSearch',
     // Deps of the component
-    components: { Search },
+    components: {
+      Search: () => import('@/components/search/Search.vue')
+    },
     // Data of the component
     data: (): Data => ({
       isActive: false,
