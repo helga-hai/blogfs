@@ -14,9 +14,8 @@
             LazyHydrate(newer)
               BackToCasino.header-shortcut__back
           HeaderShortcuts.header__shortcut
-        LazyHydrate(on-interaction)
-          HeaderSearch.header__searchcut
-        LazyHydrate(on-interaction)
+        HeaderSearch.header__searchcut
+        LazyHydrate(on-interaction="click")
           HeaderLanguage.header__language(v-if="$mq === 'lg'")
 </template>
 

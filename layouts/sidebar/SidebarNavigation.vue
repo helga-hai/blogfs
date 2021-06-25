@@ -24,15 +24,16 @@
         span.sidebar-navigation__group-toggle-lang
           | {{ $i18n.locale }}
 
-      TheLanguage.sidebar-navigation__group-content.sidebar-navigation__group-content-lang(
-        v-if="group.lang",
-        @click.native="$emit('close', $event)")
+      LazyHydrate(on-interaction="click")
+        TheLanguage.sidebar-navigation__group-content.sidebar-navigation__group-content-lang(
+          v-if="group.lang",
+          @click.native="$emit('close', $event)")
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import { mapGetters, mapState } from 'vuex';
-  import TheLanguage from '../TheLanguage.vue';
+  // import TheLanguage from '../TheLanguage.vue';
 
   // Single File Component
   export default Vue.extend({
@@ -40,7 +41,7 @@
     name: 'SidebarNavigation',
     // Deps of the component
     components: {
-      TheLanguage,
+      TheLanguage: () => import('../TheLanguage.vue'),
     },
     // Data of the component
     data: (): Record<string, any> => ({

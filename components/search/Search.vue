@@ -1,28 +1,29 @@
 <template lang="pug">
   // Component template.
-  .search(
-    data-search,
-    v-click-outside="hideResults",
-    :class="{ 'search--active': term && active && !initLoading }")
-    SearchField.search__field(
-      :term="term",
-      :close="active",
-      @input="loadByTerm",
-      @openField="$emit('openField', $event)",
-      @showResults="showResults",
-      @hideResults="hideResults")
+  LazyHydrate(on-interaction)
+    .search(
+      data-search,
+      v-click-outside="hideResults",
+      :class="{ 'search--active': term && active && !initLoading }")
+      SearchField.search__field(
+        :term="term",
+        :close="active",
+        @input="loadByTerm",
+        @openField="$emit('openField', $event)",
+        @showResults="showResults",
+        @hideResults="hideResults")
 
-    transition(name="fade")
-      SearchResult.search__result(
-        v-if="term && active && !initLoading",
-        :total="count",
-        :result="result")
-        template(#infinite)
-          InfiniteLoading(
-            @infinite="getMoreArticles",
-            :identifier="infiniteId",
-            v-if="hasMore")
-            span(slot="no-more")
+      transition(name="fade")
+        SearchResult.search__result(
+          v-if="term && active && !initLoading",
+          :total="count",
+          :result="result")
+          template(#infinite)
+            InfiniteLoading(
+              @infinite="getMoreArticles",
+              :identifier="infiniteId",
+              v-if="hasMore")
+              span(slot="no-more")
 </template>
 
 <script lang="ts">
