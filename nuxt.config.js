@@ -100,7 +100,7 @@ export default {
     '@nuxtjs/strapi',
     'nuxt-webfontloader',
     '@nuxtjs/svg',
-    'nuxt-lazy-load',
+    ['nuxt-lazy-load', { directiveOnly: true }],
     [
       'nuxt-i18n',
       {
