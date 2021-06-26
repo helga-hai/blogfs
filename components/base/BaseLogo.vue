@@ -11,6 +11,8 @@
 
     img.base-logo__text(
       alt="Fairspin blog",
+      width="97px",
+      height="20px",
       :src="require('@/assets/images/brand/name.svg')",
       draggable="false",
       data-base-logo-text)

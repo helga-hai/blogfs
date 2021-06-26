@@ -49,6 +49,9 @@
         :for="uniqueId",
         @click="clearField")
         img.base-input__clear-image(
+          alt="close"
+          width="16",
+          height="16",
           src="@/assets/images/common/close.svg",
           draggable="false")
 

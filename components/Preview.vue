@@ -51,7 +51,7 @@
     },
   })
   export default class PreviewComponent extends Vue {
-    loading: boolean = false;
+    loading: boolean = true;
 
     @Prop()
     data!: ArticleInterface;

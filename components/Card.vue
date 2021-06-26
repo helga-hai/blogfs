@@ -55,7 +55,7 @@
     },
   })
   export default class CategoryComponent extends Vue {
-    loading: boolean = false;
+    loading: boolean = true;
 
     @Prop()
     data!: ArticleInterface;

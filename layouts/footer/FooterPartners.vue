@@ -8,6 +8,7 @@
         target="_blank",
         data-footer-partner-company-item="ethereum")
         img.footer-partner__company-ethereum-image(
+          rel="noreferrer"
           src="@/assets/images/footer/partner/ethereum.svg",
           alt="Ethereum",
           draggable="false")
@@ -15,6 +16,7 @@
       .footer-partner__link.footer-partner__company-trueplay.footer-partner__company-link(
         data-footer-partner-company-item="trueplay")
         img.footer-partner__company-trueplay-image(
+          rel="noreferrer"
           src="@/assets/images/footer/partner/trueplay.svg",
           alt="TruePlay",
           draggable="false")
