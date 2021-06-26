@@ -55,10 +55,10 @@
 
 <script lang="ts">
   import { Vue, Component } from 'nuxt-property-decorator';
-  import BaseBlock from '@/components/base/BaseBlock.vue';
   import { getStrapiMedia } from '@/utils/medias.js';
-  import List from '@/components/List.vue';
+  import BaseBlock from '@/components/base/BaseBlock.vue';
   import Subscribe from '@/components/Subscribe.vue';
+  import List from '@/components/List.vue';
 
   @Component({
     // Name of the component

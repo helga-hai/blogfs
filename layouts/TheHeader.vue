@@ -22,6 +22,8 @@
 
 <script lang="ts">
   import BaseLogo from '@/components/base/BaseLogo.vue';
+  import HeaderShortcuts from '@/layouts/header/HeaderShortcuts.vue';
+  import HeaderSearch from '@/layouts/header/HeaderSearch.vue';
   // Component definition
   export default {
     // Name of the component
@@ -29,8 +31,8 @@
     // Deps of the component
     components: {
       BaseLogo,
-      HeaderShortcuts: () => import('@/layouts/header/HeaderShortcuts.vue'),
-      HeaderSearch: () => import('@/layouts/header/HeaderSearch.vue'),
+      HeaderShortcuts,//: () => import('@/layouts/header/HeaderShortcuts.vue'),
+      HeaderSearch,//: () => import('@/layouts/header/HeaderSearch.vue'),
       HeaderLanguage: () => import('@/layouts/header/HeaderLanguage.vue'),
       BackToCasino: () => import('@/layouts/common/BackToCasino.vue'),
     },
