@@ -54,17 +54,18 @@
                 draggable="false")
       .home__catalog
         Catalogue(:items="articles.slice(4, 8)")
-      .fb-like
-        iframe(
-          title="fb like",
-          src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffairspin.info&width=174&layout=button_count&action=like&size=large&share=true&height=46&appId=2095251617409719",
-          width="100%",
-          height="100",
-          style="border: none; overflow: hidden; padding: 12px; background: url(https://admin.fairspin.info/uploads/like_fb_min_1023506bb9.jpg) bottom center",
-          scrolling="no",
-          frameborder="0",
-          allowfullscreen="true",
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
+      LazyHydrate(when-visible)
+        .fb-like
+          iframe(
+            title="fb like",
+            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffairspin.info&width=174&layout=button_count&action=like&size=large&share=true&height=46&appId=2095251617409719",
+            width="100%",
+            height="100",
+            style="border: none; overflow: hidden; padding: 12px; background: url(https://admin.fairspin.info/uploads/like_fb_min_1023506bb9.jpg) bottom center",
+            scrolling="no",
+            frameborder="0",
+            allowfullscreen="true",
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
       .home__catalog
         Catalogue(:items="articles.slice(8)")
 

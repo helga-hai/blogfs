@@ -16,8 +16,7 @@
           HeaderShortcuts.header__shortcut
         client-only
           HeaderSearch.header__searchcut
-        LazyHydrate(when-visible)
-          HeaderLanguage.header__language(v-if="$mq === 'lg'")
+        HeaderLanguage.header__language(v-if="$mq === 'lg'")
 </template>
 
 <script lang="ts">
