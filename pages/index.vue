@@ -262,6 +262,7 @@
   @use '~@stylize/sass-mixin' as *;
 
   .home {
+    content-visibility: auto;
     text-align: center;
 
     &__catalog {
