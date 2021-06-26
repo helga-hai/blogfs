@@ -266,6 +266,7 @@
     text-align: center;
 
     &__catalog {
+      content-visibility: auto;
       width: 100%;
       margin-top: 20px;
       @include flex(row);
