@@ -52,8 +52,9 @@
                 :height="item.icon.height",
                 :src="getStrapiMedia(item.icon.url)",
                 draggable="false")
-      .home__catalog
-        Catalogue(:items="articles.slice(4, 8)")
+      LazyHydrate(when-visible)
+        .home__catalog
+          Catalogue(:items="articles.slice(4, 8)")
       LazyHydrate(when-visible)
         .fb-like
           iframe(
@@ -66,27 +67,31 @@
             frameborder="0",
             allowfullscreen="true",
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
-      .home__catalog
-        Catalogue(:items="articles.slice(8)")
+      LazyHydrate(when-visible)
+        .home__catalog
+          Catalogue(:items="articles.slice(8)")
 
-      BaseButton.home__more(
-        v-if="hasMore",
-        variant="primary",
-        :loading="loading",
-        @click="loading = true; getMoreArticles()")
-        | {{ $t('home.more') }}
-
-      .home__news
-        .home__news-title
-          | {{ $t('bar.news.title') }}
-        BaseBlock.bar__news-content(
-          cutSize="medium",
+      LazyHydrate(on-interaction="click")
+        BaseButton.home__more(
+          v-if="hasMore",
           variant="primary",
-          :cutSide="['top-right', 'bottom-left']")
-          List(:items="news")
+          :loading="loading",
+          @click="loading = true; getMoreArticles()")
+          | {{ $t('home.more') }}
 
-      .home__subscribe
-        Subscribe
+      LazyHydrate(when-visible)
+        .home__news
+          .home__news-title
+            | {{ $t('bar.news.title') }}
+          BaseBlock.bar__news-content(
+            cutSize="medium",
+            variant="primary",
+            :cutSide="['top-right', 'bottom-left']")
+            List(:items="news")
+
+      LazyHydrate(when-visible)
+        .home__subscribe
+          Subscribe
 </template>
 
 <script lang="ts">
