@@ -45,7 +45,7 @@ export default {
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon-180x180.png' },
       { rel: 'mask-icon', color: '#FFCE44', href: '/safari-pinned-tab.svg' },
       { rel: 'manifest', href: '/manifest.json' },
-      { rel: 'preconnect', href: '/font.css' },
+      { rel: 'preload', href: '/font.css' },
     ],
     script: [{ src: '/beforeinstallprompt.js' }],
   },
