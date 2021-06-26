@@ -45,16 +45,16 @@ export default {
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon-180x180.png' },
       { rel: 'mask-icon', color: '#FFCE44', href: '/safari-pinned-tab.svg' },
       { rel: 'manifest', href: '/manifest.json' },
-      // { rel: 'preload', href: '/font.css' },
+      { rel: 'prefetch', href: '/font.css' },
     ],
     script: [{ src: '/beforeinstallprompt.js' }],
   },
-  webfontloader: {
-    custom: {
-      families: ['Stolzl'],
-      urls: ['https://fairspin.io/static/font.css'],
-    },
-  },
+  // webfontloader: {
+  //   custom: {
+  //     families: ['Stolzl'],
+  //     urls: ['https://fairspin.io/static/font.css'],
+  //   },
+  // },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -77,7 +77,7 @@ export default {
     { src: '~/plugins/VueNumeralFilter.js', mode: 'client' },
     { src: '~/plugins/StarRating.js', mode: 'client' },
     { src: '~/directives/hidden', mode: 'client' },
-    {src: '~/plugins/webFontLoader.js', ssr: false}
+    // {src: '~/plugins/webFontLoader.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
