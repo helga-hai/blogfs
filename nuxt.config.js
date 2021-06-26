@@ -28,6 +28,7 @@ export default {
       { name: 'robots', content: 'noindex, nofollow' },
     ],
     link: [
+      { rel: 'preconnect', href: '/font.css', type: 'text/css' },
       { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
@@ -45,7 +46,6 @@ export default {
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon-180x180.png' },
       { rel: 'mask-icon', color: '#FFCE44', href: '/safari-pinned-tab.svg' },
       { rel: 'manifest', href: '/manifest.json' },
-      // { rel: 'prefetch', href: '/font.css' },
     ],
     script: [{ src: '/beforeinstallprompt.js' }],
   },
