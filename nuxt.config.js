@@ -107,11 +107,12 @@ export default {
         strategy: 'prefix_except_default',
         defaultlocale: 'en',
         rootUrl: 'https://hardcore-pare-196c1f.netlify.app',
-        domain: 'https://hardcore-pare-196c1f.netlify.app',
+        differentDomains: true,
+        domain: 'hardcore-pare-196c1f.netlify.app:443',
         // Params used for generate hreflang
         locales: [
-          { code: 'ru', iso: 'ru' },
-          { code: 'en', iso: 'en' },
+          { code: 'ru', iso: 'ru', domain: 'hardcore-pare-196c1f.netlify.app:443/ru' },
+          { code: 'en', iso: 'en', domain: 'hardcore-pare-196c1f.netlify.app:443' },
         ],
       },
     ],
