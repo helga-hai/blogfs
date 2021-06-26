@@ -38,6 +38,7 @@
             v-for="item in $store.state.content.social",
             :key="item.id",
             :href="item.url",
+            rel="noreferrer"
             target="_blank")
             .bar__social-img
               img(
