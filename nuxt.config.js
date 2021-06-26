@@ -77,6 +77,7 @@ export default {
     { src: '~/plugins/VueNumeralFilter.js', mode: 'client' },
     { src: '~/plugins/StarRating.js', mode: 'client' },
     { src: '~/directives/hidden', mode: 'client' },
+    {src: '~/plugins/webFontLoader.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
