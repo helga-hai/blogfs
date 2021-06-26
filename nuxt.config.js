@@ -45,16 +45,16 @@ export default {
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon-180x180.png' },
       { rel: 'mask-icon', color: '#FFCE44', href: '/safari-pinned-tab.svg' },
       { rel: 'manifest', href: '/manifest.json' },
-      { rel: 'prefetch', href: '/font.css' },
+      // { rel: 'prefetch', href: '/font.css' },
     ],
     script: [{ src: '/beforeinstallprompt.js' }],
   },
-  // webfontloader: {
-  //   custom: {
-  //     families: ['Stolzl'],
-  //     urls: ['https://fairspin.io/static/font.css'],
-  //   },
-  // },
+  webfontloader: {
+    custom: {
+      families: ['Stolzl:400'],
+      urls: ['/font.css'],
+    },
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
