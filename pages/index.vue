@@ -4,15 +4,18 @@
     BaseTitle
       | {{ home.title }}
     Preview(:data="previewArticle")
+
     template(v-if="$mq !== 'xs'")
       .home__catalog
         Catalogue(:items="articles")
-      BaseButton.home__more(
-        v-if="hasMore",
-        variant="primary",
-        :loading="loading",
-        @click="loading = true; getMoreArticles()")
-        | {{ $t('home.more') }}
+      LazyHydrate(on-interaction="click")
+        BaseButton.home__more(
+          v-if="hasMore",
+          variant="primary",
+          :loading="loading",
+          @click="loading = true; getMoreArticles()")
+          | {{ $t('home.more') }}
+
     template(v-else)
       template(v-if="$store.state.content.banner")
         a.home__banner(
@@ -35,31 +38,16 @@
             :type="$store.state.content.bannerVideo.source.mime")
       .home__catalog
         Catalogue(:items="articles.slice(0, 4)")
-      .home__social
-        .home__social-links
-          .home__social-title
-            | {{ $t('bar.social.title') }}:
-          a.home__social-link(
-            v-for="item in $store.state.content.social",
-            :key="item.id",
-            :href="item.url",
-            rel="noreferrer"
-            target="_blank")
-            .home__social-img
-              img(
-                :alt="`${item.title}`",
-                :width="item.icon.width",
-                :height="item.icon.height",
-                :src="getStrapiMedia(item.icon.url)",
-                draggable="false")
+      SocialHome
       LazyHydrate(when-visible)
         .home__catalog
           Catalogue(:items="articles.slice(4, 8)")
       LazyHydrate(when-visible)
         .fb-like
           iframe(
+            v-lazy-load
             title="fb like",
-            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffairspin.info&width=174&layout=button_count&action=like&size=large&share=true&height=46&appId=2095251617409719",
+            data-src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffairspin.info&width=174&layout=button_count&action=like&size=large&share=true&height=46&appId=2095251617409719",
             width="100%",
             height="100",
             style="border: none; overflow: hidden; padding: 12px; background: url(https://admin.fairspin.info/uploads/like_fb_min_1023506bb9.jpg) bottom center",
@@ -67,11 +55,11 @@
             frameborder="0",
             allowfullscreen="true",
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
+
       LazyHydrate(when-visible)
         .home__catalog
           Catalogue(:items="articles.slice(8)")
-
-      LazyHydrate(on-interaction="click")
+      LazyHydrate(when-visible)
         BaseButton.home__more(
           v-if="hasMore",
           variant="primary",
@@ -79,18 +67,17 @@
           @click="loading = true; getMoreArticles()")
           | {{ $t('home.more') }}
 
-      LazyHydrate(when-visible)
-        .home__news
-          .home__news-title
-            | {{ $t('bar.news.title') }}
+      .home__news
+        .home__news-title
+          | {{ $t('bar.news.title') }}
+        LazyHydrate(when-visible)
           BaseBlock.bar__news-content(
             cutSize="medium",
             variant="primary",
             :cutSide="['top-right', 'bottom-left']")
             List(:items="news")
-
-      LazyHydrate(when-visible)
-        .home__subscribe
+      .home__subscribe
+        LazyHydrate(when-visible)
           Subscribe
 </template>
 
@@ -106,6 +93,7 @@
   import Catalogue from '@/components/Catalogue.vue';
   import List from '@/components/List.vue';
   import Subscribe from '@/components/Subscribe.vue';
+  import SocialHome from '@/components/SocialHome.vue';
   import { getStrapiMedia } from '~/utils/medias';
   import { getMetaTags } from '~/utils/seo';
 
@@ -190,6 +178,7 @@
       List,
       Catalogue,
       Subscribe,
+      SocialHome,
     },
     // Computeds of component
     computed: {
@@ -280,34 +269,6 @@
     &__banner-image {
       border-radius: 8px;
       max-width: calc(100% - 24px);
-    }
-
-    &__social {
-      text-align: left;
-
-      &-links {
-        @include flex(row flex-start center);
-      }
-    }
-
-    &__social {
-      overflow: hidden;
-      background: $home-social__background;
-
-      &-links {
-        overflow: auto;
-        padding: $home-social-links__padding;
-      }
-
-      &-link {
-        margin: $home-social-link__margin;
-      }
-
-      &-title {
-        white-space: nowrap;
-        text-transform: uppercase;
-        margin: $home-social-title__margin;
-      }
     }
 
     .fb-like {

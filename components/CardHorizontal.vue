@@ -51,12 +51,17 @@
     @include flex(row flex-start center);
 
     &__image {
+      content-visibility: hidden;
       object-fit: cover;
       border-radius: $card-horizontal-image__border-radius;
       @include size($card-horizontal__size);
 
       @include media('>=sm') {
         @include size($card-horizontal__size--r10);
+      }
+
+      &.isLoaded {
+        content-visibility: auto;
       }
     }
 

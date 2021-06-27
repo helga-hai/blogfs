@@ -1,7 +1,7 @@
 {
-  "name": "Fairspin casino",
-  "short_name": "Fairspin",
-  "description": "Online casino Fairspin",
+  "name": "Fairspin Blog",
+  "short_name": "Blog Fairspin",
+  "description": "Blog about online casino Fairspin",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
