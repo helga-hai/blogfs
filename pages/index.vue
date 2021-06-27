@@ -39,9 +39,8 @@
       .home__catalog
         Catalogue(:items="articles.slice(0, 4)")
       SocialHome
-      LazyHydrate(when-visible)
-        .home__catalog
-          Catalogue(:items="articles.slice(4, 8)")
+      .home__catalog
+        Catalogue(:items="articles.slice(4, 8)")
       LazyHydrate(when-visible)
         .fb-like
           iframe(
@@ -56,21 +55,18 @@
             allowfullscreen="true",
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
 
-      LazyHydrate(when-visible)
-        .home__catalog
-          Catalogue(:items="articles.slice(8)")
-      LazyHydrate(when-visible)
-        BaseButton.home__more(
-          v-if="hasMore",
-          variant="primary",
-          :loading="loading",
-          @click="loading = true; getMoreArticles()")
-          | {{ $t('home.more') }}
+      .home__catalog
+        Catalogue(:items="articles.slice(8)")
+      BaseButton.home__more(
+        v-if="hasMore",
+        variant="primary",
+        :loading="loading",
+        @click="loading = true; getMoreArticles()")
+        | {{ $t('home.more') }}
 
       .home__news
         .home__news-title
           | {{ $t('bar.news.title') }}
-        LazyHydrate(when-visible)
           BaseBlock.bar__news-content(
             cutSize="medium",
             variant="primary",

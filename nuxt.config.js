@@ -28,6 +28,9 @@ export default {
       { name: 'robots', content: 'noindex, nofollow' },
     ],
     link: [
+      { rel: 'preload', href: '/fonts/Stolzl-Book.woff2', as: 'font', crossorigin:'anonymous' },
+      { rel: 'preload', href: '/fonts/Stolzl-Regular.woff2', as: 'font', crossorigin:'anonymous' },
+      { rel: 'preload', href: '/fonts/Stolzl-Bold.woff2', as: 'font', crossorigin:'anonymous' },
       { rel: 'preconnect', href: '/font.css', type: 'text/css' },
       { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
@@ -77,7 +80,6 @@ export default {
     { src: '~/plugins/VueNumeralFilter.js', mode: 'client' },
     { src: '~/plugins/StarRating.js', mode: 'client' },
     { src: '~/directives/hidden', mode: 'client' },
-    // {src: '~/plugins/webFontLoader.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
