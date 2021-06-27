@@ -3,7 +3,9 @@
   aside.sidebar(data-sidebar)
     .sidebar__block.sidebar__block--border
       .sidebar__header
-        BaseLogo.sidebar__logo(data-sidebar-logo)
+        BaseLogo.sidebar__logo(
+          @click.native="$emit('close')"
+          data-sidebar-logo)
         BaseClose.sidebar__close(
           @close="$emit('close')",
           data-sidebar-close)
