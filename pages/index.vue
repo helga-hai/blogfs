@@ -66,12 +66,12 @@
       .home__news
         .home__news-title
           | {{ $t('bar.news.title') }}
-      LazyHydrate(when-visible)
-        BaseBlock.bar__news-content(
-          cutSize="medium",
-          variant="primary",
-          :cutSide="['top-right', 'bottom-left']")
-          List(:items="news")
+        LazyHydrate(when-visible)
+          BaseBlock.bar__news-content(
+            cutSize="medium",
+            variant="primary",
+            :cutSide="['top-right', 'bottom-left']")
+            List(:items="news")
       .home__subscribe
         LazyHydrate(when-visible)
           Subscribe
@@ -277,8 +277,7 @@
     }
 
     &__news {
-      text-transform: uppercase;
-      width: calc(100vw - 24px);
+      width: calc(100% - 24px);
       margin: 24px auto 0;
 
       &-title {
@@ -288,6 +287,7 @@
       }
 
       ::v-deep .card-horizontal__title {
+        text-transform: uppercase;
         font: $home-news-title__font;
       }
     }
