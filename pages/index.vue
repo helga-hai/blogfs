@@ -8,13 +8,12 @@
     template(v-if="$mq !== 'xs'")
       .home__catalog
         Catalogue(:items="articles")
-      LazyHydrate(on-interaction="click")
-        BaseButton.home__more(
-          v-if="hasMore",
-          variant="primary",
-          :loading="loading",
-          @click="loading = true; getMoreArticles()")
-          | {{ $t('home.more') }}
+      BaseButton.home__more(
+        v-if="hasMore",
+        variant="primary",
+        :loading="loading",
+        @click="loading = true; getMoreArticles()")
+        | {{ $t('home.more') }}
 
     template(v-else)
       template(v-if="$store.state.content.banner")
@@ -67,11 +66,12 @@
       .home__news
         .home__news-title
           | {{ $t('bar.news.title') }}
-          BaseBlock.bar__news-content(
-            cutSize="medium",
-            variant="primary",
-            :cutSide="['top-right', 'bottom-left']")
-            List(:items="news")
+      LazyHydrate(when-visible)
+        BaseBlock.bar__news-content(
+          cutSize="medium",
+          variant="primary",
+          :cutSide="['top-right', 'bottom-left']")
+          List(:items="news")
       .home__subscribe
         LazyHydrate(when-visible)
           Subscribe
@@ -277,6 +277,7 @@
     }
 
     &__news {
+      text-transform: uppercase;
       width: calc(100vw - 24px);
       margin: 24px auto 0;
 
