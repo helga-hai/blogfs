@@ -274,6 +274,8 @@ export default {
       },
     },
   },
-
+  generate: {
+    interval: 1200
+  },
   router: {},
 };
